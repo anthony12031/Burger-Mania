@@ -1,0 +1,1 @@
+Click on food to add to counter

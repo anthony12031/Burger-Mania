@@ -1,0 +1,3 @@
+The hot dog is cooked. Click or drag the hot 
+--- RECORDSEPARATOR ---
+dog to place in the bun
