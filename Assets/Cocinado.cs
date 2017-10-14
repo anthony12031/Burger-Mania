@@ -14,7 +14,6 @@ public class Cocinado : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log (GetComponent<SpriteRenderer> ().sprite);
 	}
 	
 	// Update is called once per frame
