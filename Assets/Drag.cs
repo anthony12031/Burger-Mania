@@ -8,7 +8,7 @@ public class Drag : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+			
 	}
 	
 	// Update is called once per frame
@@ -26,6 +26,9 @@ public class Drag : MonoBehaviour {
 	}
 
 	void OnMouseUp(){
+		if (gameObject.CompareTag ("salchicha")) {
+			Debug.Log ("comparar distancia");
+		}	
 		isClicked = false;
 	}
 
