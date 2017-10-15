@@ -44,6 +44,7 @@ public class DragSalchicha : MonoBehaviour {
 					perro.GetChild (1).gameObject.GetComponent<SpriteRenderer>().sprite =
 						gameObject.GetComponent<SpriteRenderer>().sprite;
 				    PanControlador.posParrilla1.estado = "perroCaliente";
+					SalchichaControlador.posParrilla1.estado = "vacio";
 					Destroy (gameObject);
 					colision = true;
 				}
@@ -56,6 +57,7 @@ public class DragSalchicha : MonoBehaviour {
 					perro.GetChild (1).gameObject.GetComponent<SpriteRenderer>().sprite =
 						gameObject.GetComponent<SpriteRenderer>().sprite;
 					PanControlador.posParrilla2.estado = "perroCaliente";
+					SalchichaControlador.posParrilla2.estado = "vacio";
 					Destroy (gameObject);
 					colision = true;
 				}
@@ -68,6 +70,7 @@ public class DragSalchicha : MonoBehaviour {
 					perro.GetChild (1).gameObject.GetComponent<SpriteRenderer>().sprite =
 						gameObject.GetComponent<SpriteRenderer>().sprite;
 				    PanControlador.posParrilla3.estado = "perroCaliente";
+					SalchichaControlador.posParrilla3.estado = "vacio";
 					Destroy (gameObject);
 					colision = true;
 				}

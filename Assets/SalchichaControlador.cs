@@ -5,10 +5,10 @@ using UnityEngine;
 public class SalchichaControlador : MonoBehaviour {
 
 	public Transform salchicha;
-	public PosicionParrilla posParrilla1;
-	public PosicionParrilla posParrilla2;
-	public PosicionParrilla posParrilla3;
-	public PosicionParrilla posParrilla4;
+	public static PosicionParrilla posParrilla1;
+	public static PosicionParrilla posParrilla2;
+	public static PosicionParrilla posParrilla3;
+	public static PosicionParrilla posParrilla4;
 
 	public class PosicionParrilla{
 	
