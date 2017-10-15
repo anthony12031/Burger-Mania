@@ -17,7 +17,6 @@ public class Drag : MonoBehaviour {
 			Vector2 mousePos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 			Vector2 objPos = Camera.main.ScreenToWorldPoint (mousePos);
 			transform.position = objPos;
-			Debug.Log (mousePos);
 		}
 
 	}
@@ -29,5 +28,10 @@ public class Drag : MonoBehaviour {
 	void OnMouseUp(){
 		isClicked = false;
 	}
+
+	void OnCollisionEnter2D(Collision2D coll) {
+		Debug.Log ("colision");
+	}
+
 
 }

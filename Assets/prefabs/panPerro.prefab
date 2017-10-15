@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4858378435227478}
   - component: {fileID: 114040108345506684}
   - component: {fileID: 60695730252793046}
-  - component: {fileID: 114405312687298552}
   - component: {fileID: 50433395883038894}
   m_Layer: 0
   m_Name: panPerro
@@ -166,17 +165,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClicked: 0
---- !u!114 &114405312687298552
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1017304836883168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705d800d03a52754db2faef404624dd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &212340620704424866
 SpriteRenderer:
   m_ObjectHideFlags: 1
