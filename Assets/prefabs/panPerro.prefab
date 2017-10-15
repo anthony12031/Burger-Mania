@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4858378435227478}
   - component: {fileID: 114040108345506684}
   - component: {fileID: 60695730252793046}
+  - component: {fileID: 114405312687298552}
+  - component: {fileID: 50433395883038894}
   m_Layer: 0
   m_Name: panPerro
   m_TagString: Untagged
@@ -101,6 +103,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50433395883038894
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1017304836883168}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!60 &60695730252793046
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -141,6 +163,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01992c2c887d5a649b13606c142e90e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClicked: 0
+--- !u!114 &114405312687298552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1017304836883168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 705d800d03a52754db2faef404624dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212340620704424866
