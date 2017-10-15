@@ -11,6 +11,7 @@ public class Cocinado : MonoBehaviour {
 	public Sprite salchicha3;
 	public Sprite salchicha4;
 	public Sprite salchicha5;
+	public bool estaEnParrilla = true;
 
 	// Use this for initialization
 	void Start () {
@@ -18,7 +19,9 @@ public class Cocinado : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		tiempoActualCocinado += Time.deltaTime; 
+		if(estaEnParrilla)
+			tiempoActualCocinado += Time.deltaTime; 
+
 		if (tiempoActualCocinado >= tiempoCocinado && estado == "1") {
 			GetComponent<SpriteRenderer>().sprite = salchicha2 ;
 			estado = "2";

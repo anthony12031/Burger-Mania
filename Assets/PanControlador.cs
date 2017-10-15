@@ -5,14 +5,15 @@ using UnityEngine;
 public class PanControlador : MonoBehaviour {
 
 	public Transform panPerro;
-	public PosicionParrilla posParrilla1;
-	public PosicionParrilla posParrilla2;
-	public PosicionParrilla posParrilla3;
+	public static PosicionParrilla posParrilla1;
+	public static PosicionParrilla posParrilla2;
+	public static PosicionParrilla posParrilla3;
 
 	public class PosicionParrilla{
 
 		public string estado;
 		public Vector3 v3Pos;
+		public Transform pan;
 
 		public PosicionParrilla(Vector3 pos){
 			estado = "vacio";
@@ -49,7 +50,8 @@ public class PanControlador : MonoBehaviour {
 	void OnMouseDown(){
 		PosicionParrilla posLibre = getSigPosLibre();
 		if (posLibre != null) {
-			Instantiate (panPerro, posLibre.v3Pos, Quaternion.identity);
+			posLibre.pan = Instantiate (panPerro, posLibre.v3Pos, Quaternion.identity);
+
 			posLibre.estado = "ocupado";
 		}
 	}

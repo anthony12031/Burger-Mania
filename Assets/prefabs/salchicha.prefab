@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 60174588021251156}
   m_Layer: 0
   m_Name: salchicha
-  m_TagString: Untagged
+  m_TagString: salchicha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,6 +91,7 @@ MonoBehaviour:
   salchicha3: {fileID: 21300000, guid: 2b8b6b34c8e878649aaaf384522f1e4d, type: 3}
   salchicha4: {fileID: 21300000, guid: c2bd4fd3231bb3949947c9cd5d13bb00, type: 3}
   salchicha5: {fileID: 21300000, guid: 5d170806b73eaf5439cc3f3ff64a7bef, type: 3}
+  estaEnParrilla: 1
 --- !u!114 &114654104891765070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,10 +100,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1678705411154822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01992c2c887d5a649b13606c142e90e7, type: 3}
+  m_Script: {fileID: 11500000, guid: f4b8a71ee99b21d428327daa04a85faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isClicked: 0
+  perroCaliente: {fileID: 4465189568344306, guid: 9bae777e616319a45a9e3e61cf5ffa3c,
+    type: 2}
 --- !u!212 &212539749131985996
 SpriteRenderer:
   m_ObjectHideFlags: 1
