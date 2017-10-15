@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4465189568344306}
   - component: {fileID: 60194782193183808}
+  - component: {fileID: 114192190560298490}
   m_Layer: 0
   m_Name: perroCaliente
   m_TagString: Untagged
@@ -161,6 +162,18 @@ PolygonCollider2D:
       - {x: -0.17838144, y: -0.5087878}
       - {x: 0.123794556, y: -0.42690688}
       - {x: 0.30965734, y: 0.17254925}
+--- !u!114 &114192190560298490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1038732547286242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49d986b28cad4e4ab375aeb17a707d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isClicked: 0
 --- !u!212 &212409977833873450
 SpriteRenderer:
   m_ObjectHideFlags: 1

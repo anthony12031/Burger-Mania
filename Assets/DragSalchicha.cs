@@ -32,9 +32,7 @@ public class DragSalchicha : MonoBehaviour {
 	}
 
 	void OnMouseUp(){
-		if (gameObject.CompareTag ("salchicha")) {
-			Debug.Log ("comparar distancia");
-
+		
 			bool colision = false;
 			if (PanControlador.posParrilla1.estado == "ocupado") {
 				Collider2D pan1 = PanControlador.posParrilla1.pan.gameObject.GetComponent<Collider2D> ();
@@ -81,7 +79,7 @@ public class DragSalchicha : MonoBehaviour {
 				gameObject.transform.position = posOriginal;
 				gameObject.GetComponent<Cocinado> ().estaEnParrilla = true;
 			}
-		}	
+		
 		isClicked = false;
 	}
 
