@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: 02ebc456f59ae5742b4ca437ab8c3f32
-timeCreated: 1507911410
+timeCreated: 1508347746
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - salchicha: {fileID: 4452346813871756, guid: 9880087fe969b984394a0c86e06e7df1,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
