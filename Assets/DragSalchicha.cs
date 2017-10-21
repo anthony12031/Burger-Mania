@@ -11,10 +11,13 @@ public class DragSalchicha : MonoBehaviour {
 	public string topSortinLayer;
 
 
+
+
 	// Use this for initialization
 	void Start () {
 		colliderSalchicha = gameObject.GetComponent<Collider2D>();
 		posOriginal = gameObject.transform.position;
+
 	}
 	
 	// Update is called once per frame
@@ -24,7 +27,6 @@ public class DragSalchicha : MonoBehaviour {
 			Vector2 objPos = Camera.main.ScreenToWorldPoint (mousePos);
 			transform.position = objPos;
 			gameObject.GetComponent<Cocinado> ().estaEnParrilla = false;
-			gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "topLayer";
 		}
 
 	}
@@ -33,10 +35,13 @@ public class DragSalchicha : MonoBehaviour {
 		isClicked = true;
 	}
 
-	void OnMouseUp(){
 		
+		
+	void OnMouseUp(){
+		isClicked = false;
+
 			bool colision = false;
-			if (PanControlador.posParrilla1.estado == "ocupado") {
+		if (PanControlador.posParrilla1.estado == "ocupado") {
 				Collider2D pan1 = PanControlador.posParrilla1.pan.gameObject.GetComponent<Collider2D> ();
 				if (colliderSalchicha.IsTouching (pan1)) {
 					Destroy (PanControlador.posParrilla1.pan.gameObject);
@@ -82,12 +87,8 @@ public class DragSalchicha : MonoBehaviour {
 				gameObject.GetComponent<Cocinado> ().estaEnParrilla = true;
 			}
 		
-		isClicked = false;
-	}
 
-	void OnCollisionEnter2D(Collision2D coll) {
-		Debug.Log ("colision");
 	}
-
+		
 
 }

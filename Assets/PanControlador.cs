@@ -9,7 +9,7 @@ public class PanControlador : MonoBehaviour {
 	public static PosicionParrilla posParrilla2;
 	public static PosicionParrilla posParrilla3;
 
-	public class PosicionParrilla{
+	public  class PosicionParrilla{
 
 		public string estado;
 		public Vector3 v3Pos;
@@ -51,7 +51,6 @@ public class PanControlador : MonoBehaviour {
 		PosicionParrilla posLibre = getSigPosLibre();
 		if (posLibre != null) {
 			posLibre.pan = Instantiate (panPerro, posLibre.v3Pos, Quaternion.identity);
-
 			posLibre.estado = "ocupado";
 		}
 	}
