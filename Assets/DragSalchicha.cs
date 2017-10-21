@@ -8,6 +8,7 @@ public class DragSalchicha : MonoBehaviour {
 	Collider2D colliderSalchicha;
 	public  Transform perroCaliente;
 	private Vector2 posOriginal;
+	public string topSortinLayer;
 
 
 	// Use this for initialization
@@ -23,6 +24,7 @@ public class DragSalchicha : MonoBehaviour {
 			Vector2 objPos = Camera.main.ScreenToWorldPoint (mousePos);
 			transform.position = objPos;
 			gameObject.GetComponent<Cocinado> ().estaEnParrilla = false;
+			gameObject.GetComponent<SpriteRenderer>().sortingLayerName = "topLayer";
 		}
 
 	}

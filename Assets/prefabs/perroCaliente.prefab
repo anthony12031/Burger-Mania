@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4465189568344306}
   - component: {fileID: 60194782193183808}
   - component: {fileID: 114192190560298490}
+  - component: {fileID: 210200943619335692}
   m_Layer: 0
   m_Name: perroCaliente
   m_TagString: Untagged
@@ -174,6 +175,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClicked: 0
+--- !u!210 &210200943619335692
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1038732547286242}
+  m_Enabled: 1
+  m_SortingLayerID: 1959609245
+  m_SortingLayer: 2
+  m_SortingOrder: 0
 --- !u!212 &212409977833873450
 SpriteRenderer:
   m_ObjectHideFlags: 1
