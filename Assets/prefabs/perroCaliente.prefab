@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 60194782193183808}
   - component: {fileID: 114192190560298490}
   - component: {fileID: 210200943619335692}
+  - component: {fileID: 50586916951702290}
   m_Layer: 0
   m_Name: perroCaliente
-  m_TagString: Untagged
+  m_TagString: perroCaliente
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1038732547286242}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.1009, y: -0.62451, z: 0}
+  m_LocalPosition: {x: -0.6957041, y: -0.32986882, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4882211380842690}
@@ -132,6 +133,26 @@ Transform:
   m_Father: {fileID: 4465189568344306}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50586916951702290
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1038732547286242}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!60 &60194782193183808
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -156,13 +177,18 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.06823397, y: 0.44048166}
-      - {x: -0.07631111, y: 0.43346328}
-      - {x: -0.2960105, y: 0.06337488}
-      - {x: -0.3532958, y: -0.20730948}
-      - {x: -0.17838144, y: -0.5087878}
-      - {x: 0.123794556, y: -0.42690688}
-      - {x: 0.30965734, y: 0.17254925}
+    - - {x: 0.049874246, y: 0.38999218}
+      - {x: -0.044181466, y: 0.37379384}
+      - {x: -0.13483125, y: 0.22456595}
+      - {x: -0.23634094, y: 0.045015037}
+      - {x: -0.31657612, y: -0.21189937}
+      - {x: -0.16920155, y: -0.43075857}
+      - {x: -0.14625174, y: -0.44911847}
+      - {x: -0.01849413, y: -0.4636266}
+      - {x: 0.042226076, y: -0.3376852}
+      - {x: 0.10294992, y: -0.1841118}
+      - {x: 0.20345783, y: 0.052178085}
+      - {x: 0.2729376, y: 0.20467892}
 --- !u!114 &114192190560298490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -214,9 +240,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1887680691
-  m_SortingLayer: 3
-  m_SortingOrder: 1
+  m_SortingLayerID: 1959609245
+  m_SortingLayer: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 2b8b6b34c8e878649aaaf384522f1e4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -256,9 +282,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1887680691
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: 1959609245
+  m_SortingLayer: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 9d94698988690d541bbffb436a6cef62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -298,9 +324,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1887680691
-  m_SortingLayer: 3
-  m_SortingOrder: 2
+  m_SortingLayerID: 1959609245
+  m_SortingLayer: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: b73826765e166c34ab81788147cfc5d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
