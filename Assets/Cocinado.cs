@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cocinado : MonoBehaviour {
 
-	public float tiempoCocinado;
+	public float tiempoCocinado;	
 	public bool estaEnParrilla = true;
 	private Animator animator;
 
