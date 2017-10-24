@@ -6,6 +6,8 @@ public class Personaje : MonoBehaviour {
 	public Animator animP1;
 	public Sprite personaje1;
 	public float contador = 0;
+    public int estadoMov = 0;
+    public int movex = 0;
 	// Use this for initialization
 	void Start () {
         
@@ -14,13 +16,6 @@ public class Personaje : MonoBehaviour {
 	void Update () {
         contador += Time.deltaTime;
         Debug.Log(contador);
-
-        //if (contador == 100){
-        //    animP1.SetInteger("estado", 1);
-        //}
-        //if (contador == 200){
-        //    animP1.SetInteger("estado", 2);
-        //}
 
         if (contador>5&&contador<=10) {
             animP1.SetInteger("estado", 1);
@@ -36,27 +31,21 @@ public class Personaje : MonoBehaviour {
         }
 
 
-        //		Debug.Log (animP1.GetInteger("estado"));
-        //		contador++;
-        //		if(contador>=100 && contador<=200){			
-        //			cambiarEstado (1);
-        //			animP1.SetInteger ("estado", 1);
-        //		}
-        //		if(contador>200 && contador<=300){
-        //			cambiarEstado (2);
-        //			animP1.SetInteger ("estado", 2);
-        //		}
-        //		if(contador>300 && contador<=400){
-        //			cambiarEstado (3);
-        //			animP1.SetInteger ("estado", 3);
-        //		}
-        //		if(contador>500){			
-        //			cambiarEstado (4);
-        //			animP1.SetInteger ("estado", 4);
-        //		}
+        //Moving to 
+
+        if (estadoMov == 1)
+        {
+            transform.position = new Vector3(transform.position.x + 5 * Time.deltaTime, transform.position.y, transform.position.z);
+        }
+        
+        
     }
 
-    void cambiarEstado(int numero){
-		animP1.SetInteger ("estado", numero);
-	}
+    public void moveto(int posicion)
+    {
+        movex = posicion;
+        estadoMov = 1;
+    }
+
+    
 }
