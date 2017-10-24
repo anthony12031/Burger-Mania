@@ -7,7 +7,7 @@ public class DragSalsa : MonoBehaviour {
 	public bool isClicked = false;
 	private Vector3 rotacion;
 	private Quaternion rotacionOriginal;
-	public GameObject salsaTomate;
+	public GameObject salsa;
 	private Vector3 posSalsa;
 	private Vector3 posOriginal;
 
@@ -16,7 +16,11 @@ public class DragSalsa : MonoBehaviour {
 		rotacion = new Vector3 (0, 0, -135);
 		rotacionOriginal = transform.rotation;
 		posOriginal = transform.position;
-		posSalsa = new Vector3 (0.05f, -0.04f, 0);
+		if(salsa.CompareTag("salsaTomate"))
+			posSalsa = new Vector3 (0.006f, -0.047f, 0);
+		else
+			posSalsa = new Vector3 (0.041f, -0.08f, 0);
+
 	}
 	
 	// Update is called once per frame
@@ -32,10 +36,10 @@ public class DragSalsa : MonoBehaviour {
 	GameObject perro;
 	GameObject[] perros = new GameObject[3];
 
-	bool tieneSalsa(GameObject perro){
+	bool tieneSalsa(GameObject perro,string tipoSalsa){
 		bool tieneSalsa = false;
 		foreach (Transform child in perro.transform) {
-			if (child.CompareTag ("salsaTomate")) {
+			if (child.CompareTag (tipoSalsa)) {
 				tieneSalsa = true;
 				break;
 			}
@@ -46,8 +50,15 @@ public class DragSalsa : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D coll){
 		if (coll.gameObject.CompareTag ("perroCaliente")) {
-			if (!tieneSalsa (coll.gameObject)) {
-				perro = coll.gameObject;
+			if (gameObject.name == "frascoTomate") {
+				if (!tieneSalsa (coll.gameObject,"salsaTomate")) {
+					perro = coll.gameObject;
+				}
+			}
+			if (gameObject.name == "frascoMostaza") {
+				if (!tieneSalsa (coll.gameObject,"salsaMostaza")) {
+					perro = coll.gameObject;
+				}
 			}
 
 		}
@@ -69,11 +80,11 @@ public class DragSalsa : MonoBehaviour {
 
 	void OnMouseUp(){
 		transform.rotation = rotacionOriginal;
-		Debug.Log (perro);
+
 		if (perro) {
-			GameObject salsa = Instantiate (salsaTomate, posSalsa, Quaternion.identity);
-			salsa.transform.parent = perro.transform;
-			salsa.transform.localPosition = posSalsa;
+			GameObject salsaNueva = Instantiate (salsa, posSalsa, Quaternion.identity);
+			salsaNueva.transform.parent = perro.transform;
+			salsaNueva.transform.localPosition = posSalsa;
 		} 
 		else {
 			transform.position = posOriginal;

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114051821571803130}
   - component: {fileID: 50980459127591748}
   m_Layer: 0
-  m_Name: salsaTomate 1
+  m_Name: FrascoTomate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,8 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClicked: 0
-  salsaTomate: {fileID: 1655278373530920, guid: 74504956148ee4b4bbbf948dbdce5346,
-    type: 2}
+  salsa: {fileID: 0}
 --- !u!212 &212651220449249250
 SpriteRenderer:
   m_ObjectHideFlags: 1
