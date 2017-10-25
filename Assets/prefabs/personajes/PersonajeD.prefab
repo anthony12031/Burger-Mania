@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212881949915911956}
   - component: {fileID: 95481495742257212}
   - component: {fileID: 114650325620233828}
+  - component: {fileID: 210920519502158282}
   m_Layer: 0
   m_Name: PersonajeD
   m_TagString: Untagged
@@ -73,6 +74,19 @@ MonoBehaviour:
   animP1: {fileID: 95481495742257212}
   personaje1: {fileID: 0}
   contador: 0
+  inicial: -2.7
+  salto: 0.6
+  posicion: 11
+--- !u!210 &210920519502158282
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1146477194381204}
+  m_Enabled: 1
+  m_SortingLayerID: 1887680691
+  m_SortingLayer: 3
+  m_SortingOrder: 0
 --- !u!212 &212881949915911956
 SpriteRenderer:
   m_ObjectHideFlags: 1

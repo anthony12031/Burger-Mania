@@ -62,6 +62,7 @@ public class PersonajeController : MonoBehaviour {
 
     void atenderCliente(){
         Destroy(ColaClientes.Dequeue());
+        actualizarVista();
         //GameObject sacar = ColaClientes.Dequeue();
         //sacar.GetComponent<Personaje>().moverA(3);
         //sacar.transform.position = new Vector3(0,0,0);
