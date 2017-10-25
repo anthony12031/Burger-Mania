@@ -8,6 +8,11 @@ public class PersonajeController : MonoBehaviour {
     public GameObject personaje1;
     public GameObject personaje2;
     public GameObject personaje3;
+    public GameObject personajeA;
+    public GameObject personajeB;
+    public GameObject personajeC;
+    public GameObject personajeD;
+    public GameObject personajeE;
     public static Queue<GameObject> ColaClientes;
     public float inicial = -2.7f;
     public float salto = 0.6f;
@@ -25,29 +30,41 @@ public class PersonajeController : MonoBehaviour {
             
         //}
 
-        agregarPersonaje();
-        agregarPersonaje();
-        agregarPersonaje();
-         atenderCliente();
+        
 
     }
 
     void agregarPersonaje(){
-        if (PJlista > 3)
+        if (PJlista > 8)
         {
-            PJlista = 0;
+            PJlista = 1;
         }
         
         switch (PJlista)
         {
             case 1:
-                personajeBase = personaje1;
+                personajeBase = personajeA;
             break;
             case 2:
-                personajeBase = personaje2;
+                personajeBase = personaje1;
             break;
             case 3:
-                personajeBase = personaje3;
+                personajeBase = personajeB;
+                break;
+            case 4:
+                personajeBase = personajeC;
+                break;
+            case 5:
+                personajeBase = personaje2;
+                break;
+            case 6:
+                personajeBase = personajeD;
+                break;
+            case 7:
+                personajeBase = personajeE;
+                break;
+            case 8:
+                personajeBase = personaje1;
                 break;
         }
 
@@ -69,18 +86,24 @@ public class PersonajeController : MonoBehaviour {
     }
 
     void actualizarVista(){
-       //s ColaClientes
-       for(int i = 0; i < ColaClientes.Count; i++)
+        //s ColaClientes
+        int i = 0;
+       for (i = 0; i < ColaClientes.Count; i++)
         {
             GameObject sacar = ColaClientes.Dequeue();
             sacar.GetComponent<Personaje>().posicion -= 1;
             ColaClientes.Enqueue(sacar);
         }
+        Debug.Log(i);
     }
 	
 	// Update is called once per frame
 	void Update () {
-	    	
-	}
+        if (Input.GetKeyDown("space"))
+            agregarPersonaje();
+        if (Input.GetKeyDown("r"))
+            atenderCliente();
+
+    }
 
 }

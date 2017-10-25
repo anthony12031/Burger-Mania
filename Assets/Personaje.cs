@@ -45,11 +45,7 @@ public class Personaje : MonoBehaviour {
         
     }
 
-    public void moverA(int posicion)
-    {
-        Debug.Log("MOVE");
-        // transform.position = new Vector3(inicial * posicion, transform.position.y, transform.position.z);
-    }
+ 
 
     //public void moveto(int posicion)
     //{
