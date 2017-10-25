@@ -1,11 +1,16 @@
 fileFormatVersion: 2
 guid: be376ccee445c2f4abbf877e6413cff6
-timeCreated: 1508859729
+labels:
+- Character
+timeCreated: 1508942336
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - nuevoPersonaje: {instanceID: 0}
+  - personaje1: {fileID: 1014798297266932, guid: 521e22d166c19e240a5d1a7bc1c5b741,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -6,8 +6,11 @@ public class Personaje : MonoBehaviour {
 	public Animator animP1;
 	public Sprite personaje1;
 	public float contador = 0;
-    public int estadoMov = 0;
-    public int movex = 0;
+    public float inicial = -2.7f;
+    public float salto = 0.6f;
+    // public int estadoMov = 0;
+    //public int movex = 0;
+    public int posicion = 11;
 	// Use this for initialization
 	void Start () {
         
@@ -15,7 +18,7 @@ public class Personaje : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         contador += Time.deltaTime;
-        Debug.Log(contador);
+        
 
         if (contador>5&&contador<=10) {
             animP1.SetInteger("estado", 1);
@@ -31,21 +34,28 @@ public class Personaje : MonoBehaviour {
         }
 
 
-        //Moving to 
-
-        if (estadoMov == 1)
-        {
-            transform.position = new Vector3(transform.position.x + 5 * Time.deltaTime, transform.position.y, transform.position.z);
+        if ((inicial + (posicion * salto)) != transform.position.x){
+            if((inicial + (posicion * salto)) < transform.position.x){
+                transform.position = new Vector3(transform.position.x - 0.02f, transform.position.y, transform.position.z);
+            }else{
+                transform.position = new Vector3(transform.position.x + 0.02f, transform.position.y, transform.position.z);
+            }
         }
         
         
     }
 
-    public void moveto(int posicion)
+    public void moverA(int posicion)
     {
-        movex = posicion;
-        estadoMov = 1;
+        Debug.Log("MOVE");
+        // transform.position = new Vector3(inicial * posicion, transform.position.y, transform.position.z);
     }
+
+    //public void moveto(int posicion)
+    //{
+    //    movex = posicion;
+    //    estadoMov = 1;
+    //}
 
     
 }

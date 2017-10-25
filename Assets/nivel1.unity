@@ -916,7 +916,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be376ccee445c2f4abbf877e6413cff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  personajeBase: {fileID: 0}
+  nuevoPersonaje: {fileID: 0}
   personaje1: {fileID: 1014798297266932, guid: 521e22d166c19e240a5d1a7bc1c5b741, type: 2}
+  inicial: -2.7
+  estado: 0
 --- !u!4 &1246276483
 Transform:
   m_ObjectHideFlags: 0
