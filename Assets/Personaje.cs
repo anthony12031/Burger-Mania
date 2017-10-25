@@ -34,7 +34,7 @@ public class Personaje : MonoBehaviour {
         }
 
 
-        if ((inicial + (posicion * salto)) != transform.position.x){
+        if (System.Math.Abs((inicial + (posicion * salto)) - transform.position.x)>0.1){
             if((inicial + (posicion * salto)) < transform.position.x){
                 transform.position = new Vector3(transform.position.x - 0.02f, transform.position.y, transform.position.z);
             }else{

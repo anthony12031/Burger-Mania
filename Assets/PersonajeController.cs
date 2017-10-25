@@ -6,10 +6,13 @@ public class PersonajeController : MonoBehaviour {
     public GameObject personajeBase;
     public GameObject nuevoPersonaje;
     public GameObject personaje1;
+    public GameObject personaje2;
+    public GameObject personaje3;
     public static Queue<GameObject> ColaClientes;
     public float inicial = -2.7f;
     public float salto = 0.6f;
     public int estado = 0; // 0. ningun movimiento
+    public int PJlista = 1;
     //1. moviendo a posicion x
     
 	// Use this for initialization
@@ -24,28 +27,54 @@ public class PersonajeController : MonoBehaviour {
 
         agregarPersonaje();
         agregarPersonaje();
-        atenderCliente();
+        agregarPersonaje();
+         atenderCliente();
 
     }
 
     void agregarPersonaje(){
-        personajeBase = personaje1;
+        if (PJlista > 3)
+        {
+            PJlista = 0;
+        }
+        
+        switch (PJlista)
+        {
+            case 1:
+                personajeBase = personaje1;
+            break;
+            case 2:
+                personajeBase = personaje2;
+            break;
+            case 3:
+                personajeBase = personaje3;
+                break;
+        }
+
+        PJlista++;
+
 
         nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (11 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
-        nuevoPersonaje.GetComponent<Personaje>().posicion = 0;
+        nuevoPersonaje.GetComponent<Personaje>().posicion = ColaClientes.Count;
         ColaClientes.Enqueue(nuevoPersonaje);
         
     }
 
     void atenderCliente(){
-        //Destroy(ColaClientes.Dequeue());
-        GameObject sacar = ColaClientes.Dequeue();
-        sacar.GetComponent<Personaje>().moverA(3);
+        Destroy(ColaClientes.Dequeue());
+        //GameObject sacar = ColaClientes.Dequeue();
+        //sacar.GetComponent<Personaje>().moverA(3);
         //sacar.transform.position = new Vector3(0,0,0);
     }
 
     void actualizarVista(){
-       //s ColaClientes.
+       //s ColaClientes
+       for(int i = 0; i < ColaClientes.Count; i++)
+        {
+            GameObject sacar = ColaClientes.Dequeue();
+            sacar.GetComponent<Personaje>().posicion -= 1;
+            ColaClientes.Enqueue(sacar);
+        }
     }
 	
 	// Update is called once per frame

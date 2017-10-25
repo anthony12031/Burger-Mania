@@ -2,14 +2,19 @@ fileFormatVersion: 2
 guid: be376ccee445c2f4abbf877e6413cff6
 labels:
 - Character
-timeCreated: 1508942336
+timeCreated: 1508960096
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - personajeBase: {instanceID: 0}
   - nuevoPersonaje: {instanceID: 0}
   - personaje1: {fileID: 1014798297266932, guid: 521e22d166c19e240a5d1a7bc1c5b741,
+      type: 2}
+  - personaje2: {fileID: 1992404089210938, guid: 7617d93ae31f1134dab4ac89988d615d,
+      type: 2}
+  - personaje3: {fileID: 1412279078554092, guid: 8788af30e93b3aa4e9a5a974d4f7e8a5,
       type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
