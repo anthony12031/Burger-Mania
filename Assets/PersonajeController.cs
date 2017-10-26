@@ -174,6 +174,25 @@ public class PersonajeController : MonoBehaviour {
             sacar.name = "salchicha1";
         }
 
+        if (sacar.name.Contains("pedido_perroTomate"))
+        {
+            Destroy(sacar);
+            sacar = perroCrudo2;
+            sacar.name = "salchicha2";
+        }
+        if (sacar.name.Contains("pedido_perroMostaza"))
+        {
+            Destroy(sacar);
+            sacar = perroCrudo3;
+            sacar.name = "salchicha3";
+        }
+        if (sacar.name.Contains("pedido_perroTomateMostaza"))
+        {
+            Destroy(sacar);
+            sacar = perroCrudo4;
+            sacar.name = "salchicha4";
+        }
+
         Debug.Log(sacar.name);
 
         float pjx = 0;
@@ -218,6 +237,25 @@ public class PersonajeController : MonoBehaviour {
         {
             Destroy(sacar);
             sacar = perroCrudo1;
+            sacar.name = "salchicha1";
+        }
+        if (sacar.name.Contains("pedido_perroTomate"))
+        {
+            Destroy(sacar);
+            sacar = perroCrudo2;
+            sacar.name = "salchicha2";
+        }
+        if (sacar.name.Contains("pedido_perroMostaza"))
+        {
+            Destroy(sacar);
+            sacar = perroCrudo3;
+            sacar.name = "salchicha3";
+        }
+        if (sacar.name.Contains("pedido_perroTomateMostaza"))
+        {
+            Destroy(sacar);
+            sacar = perroCrudo4;
+            sacar.name = "salchicha4";
         }
 
         float pjx = 0;
@@ -306,6 +344,25 @@ public void listoTOsuspendido()
         {
             Destroy(sacar);
             sacar = perroCrudo1;
+            sacar.name = "salchicha1";
+        }
+        if (sacar.name.Contains("pedido_perroTomate"))
+        {
+            Destroy(sacar);
+            sacar = perroCrudo2;
+            sacar.name = "salchicha2";
+        }
+        if (sacar.name.Contains("pedido_perroMostaza"))
+        {
+            Destroy(sacar);
+            sacar = perroCrudo3;
+            sacar.name = "salchicha3";
+        }
+        if (sacar.name.Contains("pedido_perroTomateMostaza"))
+        {
+            Destroy(sacar);
+            sacar = perroCrudo4;
+            sacar.name = "salchicha4";
         }
 
         float pjx = 0;
@@ -355,11 +412,23 @@ public void listoTOsuspendido()
         ColaClientes.Enqueue(nuevoPersonaje);
 
         Debug.Log(perroBase.name);
+        Destroy(personajeBase);
+        Destroy(perroBase);
         if (perroBase.name.Contains("salchicha1"))
-        {
-            Destroy(personajeBase);
-            Destroy(perroBase);
+        {         
             perroBase = perroT1;
+        }
+        if (perroBase.name.Contains("salchicha2"))
+        {
+            perroBase = perroT2;
+        }
+        if (perroBase.name.Contains("salchicha3"))
+        {
+            perroBase = perroT3;
+        }
+        if (perroBase.name.Contains("salchicha4"))
+        {
+            perroBase = perroT4;
         }
 
         nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;
@@ -377,11 +446,23 @@ public void listoTOsuspendido()
         nuevoPersonaje.GetComponent<Transform>().localScale = new Vector3(0.64F, 0.64F, 0.64F);
         ColaClientes.Enqueue(nuevoPersonaje);
 
+        Destroy(personajeBase);
+        Destroy(perroBase);
         if (perroBase.name.Contains("salchicha1"))
         {
-            Destroy(personajeBase);
-            Destroy(perroBase);
-            perroBase = perroT1;
+           perroBase = perroT1;
+        }
+        if (perroBase.name.Contains("salchicha2"))
+        {
+            perroBase = perroT2;
+        }
+        if (perroBase.name.Contains("salchicha3"))
+        {
+            perroBase = perroT3;
+        }
+        if (perroBase.name.Contains("salchicha4"))
+        {
+            perroBase = perroT4;
         }
 
         nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;
@@ -416,11 +497,24 @@ public void listoTOsuspendido()
         nuevoPersonaje.GetComponent<Transform>().localScale = new Vector3(0.64F, 0.64F, 0.64F);
         ColaClientes.Enqueue(nuevoPersonaje);
 
+        Destroy(personajeBase);
+        Destroy(perroBase);
         if (perroBase.name.Contains("salchicha1"))
         {
-            Destroy(personajeBase);
-            Destroy(perroBase);
+            
             perroBase = perroT1;
+        }
+        if (perroBase.name.Contains("salchicha2"))
+        {
+            perroBase = perroT2;
+        }
+        if (perroBase.name.Contains("salchicha3"))
+        {
+            perroBase = perroT3;
+        }
+        if (perroBase.name.Contains("salchicha4"))
+        {
+            perroBase = perroT4;
         }
 
         nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;

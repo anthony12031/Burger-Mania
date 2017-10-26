@@ -1911,6 +1911,12 @@ MonoBehaviour:
     type: 2}
   perroCrudo4: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
     type: 2}
+  procesadorPR1: {fileID: 0}
+  procesadorPR2: {fileID: 0}
+  procesadorPR3: {fileID: 0}
+  procesadorPJ1: {fileID: 0}
+  procesadorPJ2: {fileID: 0}
+  procesadorPJ3: {fileID: 0}
   inicial: -2.7
   salto: 1
   estado: 0
