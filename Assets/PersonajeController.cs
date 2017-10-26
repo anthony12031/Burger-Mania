@@ -44,7 +44,7 @@ public class PersonajeController : MonoBehaviour {
 
     }
 		
-	public GameObject agregarPersonaje(int orden){
+	public GameObject agregarPersonaje(int orden,GameObject personaje){
 
         if (PJlista > 8)
         {
@@ -95,7 +95,11 @@ public class PersonajeController : MonoBehaviour {
                 break;
         }
        
-
+		if (personaje != null) {
+			Debug.Log ("no nulo");
+			personajeBase = personaje;
+		}
+			
 
         nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
         nuevoPersonaje.GetComponent<Personaje>().posicion = ColaClientes.Count;
@@ -109,6 +113,7 @@ public class PersonajeController : MonoBehaviour {
 
 
     }
+		
 
     public void atenderCliente(){
         Destroy(ColaClientes.Dequeue());
@@ -140,7 +145,7 @@ public class PersonajeController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown("c"))
-            agregarPersonaje(1);
+            agregarPersonaje(1,null);
         if (Input.GetKeyDown("r"))
             atenderCliente();
 
