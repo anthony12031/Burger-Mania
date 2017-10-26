@@ -23,6 +23,13 @@ public class PersonajeController : MonoBehaviour {
 
     public static Queue<GameObject> ColaClientes;
     public static Queue<GameObject> ColaPerros;
+
+    public static Queue<GameObject> ColaBloqueadoPJ;
+    public static Queue<GameObject> ColaBloqueadoPR;
+
+    public static Queue<GameObject> ColaSuspendidosPJ;
+    public static Queue<GameObject> ColaSuspendidosPR;
+
     public float inicial = -2.7f;
     public float salto = 5f;
     public int estado = 0; // 0. ningun movimiento
@@ -33,12 +40,20 @@ public class PersonajeController : MonoBehaviour {
 	void Start () {
         ColaClientes = new Queue<GameObject>();
         ColaPerros = new Queue<GameObject>();
+
+        ColaBloqueadoPJ = new Queue<GameObject>();
+        ColaBloqueadoPR = new Queue<GameObject>();
+
+        ColaSuspendidosPJ = new Queue<GameObject>();
+        ColaSuspendidosPR = new Queue<GameObject>();
         //for (int i = 0; i < 10; i++)
         //{
         //    Instantiate(personaje1, new Vector3(inicial, 0.9f, 0), Quaternion.identity);
         //    inicial += 0.6f; 
 
         //}
+
+
 
 
 
@@ -105,8 +120,10 @@ public class PersonajeController : MonoBehaviour {
         nuevoPerro.GetComponent <Perros> ().posicion = ColaPerros.Count;
         ColaPerros.Enqueue(nuevoPerro);
 
-		return nuevoPersonaje;
 
+
+        return nuevoPersonaje;
+        
 
     }
 
@@ -137,12 +154,67 @@ public class PersonajeController : MonoBehaviour {
         Debug.Log(i);
     }
 	
-	// Update is called once per frame
-	void Update () {
+    public void listoTObloqueado()
+    {
+        GameObject sacar = ColaPerros.Dequeue();
+        ColaBloqueadoPR.Enqueue(sacar);
+
+        sacar = ColaClientes.Dequeue();
+        ColaBloqueadoPJ.Enqueue(sacar);
+        actualizarVista();
+    }
+
+    public void listoTOsuspendido()
+    {
+        GameObject sacar = ColaPerros.Dequeue();
+        ColaSuspendidosPR.Enqueue(sacar);
+
+        sacar = ColaClientes.Dequeue();
+        ColaSuspendidosPJ.Enqueue(sacar);
+        actualizarVista();
+    }
+
+
+    public void bloqueadoTOlisto()
+    {
+        personajeBase = ColaBloqueadoPJ.Dequeue();
+        perroBase = ColaBloqueadoPR.Dequeue();
+
+        nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
+        nuevoPersonaje.GetComponent<Personaje>().posicion = ColaClientes.Count;
+        ColaClientes.Enqueue(nuevoPersonaje);
+
+        nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;
+        nuevoPerro.GetComponent<Perros>().posicion = ColaPerros.Count;
+        ColaPerros.Enqueue(nuevoPerro);
+    }
+
+    public void suspendidoTOlisto()
+    {
+        personajeBase = ColaSuspendidosPJ.Dequeue();
+        perroBase = ColaSuspendidosPR.Dequeue();
+
+        nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
+        nuevoPersonaje.GetComponent<Personaje>().posicion = ColaClientes.Count;
+        ColaClientes.Enqueue(nuevoPersonaje);
+
+        nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;
+        nuevoPerro.GetComponent<Perros>().posicion = ColaPerros.Count;
+        ColaPerros.Enqueue(nuevoPerro);
+
+        //actualizarVista();
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (Input.GetKeyDown("c"))
             agregarPersonaje(1);
         if (Input.GetKeyDown("r"))
             atenderCliente();
+        if (Input.GetKeyDown("l"))
+            listoTObloqueado();
+        if (Input.GetKeyDown("s"))
+            bloqueadoTOlisto();
 
     }
 
