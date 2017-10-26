@@ -1,11 +1,35 @@
 fileFormatVersion: 2
 guid: 5f01e928e4f75104f968c1441f47cc1f
-timeCreated: 1508988902
+timeCreated: 1508989313
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - personajeBase: {instanceID: 0}
+  - nuevoPersonaje: {instanceID: 0}
+  - personaje1: {fileID: 1014798297266932, guid: 521e22d166c19e240a5d1a7bc1c5b741,
+      type: 2}
+  - personaje2: {fileID: 1992404089210938, guid: 7617d93ae31f1134dab4ac89988d615d,
+      type: 2}
+  - personaje3: {fileID: 1412279078554092, guid: 8788af30e93b3aa4e9a5a974d4f7e8a5,
+      type: 2}
+  - personajeA: {fileID: 1332812115314268, guid: 20ce2719ba56fab46a7f0cd50c5ef37b,
+      type: 2}
+  - personajeB: {fileID: 1767908691002022, guid: 9ffa737b6ed21354587df8f273c28a6f,
+      type: 2}
+  - personajeC: {fileID: 1989965042493876, guid: e34d4b9f807bd0f4cb460f12d6b5ffa5,
+      type: 2}
+  - personajeD: {fileID: 1146477194381204, guid: eedbe517680268947ad0541410cc959b,
+      type: 2}
+  - personajeE: {fileID: 1470780344716212, guid: b9168dceaca2cd4459ba3fb570c5884a,
+      type: 2}
+  - nuevoPerro: {instanceID: 0}
+  - perroBase: {instanceID: 0}
+  - perroT1: {instanceID: 0}
+  - perroT2: {instanceID: 0}
+  - perroT3: {instanceID: 0}
+  - perroT4: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
