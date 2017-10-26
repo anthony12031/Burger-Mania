@@ -34,7 +34,7 @@ public class PersonajeController : MonoBehaviour {
 
     }
 
-    void agregarPersonaje(){
+    public void agregarPersonaje(){
         if (PJlista > 8)
         {
             PJlista = 1;
