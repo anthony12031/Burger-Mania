@@ -22,7 +22,7 @@ public class seleccionTipoPerro : MonoBehaviour {
 	}
 
 	private void myDropdownValueChangedHandler(Dropdown target) {
-		Debug.Log("selected: "+target.value);
+	//	Debug.Log("selected: "+target.value);
 	}
 
 	public void SetDropdownIndex(int index) {

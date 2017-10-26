@@ -412,7 +412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9, y: 135}
+  m_AnchoredPosition: {x: -78.3, y: 141.9}
   m_SizeDelta: {x: 84.3, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &381169498
@@ -822,7 +822,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 1887680691
+  m_SortingLayerID: 2136197829
   m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!224 &651311129
@@ -1256,7 +1256,7 @@ Camera:
   far clip plane: 1000.04
   field of view: 60
   orthographic: 1
-  orthographic size: 1.69
+  orthographic size: 2.82
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1443,10 +1443,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -1493,11 +1493,11 @@ MonoBehaviour:
   personaje1: {fileID: 1014798297266932, guid: 521e22d166c19e240a5d1a7bc1c5b741, type: 2}
   personaje2: {fileID: 1992404089210938, guid: 7617d93ae31f1134dab4ac89988d615d, type: 2}
   personaje3: {fileID: 1412279078554092, guid: 8788af30e93b3aa4e9a5a974d4f7e8a5, type: 2}
-  personajeA: {fileID: 0}
-  personajeB: {fileID: 0}
-  personajeC: {fileID: 0}
-  personajeD: {fileID: 0}
-  personajeE: {fileID: 0}
+  personajeA: {fileID: 1332812115314268, guid: 20ce2719ba56fab46a7f0cd50c5ef37b, type: 2}
+  personajeB: {fileID: 1767908691002022, guid: 9ffa737b6ed21354587df8f273c28a6f, type: 2}
+  personajeC: {fileID: 1989965042493876, guid: e34d4b9f807bd0f4cb460f12d6b5ffa5, type: 2}
+  personajeD: {fileID: 1146477194381204, guid: eedbe517680268947ad0541410cc959b, type: 2}
+  personajeE: {fileID: 1470780344716212, guid: b9168dceaca2cd4459ba3fb570c5884a, type: 2}
   inicial: -2.7
   salto: 0.6
   estado: 0
@@ -1635,8 +1635,8 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 6.01, y: 2.03}
+  m_DrawMode: 2
+  m_Size: {x: 10.24, y: 2.26}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2110,8 +2110,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -142, y: 135}
-  m_SizeDelta: {x: 203.8, y: 30}
+  m_AnchoredPosition: {x: -201.6, y: 141.8}
+  m_SizeDelta: {x: 157.8, y: 30.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1811225062
 MonoBehaviour:
