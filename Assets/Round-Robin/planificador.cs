@@ -44,7 +44,7 @@ public class planificador : MonoBehaviour {
 	public void crearOrden(){
 		Debug.Log ("crear orden");
 		Debug.Log ("tipo perro: " + seleccionPerro.getTipoPerro ());
-		controladorPersonajes.agregarPersonaje();
+		controladorPersonajes.agregarPersonaje(1);
 		Debug.Log (Recursos.getEstadoRecurso ("salsaTomate"));
 
 		Proceso nuevoProceso = new Proceso ();

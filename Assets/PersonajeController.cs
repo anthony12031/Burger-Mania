@@ -13,9 +13,18 @@ public class PersonajeController : MonoBehaviour {
     public GameObject personajeC;
     public GameObject personajeD;
     public GameObject personajeE;
+
+    public GameObject nuevoPerro;
+    public GameObject perroBase;
+    public GameObject perroT1;
+    public GameObject perroT2;
+    public GameObject perroT3;
+    public GameObject perroT4;
+
     public static Queue<GameObject> ColaClientes;
+    public static Queue<GameObject> ColaPerros;
     public float inicial = -2.7f;
-    public float salto = 0.6f;
+    public float salto = 5f;
     public int estado = 0; // 0. ningun movimiento
     public int PJlista = 1;
     //1. moviendo a posicion x
@@ -23,18 +32,19 @@ public class PersonajeController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ColaClientes = new Queue<GameObject>();
+        ColaPerros = new Queue<GameObject>();
         //for (int i = 0; i < 10; i++)
         //{
         //    Instantiate(personaje1, new Vector3(inicial, 0.9f, 0), Quaternion.identity);
         //    inicial += 0.6f; 
-            
+
         //}
 
-        
+
 
     }
 
-    public void agregarPersonaje(){
+    public void agregarPersonaje(int orden){
         if (PJlista > 8)
         {
             PJlista = 1;
@@ -67,17 +77,38 @@ public class PersonajeController : MonoBehaviour {
                 personajeBase = personaje1;
                 break;
         }
-
         PJlista++;
+        switch (orden)
+        {
+            case 1:
+                perroBase = perroT1;
+                break;
+            case 2:
+                perroBase = perroT2;
+                break;
+            case 3:
+                perroBase = perroT3;
+                break;
+            case 4:
+                perroBase = perroT4;
+                break;
+        }
+       
 
 
-        nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (11 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
+        nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
         nuevoPersonaje.GetComponent<Personaje>().posicion = ColaClientes.Count;
         ColaClientes.Enqueue(nuevoPersonaje);
-        
+
+        nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;
+        nuevoPerro.GetComponent <Perros> ().posicion = ColaPerros.Count;
+        ColaPerros.Enqueue(nuevoPerro);
+
+
     }
 
     void atenderCliente(){
+        Destroy(ColaClientes.Dequeue());
         Destroy(ColaClientes.Dequeue());
         actualizarVista();
         //GameObject sacar = ColaClientes.Dequeue();
@@ -99,8 +130,8 @@ public class PersonajeController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown("space"))
-            agregarPersonaje();
+        if (Input.GetKeyDown("c"))
+            agregarPersonaje(1);
         if (Input.GetKeyDown("r"))
             atenderCliente();
 
