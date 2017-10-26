@@ -12,42 +12,55 @@ public class planificador : MonoBehaviour {
 	//orden analogo a proceso
 	public GameObject Orden;
 	//colas de los procesos
-	Queue<Proceso> listos;
-	Queue<Proceso> bloqueados;
-	Queue<Proceso> suspendidos;
+	 Queue<Proceso>  listos;
+	 Queue<Proceso> bloqueados;
+	 Queue<Proceso> suspendidos;
 
-	Proceso procesoEnEjecucion;
+	static Proceso  procesoEnEjecucion;
 
 	public class Proceso
 	{
-		float Quantum = 20; //segundos;
-		float tiempoRestante;
+		public GameObject cliente;
+		float Quantum = 5; //segundos;
+		public bool haFinalizado = false;
+		planificador planificador;
+		bool enEjecucion = false;
 
-		public Proceso(){
-			tiempoRestante = Quantum;
+		public Proceso(GameObject cliente,planificador plan){
+			this.cliente = cliente;
+			planificador = plan;
 		}
 
 		public void ejecutar(float tiempo){
-			if (tiempoRestante > 0)
-				tiempoRestante -= tiempo;
-			else
-				tiempoRestante = 0;
+			
+				if (Quantum > 0)
+					Quantum -= tiempo;
+				else {
+					Quantum = 0;
+					planificador.notificacionQuantumTerminado ();
+				}
+
 		}
 
+
 		public float getTiempoRestante(){
-			return tiempoRestante;
+			return Quantum;
+		}
+
+		public void setQuantum(float val){
+			Quantum = val;
 		}
 
 	}
 
 	//crear proceso
 	public void crearOrden(){
-		Debug.Log ("crear orden");
-		Debug.Log ("tipo perro: " + seleccionPerro.getTipoPerro ());
-		controladorPersonajes.agregarPersonaje();
-		Debug.Log (Recursos.getEstadoRecurso ("salsaTomate"));
+		//Debug.Log ("crear orden");
+		//Debug.Log ("tipo perro: " + seleccionPerro.getTipoPerro ());
+		GameObject cliente =  controladorPersonajes.agregarPersonaje();
+		//Debug.Log (Recursos.getEstadoRecurso ("salsaTomate"));
 
-		Proceso nuevoProceso = new Proceso ();
+		Proceso nuevoProceso = new Proceso (cliente,this);
 		listos.Enqueue (nuevoProceso);
 
 	}
@@ -62,6 +75,17 @@ public class planificador : MonoBehaviour {
 
 	public static void notificacionProcesoTerminado(){
 		Debug.Log ("Termino proceso");
+		procesoEnEjecucion = null;
+	}
+
+	public  void notificacionQuantumTerminado(){
+		Debug.Log ("quantum acabo");
+		if (!procesoEnEjecucion.haFinalizado)
+			suspendidos.Enqueue (procesoEnEjecucion);
+		procesoEnEjecucion = null;
+	
+		//suspendidos.Enqueue (procesoEnEjecucion);
+		//procesoEnEjecucion = null;
 	}
 	
 	// Update is called once per frame
@@ -69,11 +93,13 @@ public class planificador : MonoBehaviour {
 		if (procesoEnEjecucion == null) {
 			if (listos.Count > 0 ) {
 				procesoEnEjecucion = listos.Dequeue ();
+				controladorPersonajes.atenderCliente ();
 			}
 		} 
 		else {
-			procesoEnEjecucion.ejecutar (Time.deltaTime);	
 			quantumTX.text = System.Convert.ToString (procesoEnEjecucion.getTiempoRestante ());
+			procesoEnEjecucion.ejecutar (Time.deltaTime);	
+
 		}
 
 	}

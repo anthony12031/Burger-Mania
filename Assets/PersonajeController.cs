@@ -34,7 +34,7 @@ public class PersonajeController : MonoBehaviour {
 
     }
 
-    public void agregarPersonaje(){
+	public GameObject agregarPersonaje(){
         if (PJlista > 8)
         {
             PJlista = 1;
@@ -74,10 +74,10 @@ public class PersonajeController : MonoBehaviour {
         nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (11 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
         nuevoPersonaje.GetComponent<Personaje>().posicion = ColaClientes.Count;
         ColaClientes.Enqueue(nuevoPersonaje);
-        
+		return nuevoPersonaje;
     }
 
-    void atenderCliente(){
+    public void atenderCliente(){
         Destroy(ColaClientes.Dequeue());
         actualizarVista();
         //GameObject sacar = ColaClientes.Dequeue();
