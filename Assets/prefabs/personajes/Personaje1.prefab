@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1014798297266932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3, y: 10.91, z: 0}
+  m_LocalPosition: {x: 9.221169, y: 0.8884531, z: 0}
   m_LocalScale: {x: 0.6544734, y: 0.6544734, z: 0.6544734}
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   personaje1: {fileID: 0}
   contador: 0
   inicial: -2.7
-  salto: 0.6
+  salto: 1
   posicion: 0
 --- !u!210 &210408071673939144
 SortingGroup:
