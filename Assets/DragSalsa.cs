@@ -34,7 +34,7 @@ public class DragSalsa : MonoBehaviour {
 
 
 	GameObject perro;
-	GameObject[] perros = new GameObject[3];
+
 
 	bool tieneSalsa(GameObject perro,string tipoSalsa){
 		bool tieneSalsa = false;
