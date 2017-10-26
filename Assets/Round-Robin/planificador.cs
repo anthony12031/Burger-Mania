@@ -5,30 +5,44 @@ using UnityEngine.UI;
 
 public class planificador : MonoBehaviour {
 
+	//orden analogo a proceso
+	public GameObject Orden;
+	//colas de los procesos
+	Queue<Proceso>  listos;
+	Queue<Proceso> bloqueados;
+	Queue<Proceso> suspendidos;
+	//el proceso que se esta ejecutando actualmente
+	static Proceso  procesoEnEjecucion;
+
 	seleccionTipoPerro seleccionPerro;
 	public PersonajeController controladorPersonajes;
 	public Text quantumTX;
 
-	//orden analogo a proceso
-	public GameObject Orden;
-	//colas de los procesos
-	 Queue<Proceso>  listos;
-	 Queue<Proceso> bloqueados;
-	 Queue<Proceso> suspendidos;
+	//controlador Panes
+	public PanControlador panControlador;
+	public Vector3 posAtendido;
 
-	static Proceso  procesoEnEjecucion;
+
 
 	public class Proceso
 	{
 		public GameObject cliente;
+		public GameObject clienteOriginal;
+		public GameObject perroCaliente;
 		float Quantum = 5; //segundos;
+		public int tipoPerro;
+
+		float tiempoEnSuspendido = 5;//segundos
+
 		public bool haFinalizado = false;
 		planificador planificador;
 		bool enEjecucion = false;
 
-		public Proceso(GameObject cliente,planificador plan){
+		public Proceso(GameObject cliente,planificador plan,int perro){
 			this.cliente = cliente;
+			this.clienteOriginal = cliente;
 			planificador = plan;
+			tipoPerro = perro;
 		}
 
 		public void ejecutar(float tiempo){
@@ -39,9 +53,16 @@ public class planificador : MonoBehaviour {
 					Quantum = 0;
 					planificador.notificacionQuantumTerminado ();
 				}
-
 		}
 
+		public void tiempoEnSuspendidoTick(float tiempo){
+			if(tiempoEnSuspendido >0 )
+				tiempoEnSuspendido -= tiempo;
+		}
+
+		public float getTiempoEnSuspendidoRestante(){
+			return tiempoEnSuspendido;
+		}
 
 		public float getTiempoRestante(){
 			return Quantum;
@@ -55,12 +76,15 @@ public class planificador : MonoBehaviour {
 
 	//crear proceso
 	public void crearOrden(){
+		GameObject cliente =  controladorPersonajes.agregarPersonaje(seleccionPerro.getTipoPerro()+1,null);
+		Proceso nuevoProceso = new Proceso (cliente,this,seleccionPerro.getTipoPerro()+1);
+		listos.Enqueue (nuevoProceso);
 
-		//Debug.Log ("crear orden");
-		//Debug.Log ("tipo perro: " + seleccionPerro.getTipoPerro ());
-		GameObject cliente =  controladorPersonajes.agregarPersonaje(seleccionPerro.getTipoPerro()+1);
-		//Debug.Log (Recursos.getEstadoRecurso ("salsaTomate"));
-		Proceso nuevoProceso = new Proceso (null,this);
+	}
+
+	public void crearOrden(int tipoPerro,GameObject personaje){
+		GameObject cliente =  controladorPersonajes.agregarPersonaje(tipoPerro,personaje);
+		Proceso nuevoProceso = new Proceso (cliente,this,tipoPerro);
 		listos.Enqueue (nuevoProceso);
 
 	}
@@ -80,26 +104,49 @@ public class planificador : MonoBehaviour {
 
 	public  void notificacionQuantumTerminado(){
 		Debug.Log ("quantum acabo");
-		if (!procesoEnEjecucion.haFinalizado)
+		if (!procesoEnEjecucion.haFinalizado) {
 			suspendidos.Enqueue (procesoEnEjecucion);
+			//llamar metodo para encolar en suspendido el cliente
+			procesoEnEjecucion.cliente.transform.position = new Vector2(-2,0);
+
+		}
 		procesoEnEjecucion = null;
-	
-		//suspendidos.Enqueue (procesoEnEjecucion);
-		//procesoEnEjecucion = null;
+	}
+
+
+	void atender(){
+		    procesoEnEjecucion = listos.Dequeue ();
+			procesoEnEjecucion.cliente = Instantiate (procesoEnEjecucion.cliente, posAtendido, Quaternion.identity);
+			procesoEnEjecucion.cliente.GetComponent<Personaje> ().esAnimado = false;
+			procesoEnEjecucion.cliente.transform.localScale = new Vector3 (0.5f, 0.5f, 1);
+			controladorPersonajes.atenderCliente ();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (procesoEnEjecucion == null) {
 			if (listos.Count > 0 ) {
-				procesoEnEjecucion = listos.Dequeue ();
-				//controladorPersonajes.atenderCliente ();
+				atender ();
 			}
 		} 
 		else {
 			quantumTX.text = System.Convert.ToString (procesoEnEjecucion.getTiempoRestante ());
 			procesoEnEjecucion.ejecutar (Time.deltaTime);	
+		}
+			
+			foreach (Proceso pr in suspendidos) {
+				pr.tiempoEnSuspendidoTick (Time.deltaTime);
+			}
 
+		if (suspendidos.Count > 0) {
+			if (suspendidos.Peek ().getTiempoEnSuspendidoRestante () <= 0) {
+				Proceso pr = suspendidos.Dequeue ();
+				pr.cliente.transform.localScale = new Vector3 (1, 1, 1);
+				pr.cliente.GetComponent<Personaje> ().esAnimado = true;
+				crearOrden (pr.tipoPerro, pr.cliente);
+				Destroy (pr.cliente);
+			}
 		}
 
 	}

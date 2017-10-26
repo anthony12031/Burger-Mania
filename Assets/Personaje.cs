@@ -8,6 +8,7 @@ public class Personaje : MonoBehaviour {
 	public float contador = 0;
     public float inicial = -2.7f;
     public float salto = 0.6f;
+	public bool esAnimado = true;
     // public int estadoMov = 0;
     //public int movex = 0;
     public int posicion = 11;
@@ -43,10 +44,6 @@ public class Personaje : MonoBehaviour {
         }
         }
 
-
-    }
-
- 
 
     //public void moveto(int posicion)
     //{

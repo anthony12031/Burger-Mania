@@ -55,4 +55,10 @@ public class PanControlador : MonoBehaviour {
 		}
 	}
 
+	public GameObject crearPerroSO(){
+		GameObject pan =  Instantiate (panPerro, posParrilla1.v3Pos, Quaternion.identity).gameObject;
+		posParrilla1.pan = pan.transform;
+		return pan;
+	}
+
 }
