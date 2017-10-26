@@ -55,11 +55,11 @@ public class planificador : MonoBehaviour {
 
 	//crear proceso
 	public void crearOrden(){
+
 		//Debug.Log ("crear orden");
 		//Debug.Log ("tipo perro: " + seleccionPerro.getTipoPerro ());
-		GameObject cliente =  controladorPersonajes.agregarPersonaje();
+		GameObject cliente =  controladorPersonajes.agregarPersonaje(1);
 		//Debug.Log (Recursos.getEstadoRecurso ("salsaTomate"));
-
 		Proceso nuevoProceso = new Proceso (cliente,this);
 		listos.Enqueue (nuevoProceso);
 
