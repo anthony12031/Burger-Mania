@@ -2,7 +2,7 @@ fileFormatVersion: 2
 guid: be376ccee445c2f4abbf877e6413cff6
 labels:
 - Character
-timeCreated: 1508960096
+timeCreated: 1508984515
 licenseType: Free
 MonoImporter:
   externalObjects: {}
@@ -16,6 +16,17 @@ MonoImporter:
       type: 2}
   - personaje3: {fileID: 1412279078554092, guid: 8788af30e93b3aa4e9a5a974d4f7e8a5,
       type: 2}
+  - personajeA: {instanceID: 0}
+  - personajeB: {instanceID: 0}
+  - personajeC: {instanceID: 0}
+  - personajeD: {instanceID: 0}
+  - personajeE: {instanceID: 0}
+  - nuevoPerro: {instanceID: 0}
+  - perroBase: {instanceID: 0}
+  - perroT1: {fileID: 1521915569527098, guid: 713c3a7d110a0c94c8a483de1760b426, type: 2}
+  - perroT2: {fileID: 1579484925830158, guid: c23b684506bfa9544a9a287c2059f4e6, type: 2}
+  - perroT3: {fileID: 1201534097580962, guid: 226d1eca1494f4246bf3780062ae7f35, type: 2}
+  - perroT4: {fileID: 1363634936640396, guid: b1382203b456fd44f8eea9f2f9605285, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
