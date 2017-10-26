@@ -26,13 +26,8 @@ public class PersonajeController : MonoBehaviour {
     public GameObject perroCrudo3;
     public GameObject perroCrudo4;
 
-    public GameObject procesadorPR1;
-    public GameObject procesadorPR2;
-    public GameObject procesadorPR3;
-
-    public GameObject procesadorPJ1;
-    public GameObject procesadorPJ2;
-    public GameObject procesadorPJ3;
+    public GameObject procesadorPR;
+    public GameObject procesadorPJ;
 
     public static Queue<GameObject> ColaClientes;
     public static Queue<GameObject> ColaPerros;
@@ -235,7 +230,7 @@ public class PersonajeController : MonoBehaviour {
         actualizarVista();
     }
 
-    public void listoTOprocesador(int procesador)
+    public void listoTOprocesador()
     {
         GameObject sacar = ColaPerros.Dequeue();
         if (sacar.name.Contains("pedido_perro"))
@@ -269,25 +264,12 @@ public class PersonajeController : MonoBehaviour {
         float prx = 0;
         float pry = 0;
         float prz = 0;
-        switch (procesador)
-        {
-            case 1:
-                prx = 1.56f;
-                pry = -0.35f;
-                prz = 0;
-                break;
-            case 2:
+        
+
                 prx = 1.91f;
                 pry = -0.35f;
                 prz = 0;
-                break;
-            case 3:
-                prx = 2.26f;
-                pry = -0.35f;
-                prz = 0;
-                break;
-        }
-
+       
         pjx = prx + 0.14f;
         pjy = pry - 0.05f;
         pjz = prz;
@@ -295,18 +277,9 @@ public class PersonajeController : MonoBehaviour {
         nuevoPerro = Instantiate(sacar, new Vector3(prx, pry, prz), Quaternion.identity) as GameObject;
         //nuevoPerro.GetComponent<Perros>().posicion = ColaBloqueadoPR;
 
-        switch (procesador)
-        {
-            case 1:
-                procesadorPR1 = nuevoPerro;
-                break;
-            case 2:
-                procesadorPR2 = nuevoPerro;
-                break;
-            case 3:
-                procesadorPR3 = nuevoPerro;
-                break;
-        }
+        
+        procesadorPR = nuevoPerro;
+           
         
 
 
@@ -321,18 +294,9 @@ public class PersonajeController : MonoBehaviour {
         sacar.GetComponent<Transform>().localScale = new Vector3(0.3F, 0.3F, 0.3F);
         //sacar.transform.localScale
 
-        switch (procesador)
-        {
-            case 1:
-                procesadorPJ1 = sacar;
-                break;
-            case 2:
-                procesadorPJ2 = sacar;
-                break;
-            case 3:
-                procesadorPJ3 = sacar;
-                break;
-        }
+        
+         procesadorPJ = sacar;
+        
 
         actualizarVista();
     }
@@ -477,24 +441,13 @@ public void listoTOsuspendido()
         //actualizarVista();
     }
 
-    public void procesadorTOlisto(int procesador)
+    public void procesadorTOlisto()
     {
 
-        switch (procesador)
-        {
-            case 1:
-                personajeBase = procesadorPJ1;
-                perroBase = procesadorPR1;
-                break;
-            case 2:
-                personajeBase = procesadorPJ2;
-                perroBase = procesadorPR2;
-                break;
-            case 3:
-                personajeBase = procesadorPJ3;
-                perroBase = procesadorPR3;
-                break;
-        }
+        
+                personajeBase = procesadorPJ;
+                perroBase = procesadorPR;
+             
         
 
         nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
@@ -546,18 +499,10 @@ public void listoTOsuspendido()
 
 
         if (Input.GetKeyDown("1"))
-            listoTOprocesador(1);
+            listoTOprocesador();
+       
         if (Input.GetKeyDown("2"))
-            listoTOprocesador(2);
-        if (Input.GetKeyDown("3"))
-            listoTOprocesador(3);
-
-        if (Input.GetKeyDown("4"))
-            procesadorTOlisto(1);
-        if (Input.GetKeyDown("5"))
-            procesadorTOlisto(2);
-        if (Input.GetKeyDown("6"))
-            procesadorTOlisto(3);
+            procesadorTOlisto();
 
         
 
