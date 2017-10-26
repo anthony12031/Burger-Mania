@@ -59,6 +59,10 @@ public class planificador : MonoBehaviour {
 		bloqueados = new Queue<Proceso> ();
 		suspendidos = new Queue<Proceso> ();
 	}
+
+	public static void notificacionProcesoTerminado(){
+		Debug.Log ("Termino proceso");
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -70,7 +74,6 @@ public class planificador : MonoBehaviour {
 		else {
 			procesoEnEjecucion.ejecutar (Time.deltaTime);	
 			quantumTX.text = System.Convert.ToString (procesoEnEjecucion.getTiempoRestante ());
-			Debug.Log (procesoEnEjecucion.getTiempoRestante ());
 		}
 
 	}
