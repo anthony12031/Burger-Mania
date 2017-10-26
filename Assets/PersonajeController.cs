@@ -26,6 +26,14 @@ public class PersonajeController : MonoBehaviour {
     public GameObject perroCrudo3;
     public GameObject perroCrudo4;
 
+    public GameObject procesadorPR1;
+    public GameObject procesadorPR2;
+    public GameObject procesadorPR3;
+
+    public GameObject procesadorPJ1;
+    public GameObject procesadorPJ2;
+    public GameObject procesadorPJ3;
+
     public static Queue<GameObject> ColaClientes;
     public static Queue<GameObject> ColaPerros;
 
@@ -58,8 +66,7 @@ public class PersonajeController : MonoBehaviour {
 
         //}
 
-
-
+        
 
 
     }
@@ -164,7 +171,10 @@ public class PersonajeController : MonoBehaviour {
         {
             Destroy(sacar);
             sacar = perroCrudo1;
+            sacar.name = "salchicha1";
         }
+
+        Debug.Log(sacar.name);
 
         float pjx = 0;
         float pjy = 0;
@@ -233,11 +243,6 @@ public class PersonajeController : MonoBehaviour {
                 pry = -0.35f;
                 prz = 0;
                 break;
-            case 4:
-                prx = 2.64f;
-                pry = -0.35f;
-                prz = 0;
-                break;
         }
 
         pjx = prx + 0.14f;
@@ -246,7 +251,20 @@ public class PersonajeController : MonoBehaviour {
 
         nuevoPerro = Instantiate(sacar, new Vector3(prx, pry, prz), Quaternion.identity) as GameObject;
         //nuevoPerro.GetComponent<Perros>().posicion = ColaBloqueadoPR;
-        ColaBloqueadoPR.Enqueue(nuevoPerro);
+
+        switch (procesador)
+        {
+            case 1:
+                procesadorPR1 = nuevoPerro;
+                break;
+            case 2:
+                procesadorPR2 = nuevoPerro;
+                break;
+            case 3:
+                procesadorPR3 = nuevoPerro;
+                break;
+        }
+        
 
 
 
@@ -259,7 +277,20 @@ public class PersonajeController : MonoBehaviour {
         sacar.GetComponent<Personaje>().posicion = -1;
         sacar.GetComponent<Transform>().localScale = new Vector3(0.3F, 0.3F, 0.3F);
         //sacar.transform.localScale
-        ColaBloqueadoPJ.Enqueue(sacar);
+
+        switch (procesador)
+        {
+            case 1:
+                procesadorPJ1 = sacar;
+                break;
+            case 2:
+                procesadorPJ2 = sacar;
+                break;
+            case 3:
+                procesadorPJ3 = sacar;
+                break;
+        }
+
         actualizarVista();
     }
 
@@ -319,8 +350,17 @@ public void listoTOsuspendido()
         perroBase = ColaBloqueadoPR.Dequeue();
 
         nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
-        nuevoPersonaje.GetComponent<Personaje>().posicion = ColaClientes.Count;
+        nuevoPersonaje.GetComponent<Personaje>().posicion = ColaClientes.Count;        
+        nuevoPersonaje.GetComponent<Transform>().localScale = new Vector3(0.64F, 0.64F, 0.64F);
         ColaClientes.Enqueue(nuevoPersonaje);
+
+        Debug.Log(perroBase.name);
+        if (perroBase.name.Contains("salchicha1"))
+        {
+            Destroy(personajeBase);
+            Destroy(perroBase);
+            perroBase = perroT1;
+        }
 
         nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;
         nuevoPerro.GetComponent<Perros>().posicion = ColaPerros.Count;
@@ -334,7 +374,54 @@ public void listoTOsuspendido()
 
         nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
         nuevoPersonaje.GetComponent<Personaje>().posicion = ColaClientes.Count;
+        nuevoPersonaje.GetComponent<Transform>().localScale = new Vector3(0.64F, 0.64F, 0.64F);
         ColaClientes.Enqueue(nuevoPersonaje);
+
+        if (perroBase.name.Contains("salchicha1"))
+        {
+            Destroy(personajeBase);
+            Destroy(perroBase);
+            perroBase = perroT1;
+        }
+
+        nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;
+        nuevoPerro.GetComponent<Perros>().posicion = ColaPerros.Count;
+        ColaPerros.Enqueue(nuevoPerro);
+
+        //actualizarVista();
+    }
+
+    public void procesadorTOlisto(int procesador)
+    {
+
+        switch (procesador)
+        {
+            case 1:
+                personajeBase = procesadorPJ1;
+                perroBase = procesadorPR1;
+                break;
+            case 2:
+                personajeBase = procesadorPJ2;
+                perroBase = procesadorPR2;
+                break;
+            case 3:
+                personajeBase = procesadorPJ3;
+                perroBase = procesadorPR3;
+                break;
+        }
+        
+
+        nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
+        nuevoPersonaje.GetComponent<Personaje>().posicion = ColaClientes.Count;
+        nuevoPersonaje.GetComponent<Transform>().localScale = new Vector3(0.64F, 0.64F, 0.64F);
+        ColaClientes.Enqueue(nuevoPersonaje);
+
+        if (perroBase.name.Contains("salchicha1"))
+        {
+            Destroy(personajeBase);
+            Destroy(perroBase);
+            perroBase = perroT1;
+        }
 
         nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;
         nuevoPerro.GetComponent<Perros>().posicion = ColaPerros.Count;
@@ -365,6 +452,15 @@ public void listoTOsuspendido()
             listoTOprocesador(2);
         if (Input.GetKeyDown("3"))
             listoTOprocesador(3);
+
+        if (Input.GetKeyDown("4"))
+            procesadorTOlisto(1);
+        if (Input.GetKeyDown("5"))
+            procesadorTOlisto(2);
+        if (Input.GetKeyDown("6"))
+            procesadorTOlisto(3);
+
+        
 
 
     }
