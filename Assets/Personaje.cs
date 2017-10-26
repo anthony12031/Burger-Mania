@@ -34,6 +34,7 @@ public class Personaje : MonoBehaviour {
             animP1.SetInteger("estado", 4);
         }
 
+
         if (posicion != -1) { 
         if (System.Math.Abs((inicial + (posicion * salto)) - transform.position.x)>0.1){
             if((inicial + (posicion * salto)) < transform.position.x){
@@ -44,6 +45,10 @@ public class Personaje : MonoBehaviour {
         }
         }
 
+
+    }
+
+ 
 
     //public void moveto(int posicion)
     //{
