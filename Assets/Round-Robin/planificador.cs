@@ -7,11 +7,19 @@ public class planificador : MonoBehaviour {
 	seleccionTipoPerro seleccionPerro;
 	public PersonajeController controladorPersonajes;
 
+	//orden analogo a proceso
+	public GameObject Orden;
+	//colas de los procesos
+	Queue listos;
+	Queue bloqueados;
+	Queue suspendidos;
+
 
 	public void crearOrden(){
 		Debug.Log ("crear orden");
 		Debug.Log ("tipo perro: " + seleccionPerro.getTipoPerro ());
-		controladorPersonajes.agregarPersonaje ();
+		controladorPersonajes.agregarPersonaje();
+
 	}
 
 	// Use this for initialization
