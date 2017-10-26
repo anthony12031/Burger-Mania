@@ -33,7 +33,7 @@ public class Personaje : MonoBehaviour {
             animP1.SetInteger("estado", 4);
         }
 
-
+        if (posicion != -1) { 
         if (System.Math.Abs((inicial + (posicion * salto)) - transform.position.x)>0.1){
             if((inicial + (posicion * salto)) < transform.position.x){
                 transform.position = new Vector3(transform.position.x - 0.02f, transform.position.y, transform.position.z);
@@ -41,8 +41,9 @@ public class Personaje : MonoBehaviour {
                 transform.position = new Vector3(transform.position.x + 0.02f, transform.position.y, transform.position.z);
             }
         }
-        
-        
+        }
+
+
     }
 
  
