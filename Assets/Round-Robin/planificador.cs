@@ -58,9 +58,9 @@ public class planificador : MonoBehaviour {
 
 		//Debug.Log ("crear orden");
 		//Debug.Log ("tipo perro: " + seleccionPerro.getTipoPerro ());
-		GameObject cliente =  controladorPersonajes.agregarPersonaje(1);
+		GameObject cliente =  controladorPersonajes.agregarPersonaje(seleccionPerro.getTipoPerro()+1);
 		//Debug.Log (Recursos.getEstadoRecurso ("salsaTomate"));
-		Proceso nuevoProceso = new Proceso (cliente,this);
+		Proceso nuevoProceso = new Proceso (null,this);
 		listos.Enqueue (nuevoProceso);
 
 	}
@@ -93,7 +93,7 @@ public class planificador : MonoBehaviour {
 		if (procesoEnEjecucion == null) {
 			if (listos.Count > 0 ) {
 				procesoEnEjecucion = listos.Dequeue ();
-				controladorPersonajes.atenderCliente ();
+				//controladorPersonajes.atenderCliente ();
 			}
 		} 
 		else {

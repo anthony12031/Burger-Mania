@@ -96,11 +96,17 @@ public class PersonajeController : MonoBehaviour {
         }
        
 
-		nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;
-		nuevoPerro.GetComponent <Perros> ().posicion = ColaPerros.Count;
-		ColaPerros.Enqueue(nuevoPerro);
+
+        nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
+        nuevoPersonaje.GetComponent<Personaje>().posicion = ColaClientes.Count;
+        ColaClientes.Enqueue(nuevoPersonaje);
+
+        nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;
+        nuevoPerro.GetComponent <Perros> ().posicion = ColaPerros.Count;
+        ColaPerros.Enqueue(nuevoPerro);
 
 		return nuevoPersonaje;
+
 
     }
 
