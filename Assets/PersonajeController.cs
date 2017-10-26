@@ -109,7 +109,7 @@ public class PersonajeController : MonoBehaviour {
 
     void atenderCliente(){
         Destroy(ColaClientes.Dequeue());
-        Destroy(ColaClientes.Dequeue());
+        Destroy(ColaPerros.Dequeue());
         actualizarVista();
         //GameObject sacar = ColaClientes.Dequeue();
         //sacar.GetComponent<Personaje>().moverA(3);
@@ -124,6 +124,12 @@ public class PersonajeController : MonoBehaviour {
             GameObject sacar = ColaClientes.Dequeue();
             sacar.GetComponent<Personaje>().posicion -= 1;
             ColaClientes.Enqueue(sacar);
+        }
+        for (i = 0; i < ColaPerros.Count; i++)
+        {
+            GameObject sacar = ColaPerros.Dequeue();
+            sacar.GetComponent<Perros>().posicion -= 1;
+            ColaPerros.Enqueue(sacar);
         }
         Debug.Log(i);
     }
