@@ -165,6 +165,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37748bed066e80746b2197dd04b34076, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &103571226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 103571227}
+  m_Layer: 0
+  m_Name: posAtendido
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &103571227
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 103571226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.08, y: -0.32, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &170777206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1115,7 @@ Transform:
   m_PrefabInternal: {fileID: 1176299896}
   m_GameObject: {fileID: 840538826}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.02, y: -0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1105,9 +1133,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7725e5c870e37e44785adf650a93ed78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Orden: {fileID: 1399015781844378, guid: c741c45f1cac062479d7bd5f4910af02, type: 2}
   controladorPersonajes: {fileID: 1246276482}
   quantumTX: {fileID: 456289391}
-  Orden: {fileID: 1399015781844378, guid: c741c45f1cac062479d7bd5f4910af02, type: 2}
+  panControlador: {fileID: 2136776972}
+  posAtendido: {x: 0.11, y: -0.23, z: 0}
 --- !u!1 &861570978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,11 +1676,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.41
       objectReference: {fileID: 0}
     - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1691,6 +1721,21 @@ Prefab:
       propertyPath: quantumTX
       value: 
       objectReference: {fileID: 456289391}
+    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
+        type: 2}
+      propertyPath: panControlador
+      value: 
+      objectReference: {fileID: 2136776972}
+    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
+        type: 2}
+      propertyPath: posAtendido.x
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
+        type: 2}
+      propertyPath: posAtendido.y
+      value: -0.23
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
   m_IsPrefabParent: 0
