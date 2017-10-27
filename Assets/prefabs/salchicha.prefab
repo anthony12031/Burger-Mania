@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1275209428092030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.20786887, y: -0.31733435, z: 0}
+  m_LocalPosition: {x: -0.60369277, y: -0.2281146, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -225,6 +225,7 @@ MonoBehaviour:
   tiempoCocinado: 0
   estaEnParrilla: 1
   sonidoListo: {fileID: 8300000, guid: b4058aba0dd83c741b21f2259ad5c57a, type: 3}
+  sonidoQuemado: {fileID: 8300000, guid: 4de298474108e9047b733015fa1000e4, type: 3}
 --- !u!212 &212028677252835010
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -255,7 +256,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1887680691
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f8c5b0af510ebed468f507a1c16bb8a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

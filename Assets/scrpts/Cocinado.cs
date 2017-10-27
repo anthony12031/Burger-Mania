@@ -8,6 +8,7 @@ public class Cocinado : MonoBehaviour {
 	public bool estaEnParrilla = true;
 	private Animator animator;
 	public AudioClip sonidoListo;
+	public AudioClip sonidoQuemado;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +35,15 @@ public class Cocinado : MonoBehaviour {
 		if(!eventoCocidoLlamado)
 			GetComponent<AudioSource> ().PlayOneShot (sonidoListo);
 		eventoCocidoLlamado = true;
+
+	}
+
+	bool eventoQuemadoLlamado = false;
+
+	public void eventoQuemado(){
+		if(!eventoQuemadoLlamado)
+			GetComponent<AudioSource> ().PlayOneShot (sonidoQuemado);
+		eventoQuemadoLlamado = true;
 
 	}
 
