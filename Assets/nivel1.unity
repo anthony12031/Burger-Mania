@@ -487,7 +487,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &381169496
 GameObject:
@@ -1152,7 +1152,7 @@ RectTransform:
   m_GameObject: {fileID: 651311125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 90}
-  m_LocalScale: {x: 0.018064218, y: 0.018064218, z: 0.018064218}
+  m_LocalScale: {x: 0.018630315, y: 0.018630315, z: 0.018630315}
   m_Children:
   - {fileID: 1811225061}
   - {fileID: 381169497}
@@ -1225,8 +1225,8 @@ MonoBehaviour:
   Orden: {fileID: 1399015781844378, guid: c741c45f1cac062479d7bd5f4910af02, type: 2}
   controladorPersonajes: {fileID: 1246276482}
   quantumTX: {fileID: 456289391}
-  panControlador: {fileID: 2136776972}
-  posAtendido: {x: 0.11, y: -0.23, z: 0}
+  panControlador: {fileID: 0}
+  posAtendido: {x: 0, y: 0, z: 0}
 --- !u!1 &861570978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1629,7 +1629,7 @@ Camera:
   far clip plane: 1000.04
   field of view: 60
   orthographic: 1
-  orthographic size: 2.82
+  orthographic size: 2.9083734
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1956,12 +1956,8 @@ MonoBehaviour:
     type: 2}
   perroCrudo4: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
     type: 2}
-  procesadorPR1: {fileID: 0}
-  procesadorPR2: {fileID: 0}
-  procesadorPR3: {fileID: 0}
-  procesadorPJ1: {fileID: 0}
-  procesadorPJ2: {fileID: 0}
-  procesadorPJ3: {fileID: 0}
+  procesadorPR: {fileID: 0}
+  procesadorPJ: {fileID: 0}
   inicial: -2.7
   salto: 1
   estado: 0

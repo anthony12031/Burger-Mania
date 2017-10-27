@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 60162523420294468}
   - component: {fileID: 50592908915709010}
   m_Layer: 0
-  m_Name: salchicha1
+  m_Name: salchicha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
