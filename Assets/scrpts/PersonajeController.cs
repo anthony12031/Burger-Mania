@@ -37,10 +37,13 @@ public class PersonajeController : MonoBehaviour {
 	public float salto = 5f;
 	public int estado = 0; // 0. ningun movimiento
 	public int PJlista = 1;
+	public float tiempo = 0;
+	public float tiempoAleatorio = 0;
 	//1. moviendo a posicion x
 
 	// Use this for initialization
 	void Start () {
+		tiempoAleatorio = Random.Range(5,10);
 		ColaClientes = new Queue<GameObject>();
 		ColaPerros = new Queue<GameObject>();
 
@@ -108,7 +111,6 @@ public class PersonajeController : MonoBehaviour {
 		}
 
 		if (personaje != null) {
-			Debug.Log ("no nulo");
 			personajeBase = personaje;
 		}
 
@@ -138,7 +140,7 @@ public class PersonajeController : MonoBehaviour {
 		int i = 0;
 		int size1 = ColaClientes.Count; 
 		int size2 = ColaPerros.Count; 
-		//Debug.Log("size" + size1);
+
 		int contador = 0;
 		for (i = 0; i < size1; i++)
 		{
@@ -157,7 +159,7 @@ public class PersonajeController : MonoBehaviour {
 			}
 			
 		}
-		Debug.Log (contador);
+
 		for (i = 0; i < size2; i++)
 		{
 			
@@ -179,6 +181,19 @@ public class PersonajeController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		
+		tiempo  += Time.deltaTime;
+
+		Debug.Log("Tiempo:" + tiempo + "Tiempo Aleatorio:" + tiempoAleatorio);
+		if (tiempo>tiempoAleatorio) {
+			tiempo = 0;
+			tiempoAleatorio = Random.Range(5,7);
+			agregarPersonaje (Random.Range(1,4),null);
+		}
+			
+			
+
+			
 		if (Input.GetKeyDown("c"))
 			agregarPersonaje(1,null);
 		if (Input.GetKeyDown("0"))
