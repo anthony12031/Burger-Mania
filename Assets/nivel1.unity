@@ -903,7 +903,7 @@ Camera:
   far clip plane: 1000.04
   field of view: 60
   orthographic: 1
-  orthographic size: 1.69
+  orthographic size: 2.0296588
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -968,6 +968,12 @@ MonoBehaviour:
   personajeC: {fileID: 1989965042493876, guid: e34d4b9f807bd0f4cb460f12d6b5ffa5, type: 2}
   personajeD: {fileID: 1146477194381204, guid: eedbe517680268947ad0541410cc959b, type: 2}
   personajeE: {fileID: 1470780344716212, guid: b9168dceaca2cd4459ba3fb570c5884a, type: 2}
+  nuevoPerro: {fileID: 0}
+  perroBase: {fileID: 0}
+  perroT1: {fileID: 0}
+  perroT2: {fileID: 0}
+  perroT3: {fileID: 0}
+  perroT4: {fileID: 0}
   inicial: -2.7
   salto: 0.6
   estado: 0
