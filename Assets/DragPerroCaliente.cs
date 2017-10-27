@@ -17,6 +17,7 @@ public class DragPerroCaliente : MonoBehaviour {
 			Vector2 mousePos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 			Vector2 objPos = Camera.main.ScreenToWorldPoint (mousePos);
 			transform.position = objPos;
+			GetComponent<SpriteRenderer> ().sortingOrder = 1;
 		}
 
 	}
