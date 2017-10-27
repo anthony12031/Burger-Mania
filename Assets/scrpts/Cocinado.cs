@@ -7,6 +7,7 @@ public class Cocinado : MonoBehaviour {
 	public float tiempoCocinado;	
 	public bool estaEnParrilla = true;
 	private Animator animator;
+	public AudioClip sonidoListo;
 
 	// Use this for initialization
 	void Start () {
@@ -21,5 +22,19 @@ public class Cocinado : MonoBehaviour {
 			animator.SetInteger ("tiempo", (int)tiempoCocinado);
 		}
 
+		//Debug.Log (GetComponent<AudioSource> ().isPlaying);
+		if (!GetComponent<AudioSource> ().isPlaying) {
+			animator.SetBool ("cocinado", true);
+		}
+
 	}
+
+	bool eventoCocidoLlamado = false;
+
+	public void eventoCocido(){
+		if(!eventoCocidoLlamado)
+			GetComponent<AudioSource> ().PlayOneShot (sonidoListo);
+		eventoCocidoLlamado = true;
+	}
+
 }
