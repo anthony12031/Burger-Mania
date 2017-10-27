@@ -33,17 +33,20 @@ public class PersonajeController : MonoBehaviour {
 	public static Queue<GameObject> ColaPerros;
 
 
+
 	public float inicial = -2.7f;
 	public float salto = 5f;
 	public int estado = 0; // 0. ningun movimiento
 	public int PJlista = 1;
 	public float tiempo = 0;
 	public float tiempoAleatorio = 0;
+	public float tiempoFinal = 20;
+	public float tiempocompleto = 0;
 	//1. moviendo a posicion x
 
 	// Use this for initialization
 	void Start () {
-		tiempoAleatorio = Random.Range(5,10);
+		tiempoAleatorio = 1;
 		ColaClientes = new Queue<GameObject>();
 		ColaPerros = new Queue<GameObject>();
 
@@ -181,13 +184,11 @@ public class PersonajeController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
 		tiempo  += Time.deltaTime;
-
-		Debug.Log("Tiempo:" + tiempo + "Tiempo Aleatorio:" + tiempoAleatorio);
-		if (tiempo>tiempoAleatorio) {
+		tiempocompleto += Time.deltaTime;
+		if (tiempo>tiempoAleatorio && tiempocompleto<tiempoFinal) {
 			tiempo = 0;
-			tiempoAleatorio = Random.Range(5,7);
+			tiempoAleatorio = Random.Range(4,7);
 			agregarPersonaje (Random.Range(1,4),null);
 		}
 			

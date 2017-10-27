@@ -21,5 +21,6 @@ public class Cocinado : MonoBehaviour {
 			animator.SetInteger ("tiempo", (int)tiempoCocinado);
 		}
 
+
 	}
 }
