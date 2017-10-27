@@ -22,7 +22,6 @@ public class Cocinado : MonoBehaviour {
 			animator.SetInteger ("tiempo", (int)tiempoCocinado);
 		}
 
-		//Debug.Log (GetComponent<AudioSource> ().isPlaying);
 		if (!GetComponent<AudioSource> ().isPlaying) {
 			animator.SetBool ("cocinado", true);
 		}
@@ -35,6 +34,7 @@ public class Cocinado : MonoBehaviour {
 		if(!eventoCocidoLlamado)
 			GetComponent<AudioSource> ().PlayOneShot (sonidoListo);
 		eventoCocidoLlamado = true;
+
 	}
 
 }
