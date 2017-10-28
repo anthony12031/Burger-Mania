@@ -9,6 +9,7 @@ TagManager:
   - perroCaliente
   - salsaTomate
   - salsaMostaza
+  - basura
   layers:
   - Default
   - TransparentFX

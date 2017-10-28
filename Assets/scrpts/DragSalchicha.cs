@@ -48,6 +48,19 @@ public class DragSalchicha : MonoBehaviour {
 		if (coll.gameObject.CompareTag ("panPerro")) {
 			panPerroColision = null;
 		}
+		if ( coll.gameObject.CompareTag ("basura")) {
+			desecharSalchicha = false;
+		}
+	}
+
+	bool desecharSalchicha = false;
+
+	void OnTriggerEnter2D(Collider2D coll){
+
+		if ( coll.gameObject.CompareTag ("basura")) {
+			desecharSalchicha = true;
+		}
+
 	}
 
 
@@ -69,6 +82,12 @@ public class DragSalchicha : MonoBehaviour {
 			gameObject.transform.position = posOriginal;
 			gameObject.GetComponent<Cocinado> ().estaEnParrilla = true;
 			GetComponent<SpriteRenderer> ().sortingOrder = 0;
+		}
+
+		if (desecharSalchicha) {
+			posicionEnParrilla.libre = true;
+			Basura.reproducirSonido ();
+			Destroy (gameObject);
 		}
 
 

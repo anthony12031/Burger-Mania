@@ -10,6 +10,7 @@ public class DragSalsa : MonoBehaviour {
 	public GameObject salsa;
 	private Vector3 posSalsa;
 	private Vector3 posOriginal;
+	public AudioClip sonidoSalsa;
 
 	// Use this for initialization
 	void Start () {
@@ -66,17 +67,21 @@ public class DragSalsa : MonoBehaviour {
 
 	}
 
+
+
 	void OnTriggerExit2D(Collider2D coll){
 
 		if ( coll.gameObject.CompareTag ("panPerro")) {
 			perro = null;
 		}
 
+
 	}
 
 	void OnMouseDown(){
 		isClicked = true;
-	    transform.Rotate (rotacion);
+		if(transform.rotation == rotacionOriginal)
+	   		 transform.Rotate (rotacion);
 	}
 
 	void OnMouseUp(){
@@ -84,11 +89,13 @@ public class DragSalsa : MonoBehaviour {
 
 		if (perro) {
 			if (PanControlador.tieneSalchicha (perro)) {
+				GetComponent<AudioSource> ().PlayOneShot (sonidoSalsa);
 				GameObject salsaNueva = Instantiate (salsa, posSalsa, Quaternion.identity);
 				salsaNueva.transform.parent = perro.transform;
 				salsaNueva.transform.localPosition = posSalsa;
 			} 
 		} 
+
 		transform.position = posOriginal;
 		isClicked = false;
 	}
