@@ -17,9 +17,9 @@ public class DragSalsa : MonoBehaviour {
 		rotacionOriginal = transform.rotation;
 		posOriginal = transform.position;
 		if(salsa.CompareTag("salsaTomate"))
-			posSalsa = new Vector3 (0.006f, -0.047f, 0);
+			posSalsa = new Vector3 (0.05f, 0.03f, 0);
 		else
-			posSalsa = new Vector3 (0.041f, -0.08f, 0);
+			posSalsa = new Vector3 (0.09f, 0, 0);
 
 	}
 	
@@ -49,7 +49,8 @@ public class DragSalsa : MonoBehaviour {
 
 
 	void OnTriggerStay2D(Collider2D coll){
-		if (coll.gameObject.CompareTag ("perroCaliente")) {
+		
+		if (coll.gameObject.CompareTag ("panPerro")) {
 			if (gameObject.name == "frascoTomate") {
 				if (!tieneSalsa (coll.gameObject,"salsaTomate")) {
 					perro = coll.gameObject;
@@ -67,7 +68,7 @@ public class DragSalsa : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D coll){
 
-		if ( coll.gameObject.CompareTag ("perroCaliente")) {
+		if ( coll.gameObject.CompareTag ("panPerro")) {
 			perro = null;
 		}
 
@@ -82,13 +83,13 @@ public class DragSalsa : MonoBehaviour {
 		transform.rotation = rotacionOriginal;
 
 		if (perro) {
-			GameObject salsaNueva = Instantiate (salsa, posSalsa, Quaternion.identity);
-			salsaNueva.transform.parent = perro.transform;
-			salsaNueva.transform.localPosition = posSalsa;
+			if (PanControlador.tieneSalchicha (perro)) {
+				GameObject salsaNueva = Instantiate (salsa, posSalsa, Quaternion.identity);
+				salsaNueva.transform.parent = perro.transform;
+				salsaNueva.transform.localPosition = posSalsa;
+			} 
 		} 
-		else {
-			transform.position = posOriginal;
-		}
+		transform.position = posOriginal;
 		isClicked = false;
 	}
 }

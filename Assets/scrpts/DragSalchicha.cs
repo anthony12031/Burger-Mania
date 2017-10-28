@@ -9,8 +9,7 @@ public class DragSalchicha : MonoBehaviour {
 	public  Transform perroCaliente;
 	private Vector2 posOriginal;
 	public string topSortinLayer;
-
-
+	public SalchichaControlador.PosicionParrilla posicionEnParrilla;
 
 
 	// Use this for initialization
@@ -35,58 +34,41 @@ public class DragSalchicha : MonoBehaviour {
 		isClicked = true;
 	}
 
-		
+
+	GameObject panPerroColision;
+	void OnTriggerStay2D(Collider2D coll){
+		if (coll.gameObject.CompareTag ("panPerro")) {
+			if(!PanControlador.tieneSalchicha(coll.gameObject))
+				panPerroColision = coll.gameObject;
+		}
+	}
+
+	void OnTriggerExit2D(Collider2D coll){
+		if (coll.gameObject.CompareTag ("panPerro")) {
+			panPerroColision = null;
+		}
+	}
+
+
 		
 	void OnMouseUp(){
 		isClicked = false;
 
-			bool colision = false;
-		if (PanControlador.posParrilla1.estado == "ocupado") {
-				Collider2D pan1 = PanControlador.posParrilla1.pan.gameObject.GetComponent<Collider2D> ();
-				if (colliderSalchicha.IsTouching (pan1)) {
-					Destroy (PanControlador.posParrilla1.pan.gameObject);
-					Transform perro = Instantiate (perroCaliente, PanControlador.posParrilla1.v3Pos, Quaternion.identity);
-					perro.GetChild (1).gameObject.GetComponent<SpriteRenderer>().sprite =
-						gameObject.GetComponent<SpriteRenderer>().sprite;
-				    PanControlador.posParrilla1.estado = "perroCaliente";
-					SalchichaControlador.posParrilla1.estado = "vacio";
-					Destroy (gameObject);
-					colision = true;
-				}
-			}
-			if (PanControlador.posParrilla2.estado == "ocupado") {
-				Collider2D pan2 = PanControlador.posParrilla2.pan.gameObject.GetComponent<Collider2D> ();
-				if (colliderSalchicha.IsTouching (pan2)) {
-					Destroy (PanControlador.posParrilla2.pan.gameObject);
-					Transform perro = Instantiate (perroCaliente, PanControlador.posParrilla2.v3Pos, Quaternion.identity);
-					perro.GetChild (1).gameObject.GetComponent<SpriteRenderer>().sprite =
-						gameObject.GetComponent<SpriteRenderer>().sprite;
-					PanControlador.posParrilla2.estado = "perroCaliente";
-					SalchichaControlador.posParrilla2.estado = "vacio";
-					Destroy (gameObject);
-					colision = true;
-				}
-			}
-			if (PanControlador.posParrilla3.estado == "ocupado") {
-				Collider2D pan3 = PanControlador.posParrilla3.pan.gameObject.GetComponent<Collider2D> ();
-				if (colliderSalchicha.IsTouching (pan3)) {
-					Destroy (PanControlador.posParrilla3.pan.gameObject);
-					Transform perro = Instantiate (perroCaliente, PanControlador.posParrilla3.v3Pos, Quaternion.identity);
-					perro.GetChild (1).gameObject.GetComponent<SpriteRenderer>().sprite =
-						gameObject.GetComponent<SpriteRenderer>().sprite;
-				    PanControlador.posParrilla3.estado = "perroCaliente";
-					SalchichaControlador.posParrilla3.estado = "vacio";
-					Destroy (gameObject);
-					colision = true;
-				}
-			}
-				
+		if (panPerroColision != null) {
+			panPerroColision.transform.GetChild (0).localPosition = new Vector2 (-0.06f, 0.08f);
+			gameObject.transform.parent = panPerroColision.transform;
+			gameObject.transform.localPosition = new Vector2 (0.04f, 0.02f);
+			GetComponent<SpriteRenderer> ().sortingLayerName = "sobreMeson";
+			GetComponent<SpriteRenderer> ().sortingOrder = 1;
+			Destroy (GetComponent<DragSalchicha> ());
+			panPerroColision.AddComponent<DragPerroCaliente> ();
+			Destroy (GetComponent<Collider2D> ());
+			posicionEnParrilla.libre = true;
+		} else {
+			gameObject.transform.position = posOriginal;
+			gameObject.GetComponent<Cocinado> ().estaEnParrilla = true;
+		}
 
-			if (!colision) {
-				gameObject.transform.position = posOriginal;
-				gameObject.GetComponent<Cocinado> ().estaEnParrilla = true;
-			}
-		
 
 	}
 		

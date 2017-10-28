@@ -35,6 +35,17 @@ public class PanControlador : MonoBehaviour {
 		return null;
 	}
 
+	public static bool tieneSalchicha(GameObject perro){
+		bool tiene = false;
+		foreach (Transform child in perro.transform) {
+			if (child.CompareTag ("salchicha")) {
+				tiene = true;
+				break;
+			}
+		}
+		return tiene;
+	}
+
 	// Use this for initialization
 	void Start () {
 		posParrilla1 = new PosicionParrilla(new Vector3 (-0.9f, -0.37f, 0));
