@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4858378435227478}
   - component: {fileID: 60695730252793046}
   - component: {fileID: 50950710482248698}
+  - component: {fileID: 210246879885617146}
   m_Layer: 0
   m_Name: panPerro
   m_TagString: panPerro
@@ -93,7 +94,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1017304836883168}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3030078, y: 0.7334213, z: 0}
+  m_LocalPosition: {x: -0.33120945, y: -0.78248644, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4547610693607276}
@@ -147,14 +148,24 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.024357855, y: 0.05577314}
       - {x: -0.07757968, y: 0.09677729}
-      - {x: -0.25123614, y: -0.057136893}
-      - {x: -0.42277926, y: -0.48755202}
+      - {x: -0.2779597, y: -0.057136953}
+      - {x: -0.42277917, y: -0.43410516}
       - {x: -0.39059538, y: -0.7284457}
       - {x: -0.28550166, y: -0.7447421}
       - {x: -0.17126292, y: -0.7031713}
       - {x: -0.11533278, y: -0.512401}
       - {x: -0.041162908, y: -0.33107573}
       - {x: 0.02241832, y: -0.16892424}
+--- !u!210 &210246879885617146
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1017304836883168}
+  m_Enabled: 1
+  m_SortingLayerID: 1887680691
+  m_SortingLayer: 4
+  m_SortingOrder: 1
 --- !u!212 &212340620704424866
 SpriteRenderer:
   m_ObjectHideFlags: 1

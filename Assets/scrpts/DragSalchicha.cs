@@ -26,6 +26,7 @@ public class DragSalchicha : MonoBehaviour {
 			Vector2 objPos = Camera.main.ScreenToWorldPoint (mousePos);
 			transform.position = objPos;
 			gameObject.GetComponent<Cocinado> ().estaEnParrilla = false;
+			GetComponent<SpriteRenderer> ().sortingOrder = 100;
 		}
 
 	}
@@ -67,6 +68,7 @@ public class DragSalchicha : MonoBehaviour {
 		} else {
 			gameObject.transform.position = posOriginal;
 			gameObject.GetComponent<Cocinado> ().estaEnParrilla = true;
+			GetComponent<SpriteRenderer> ().sortingOrder = 0;
 		}
 
 

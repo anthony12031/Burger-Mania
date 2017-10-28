@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class DragPerroCaliente : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class DragPerroCaliente : MonoBehaviour {
 			Vector2 mousePos = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
 			Vector2 objPos = Camera.main.ScreenToWorldPoint (mousePos);
 			transform.position = objPos;
+			GetComponent<SortingGroup> ().sortingOrder = 2;	
 		}
 
 	}
@@ -27,5 +29,6 @@ public class DragPerroCaliente : MonoBehaviour {
 
 	void OnMouseUp(){
 		isClicked = false;
+		GetComponent<SortingGroup> ().sortingOrder = 1;	
 	}
 }
