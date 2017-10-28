@@ -78,6 +78,9 @@ public class DragSalchicha : MonoBehaviour {
 			panPerroColision.AddComponent<DragPerroCaliente> ();
 			Destroy (GetComponent<Collider2D> ());
 			posicionEnParrilla.libre = true;
+			if (GetComponent<Cocinado> ().efectoHumoPropio != null) {
+				GetComponent<Cocinado> ().efectoHumoPropio.Stop ();
+			}
 		} else {
 			gameObject.transform.position = posOriginal;
 			gameObject.GetComponent<Cocinado> ().estaEnParrilla = true;

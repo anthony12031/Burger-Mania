@@ -9,6 +9,8 @@ public class Cocinado : MonoBehaviour {
 	private Animator animator;
 	public AudioClip sonidoListo;
 	public AudioClip sonidoQuemado;
+	public ParticleSystem humo;
+	public ParticleSystem efectoHumoPropio;
 
 	// Use this for initialization
 	void Start () {
@@ -41,9 +43,13 @@ public class Cocinado : MonoBehaviour {
 	bool eventoQuemadoLlamado = false;
 
 	public void eventoQuemado(){
-		if(!eventoQuemadoLlamado)
+		if (!eventoQuemadoLlamado) {
 			GetComponent<AudioSource> ().PlayOneShot (sonidoQuemado);
-		eventoQuemadoLlamado = true;
+			eventoQuemadoLlamado = true;
+			efectoHumoPropio =  Instantiate (humo, transform.position, humo.gameObject.transform.rotation);
+			efectoHumoPropio.gameObject.transform.parent = transform;
+		}
+			
 
 	}
 
