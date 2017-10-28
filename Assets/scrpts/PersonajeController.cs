@@ -32,6 +32,8 @@ public class PersonajeController : MonoBehaviour {
 	public static Queue<GameObject> ColaClientes;
 	public static Queue<GameObject> ColaPerros;
 
+	public GameObject[] perrosHechos;
+
 
 
 	public float inicial = -2.7f;
@@ -50,12 +52,7 @@ public class PersonajeController : MonoBehaviour {
 		ColaClientes = new Queue<GameObject>();
 		ColaPerros = new Queue<GameObject>();
 
-		//for (int i = 0; i < 10; i++)
-		//{
-		//    Instantiate(personaje1, new Vector3(inicial, 0.9f, 0), Quaternion.identity);
-		//    inicial += 0.6f; 
 
-		//}
 
 
 
@@ -182,8 +179,75 @@ public class PersonajeController : MonoBehaviour {
 		}
 	}
 
+	int clienteMasCerca(float x, float y){
+
+		int sizeCola = ColaClientes.Count;
+		GameObject sacado;
+		int[] mejor = new int[sizeCola];
+
+		float AX = 0;
+		float AY = 0;
+		float BX = 0;
+		float BY = 0;
+		float CX = 0;
+		float CY = 0;
+		float DX = 0;
+		float DY = 0;
+
+		float masX = 0;
+		float masY = 0;
+		int solucion = -1;
+
+		for (int i = 0; i < sizeCola; i++) {
+			sacado = ColaClientes.Dequeue ();
+
+			Sprite sp = sacado.GetComponent<SpriteRenderer> ().sprite;
+			Vector3 array = sp.bounds.size;
+
+
+			masX = array [0];
+			masY = array [1];
+
+
+
+			AX = sacado.transform.position.x - (array [0]/2);
+			AY = sacado.transform.position.y + (array [1]/2);
+
+			BX = AX + masX;
+			BY = AY ;
+
+			CX = AX;
+			CY = BY - masY;
+
+			DX = AX + masX;
+			DY = BY - masY;
+
+			//Debug.Log ("AX: " + AX + " AY: " + AY + " BX: " + BX + " BY: " + BY + " CX: " + CX + " CY: " + CY + " DX" + DX + " DY: " + DY);
+
+			if ((AX <= x && AY >= y) && (BX >= x && BY >= y) && (CX <= x && CY <= y) && (DX >= x && DY <= y))
+				solucion = i;
+					
+			ColaClientes.Enqueue(sacado);
+		}	
+
+		return solucion;
+
+	}
+
+	Vector3[] SpriteLocalToWorld(Sprite sp) 
+	{
+		Vector3 pos = transform.position;
+		Vector3 [] array = new Vector3[2];
+		//top left
+		array[0] = pos + sp.bounds.min;
+		// Bottom right
+		array[1] = pos + sp.bounds.max;
+		return array;
+	}
+
 	// Update is called once per frame
 	void Update () {
+		
 		tiempo  += Time.deltaTime;
 		tiempocompleto += Time.deltaTime;
 		if (tiempo>tiempoAleatorio && tiempocompleto<tiempoFinal) {
@@ -192,9 +256,23 @@ public class PersonajeController : MonoBehaviour {
 			agregarPersonaje (Random.Range(1,4),null);
 		}
 			
-			
 
-			
+		perrosHechos = GameObject.FindGameObjectsWithTag("panPerro");
+		foreach (GameObject go in perrosHechos) {
+			if (go.GetComponent<DragPerroCaliente> ()) {
+				if (go.GetComponent<DragPerroCaliente> ().isClicked == false) {
+					Debug.Log ("x" + go.transform.position.x + "y" + go.transform.position.y);
+					int sol = clienteMasCerca (go.transform.position.x, go.transform.position.y);
+
+					if (sol >= 0) {
+						atenderCliente (sol);
+						Destroy (go);
+					}
+				}
+			}
+
+		}
+
 		if (Input.GetKeyDown("c"))
 			agregarPersonaje(1,null);
 		if (Input.GetKeyDown("0"))
