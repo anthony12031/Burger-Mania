@@ -48,9 +48,9 @@ public class PanControlador : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		posParrilla1 = new PosicionParrilla(new Vector3 (-0.9f, -0.37f, 0));
-		posParrilla2 = new PosicionParrilla(new Vector3 (-0.37f, -0.37f, 0));
-		posParrilla3 = new PosicionParrilla(new Vector3 (0.18f, -0.37f, 0));
+		posParrilla1 = new PosicionParrilla(new Vector3 (-0.7f, -0.37f, 0));
+		posParrilla2 = new PosicionParrilla(new Vector3 (-0.17f, -0.37f, 0));
+		posParrilla3 = new PosicionParrilla(new Vector3 (0.38f, -0.37f, 0));
 	}
 	
 	// Update is called once per frame
