@@ -8,6 +8,7 @@ public class Personaje : MonoBehaviour {
 	public float contador = 0;
     public float inicial = -2.7f;
     public float salto = 5f;
+	public bool espera = true;
     // public int estadoMov = 0;
     //public int movex = 0;
     public int posicion = 11;
@@ -17,8 +18,9 @@ public class Personaje : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
+		
         contador += Time.deltaTime;
-        
+		Debug.Log (contador);
 
         if (contador>5&&contador<=10) {
             animP1.SetInteger("estado", 1);
@@ -42,6 +44,9 @@ public class Personaje : MonoBehaviour {
                 transform.position = new Vector3(transform.position.x + 0.02f, transform.position.y, transform.position.z);
             }
         }
+
+		if (contador > 30)
+			espera = false;
 
 
         
