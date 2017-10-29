@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 public class DragPerroCaliente : MonoBehaviour {
 
 	public bool isClicked = false;
+	public PanControlador.PosicionParrilla posicionEnParrilla;
 
 	// Use this for initialization
 	void Start () {

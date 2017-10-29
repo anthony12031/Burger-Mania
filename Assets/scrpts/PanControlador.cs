@@ -9,29 +9,30 @@ public class PanControlador : MonoBehaviour {
 	public static PosicionParrilla posParrilla2;
 	public static PosicionParrilla posParrilla3;
 
-	public  class PosicionParrilla{
 
-		public string estado;
+	public class PosicionParrilla{
+
+		public bool libre;
 		public Vector3 v3Pos;
-		public Transform pan;
 
 		public PosicionParrilla(Vector3 pos){
-			estado = "vacio";
+			libre = true;
 			v3Pos = pos;
 		}
 
 	}
 
 	PosicionParrilla getSigPosLibre(){
-		if (posParrilla1.estado == "vacio") {
+		if (posParrilla1.libre) {
 			return posParrilla1;
 		}
-		else if(posParrilla2.estado == "vacio") {
+		else if(posParrilla2.libre) {
 			return posParrilla2;
 		}
-		else if(posParrilla3.estado == "vacio") {
+		else if(posParrilla3.libre) {
 			return posParrilla3;
 		}
+
 		return null;
 	}
 
@@ -61,8 +62,9 @@ public class PanControlador : MonoBehaviour {
 	void OnMouseDown(){
 		PosicionParrilla posLibre = getSigPosLibre();
 		if (posLibre != null) {
-			posLibre.pan = Instantiate (panPerro, posLibre.v3Pos, Quaternion.identity);
-			posLibre.estado = "ocupado";
+			GameObject pan = Instantiate (panPerro, posLibre.v3Pos, Quaternion.identity).gameObject;
+			pan.GetComponent<PanPosicion> ().posicionEnParrilla = posLibre;
+			posLibre.libre = false;
 		}
 	}
 

@@ -717,6 +717,7 @@ MonoBehaviour:
   perroCrudo4: {fileID: 0}
   procesadorPR: {fileID: 0}
   procesadorPJ: {fileID: 0}
+  perrosHechos: []
   inicial: -2.7
   salto: 0.6
   estado: 0
