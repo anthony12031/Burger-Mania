@@ -20,7 +20,6 @@ public class Personaje : MonoBehaviour {
 	void Update () {
 		
         contador += Time.deltaTime;
-		Debug.Log (contador);
 
         if (contador>5&&contador<=10) {
             animP1.SetInteger("estado", 1);

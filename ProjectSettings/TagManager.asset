@@ -10,6 +10,7 @@ TagManager:
   - salsaTomate
   - salsaMostaza
   - basura
+  - time
   layers:
   - Default
   - TransparentFX
