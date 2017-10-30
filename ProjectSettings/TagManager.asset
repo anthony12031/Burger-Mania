@@ -11,6 +11,7 @@ TagManager:
   - salsaMostaza
   - basura
   - time
+  - monto
   layers:
   - Default
   - TransparentFX

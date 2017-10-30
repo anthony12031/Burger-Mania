@@ -9,12 +9,20 @@ public class Personaje : MonoBehaviour {
     public float inicial = -2.7f;
     public float salto = 5f;
 	public bool espera = true;
+	public bool hayPropina = false;
+	public GameObject moneda;
+	public GameObject newMoneda;	
+
     // public int estadoMov = 0;
     //public int movex = 0;
     public int posicion = 11;
+	public float rnum ;
+	public float propina;
 	// Use this for initialization
 	void Start () {
-        
+
+		rnum = Random.Range (-3.64f,-2.52f);
+//		Debug.Log ("RNUM" + rnum);
     }
 	// Update is called once per frame
 	void Update () {
@@ -47,18 +55,27 @@ public class Personaje : MonoBehaviour {
 		if (contador > 30)
 			espera = false;
 
+		if (hayPropina) {		
+			//Debug.Log ("Aleatorio es" + rnum);
+			if (transform.position.x < rnum) {
+				hayPropina = false;
+				//Debug.Log ("PonePropina");
+				newMoneda = Instantiate(moneda, new Vector3(rnum, 0.32f, 0), Quaternion.identity) as GameObject;
+				newMoneda.GetComponent<Moneda> ().montoMoneda = propina;
+			}
 
+		}
         
         
     }
 
- 
+	 
 
-    //public void moveto(int posicion)
-    //{
-    //    movex = posicion;
-    //    estadoMov = 1;
-    //}
+	    //public void moveto(int posicion)
+	    //{
+	    //    movex = posicion;
+	    //    estadoMov = 1;
+	    //}
 
     
 }

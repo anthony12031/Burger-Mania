@@ -1,11 +1,14 @@
 fileFormatVersion: 2
 guid: ef155057f0ff06147b6491a0e37b9d97
-timeCreated: 1508818663
+timeCreated: 1509361600
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - animP1: {instanceID: 0}
+  - personaje1: {instanceID: 0}
+  - moneda: {fileID: 1002980175710382, guid: ec96e989767f58b448053f63d475b865, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
