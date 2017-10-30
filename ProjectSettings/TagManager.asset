@@ -16,6 +16,7 @@ TagManager:
   - menu
   - pjcontrolador
   - reiniciar
+  - reiniciarPuntaje
   layers:
   - Default
   - TransparentFX

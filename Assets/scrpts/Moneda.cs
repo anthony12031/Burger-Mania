@@ -16,12 +16,11 @@ public class Moneda : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		Debug.Log ("Clicked");
 		string actual;
 		float nuevo;
 		propina = GameObject.FindGameObjectsWithTag("monto");
 		foreach (GameObject p in propina) {
-			actual = p.GetComponent<UnityEngine.UI.Text>().text;
+			actual = p.GetComponent<UnityEngine.UI.Text>().text.Remove(0,1);
 			nuevo = float.Parse (actual);
 			nuevo = nuevo + montoMoneda;
 			p.GetComponent<UnityEngine.UI.Text>().text = "$" + nuevo.ToString();		

@@ -5,6 +5,9 @@ using UnityEngine;
 public class Fin : MonoBehaviour {
 	GameObject[] reja;
 	GameObject[] pjcontrolador;
+	GameObject[] panes;
+	GameObject[] salchichas;
+	public GameObject[] montos;
 	// Use this for initialization
 	void Start () {
 		
@@ -26,6 +29,23 @@ public class Fin : MonoBehaviour {
 		foreach (GameObject pj in pjcontrolador) {
 			pj.GetComponent<PersonajeController> ().reiniciarM ();
 		}
+
+		panes = GameObject.FindGameObjectsWithTag("panPerro");
+		foreach (GameObject pan in panes) {
+			Destroy (pan);
+		}
+
+		salchichas = GameObject.FindGameObjectsWithTag("salchicha");
+		foreach (GameObject salchicha in salchichas) {
+			Destroy (salchicha);
+		}
+
+
+		montos = GameObject.FindGameObjectsWithTag("monto");
+		foreach (GameObject m in montos) {
+			m.GetComponent<UnityEngine.UI.Text> ().text = "$0";
+		}
+
 
 	}
 
