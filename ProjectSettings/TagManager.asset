@@ -13,6 +13,9 @@ TagManager:
   - time
   - monto
   - reja
+  - menu
+  - pjcontrolador
+  - reiniciar
   layers:
   - Default
   - TransparentFX
@@ -64,4 +67,7 @@ TagManager:
     locked: 0
   - name: Menu
     uniqueID: 3397194401
+    locked: 0
+  - name: TextMenu
+    uniqueID: 3407351201
     locked: 0

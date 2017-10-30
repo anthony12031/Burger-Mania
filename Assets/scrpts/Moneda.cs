@@ -16,6 +16,7 @@ public class Moneda : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
+		Debug.Log ("Clicked");
 		string actual;
 		float nuevo;
 		propina = GameObject.FindGameObjectsWithTag("monto");
