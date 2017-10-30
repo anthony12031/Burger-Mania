@@ -28,6 +28,7 @@ public class Recursos : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Debug.Log ("creando recursos");
 		lista = new Dictionary<string,Recurso> ();
 		Recurso salsaTomate = new Recurso ("salsaTomate");
 		Recurso mostaza = new Recurso ("mostaza");

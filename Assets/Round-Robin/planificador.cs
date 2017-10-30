@@ -8,6 +8,7 @@ public class planificador : MonoBehaviour {
 
 	public float tiempoQuantum = 2;
 	public float tiempoSuspendido = 2;
+	public float tiempoEnBloqueado = 2;
 	//orden analogo a proceso
 	public GameObject Orden;
 	//colas de los procesos
@@ -117,8 +118,24 @@ public class planificador : MonoBehaviour {
 
 
 	void ejecutarProceso(){
-		    procesoEnEjecucion = listos.Dequeue ();
-			controladorPersonajes.listoToProcesador();
+		Proceso procesoAEjecutar = listos.Dequeue ();
+		 
+			//identificar que recursos necesita el proceso 
+			//si estan disponibles ejecutarlo
+			//si no pasarlo a la cola de bloqueados
+			GameObject pedido = procesoEnEjecucion.cliente.transform.GetChild (0).gameObject;
+		if (pedido.name.Contains ("pedido_perro")) {
+			Debug.Log ("no necesita nada");
+
+		}
+		if (pedido.name.Contains ("pedido_perroTomate")) {
+			Debug.Log ("necesita tomate");
+		}
+		if (pedido.name.Contains ("pedido_perroMostaza")) {
+			Debug.Log ("necesita mostaza");
+		}
+
+			//controladorPersonajes.listoToBloqueado(1);
 	}
 	
 	// Update is called once per frame
