@@ -22,16 +22,12 @@ public class PanControlador : MonoBehaviour {
 
 	}
 
-	PosicionParrilla getSigPosLibre(){
-		if (posParrilla1.libre) {
+	PosicionParrilla getSigPosLibre(int cpu){
+		
+		if (cpu == 1) {
 			return posParrilla1;
 		}
-		else if(posParrilla2.libre) {
-			return posParrilla2;
-		}
-		else if(posParrilla3.libre) {
-			return posParrilla3;
-		}
+
 
 		return null;
 	}
@@ -60,11 +56,11 @@ public class PanControlador : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		PosicionParrilla posLibre = getSigPosLibre();
-		if (posLibre != null) {
-			GameObject pan = Instantiate (panPerro, posLibre.v3Pos, Quaternion.identity).gameObject;
-			pan.GetComponent<PanPosicion> ().posicionEnParrilla = posLibre;
-			posLibre.libre = false;
+
+		if (posParrilla1.libre) {
+			GameObject pan = Instantiate (panPerro, posParrilla1.v3Pos, Quaternion.identity).gameObject;
+			pan.GetComponent<PanPosicion> ().posicionEnParrilla = posParrilla1;
+			posParrilla1.libre = false;
 		}
 	}
 

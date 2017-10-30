@@ -425,6 +425,13 @@ public void listoTOsuspendido()
 		cliente.transform.parent.position = new Vector2(-2.5f, -0.3f);
 		ColaSuspendidosPJ.Enqueue(cliente);
 		procesadorPJ = null;
+		foreach (Transform child in cliente.transform.parent) {
+			Debug.Log (child.gameObject.tag);
+			if (child.gameObject.CompareTag ("panPerro")) {
+				child.gameObject.GetComponent<PanPosicion> ().posicionEnParrilla.libre = true;
+				break;
+			}
+		}
 		//procesadorPR = null;
 
 	}

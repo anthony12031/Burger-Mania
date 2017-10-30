@@ -21,8 +21,8 @@ public class SalchichaControlador : MonoBehaviour {
 
 	}
 
-	PosicionParrilla getSigPosLibre(){
-		if (posParrilla1.libre) {
+	PosicionParrilla getSigPosLibre(int cpu){
+		/*if (posParrilla1.libre) {
 			return posParrilla1;
 		}
 		else if(posParrilla2.libre) {
@@ -30,6 +30,10 @@ public class SalchichaControlador : MonoBehaviour {
 		}
 		else if(posParrilla3.libre) {
 			return posParrilla3;
+		}*/
+
+		if (cpu == 1) {
+			return posParrilla1;
 		}
 
 		return null;
@@ -50,12 +54,13 @@ public class SalchichaControlador : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		PosicionParrilla posLibre = getSigPosLibre();
-		if (posLibre != null) {
-			GameObject nuevaSalchicha = Instantiate (salchicha, posLibre.v3Pos, Quaternion.identity).gameObject;
-			nuevaSalchicha.GetComponent<DragSalchicha> ().posicionEnParrilla = posLibre;
-			posLibre.libre = false;
-		}
+		//PosicionParrilla posLibre = getSigPosLibre();
+		//if (posLibre != null) {
+	
+		GameObject nuevaSalchicha = Instantiate (salchicha, posParrilla1.v3Pos, Quaternion.identity).gameObject;
+			//nuevaSalchicha.GetComponent<DragSalchicha> ().posicionEnParrilla = posLibre;
+			//posLibre.libre = false;
+		//}
 	}
 
 
