@@ -514,12 +514,9 @@ public void listoTOsuspendido()
 
 
 
-		procesadorPJ.transform.position = new Vector3(pjx, pjy, pjz);
-		procesadorPJ.GetComponent<Personaje>().posicion = -1;
-		procesadorPJ.GetComponent<Transform>().localScale = new Vector3(0.3F, 0.3F, 0.3F);
+		personajeBase.transform.position = new Vector3(pjx, pjy, pjz);
 		//sacar.transform.localScale
-		ColaBloqueadoPJ.Enqueue(procesadorPJ);
-		actualizarVista();
+		ColaBloqueadoPJ.Enqueue(personajeBase);
 		procesadorPJ = null;
 		procesadorPR = null;
 
@@ -559,11 +556,9 @@ public void listoTOsuspendido()
 
 
 		procesadorPJ.transform.position = new Vector3(pjx, pjy, pjz);
-		procesadorPJ.GetComponent<Personaje>().posicion = -1;
-		procesadorPJ.GetComponent<Transform>().localScale = new Vector3(0.3F, 0.3F, 0.3F);
 		//sacar.transform.localScale
 		ColaSuspendidosPJ.Enqueue(procesadorPJ);
-		actualizarVista();
+
 
 		procesadorPJ = null;
 		procesadorPR = null;
