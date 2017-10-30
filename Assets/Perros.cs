@@ -19,14 +19,15 @@ public class Perros : MonoBehaviour {
 	void Update () {
         
 
-
-        if (System.Math.Abs((inicial + (posicion * salto)) - transform.position.x)>0.1){
-            if((inicial + (posicion * salto)) < transform.position.x){
-                transform.position = new Vector3(transform.position.x - 0.02f, transform.position.y, transform.position.z);
-            }else{
-                transform.position = new Vector3(transform.position.x + 0.02f, transform.position.y, transform.position.z);
-            }
-        }
+		if (posicion != -1) { 
+			if (System.Math.Abs ((inicial + (posicion * salto)) - transform.position.x) > 0.1) {
+				if ((inicial + (posicion * salto)) < transform.position.x) {
+					transform.position = new Vector3 (transform.position.x - 0.02f, transform.position.y, transform.position.z);
+				} else {
+					transform.position = new Vector3 (transform.position.x + 0.02f, transform.position.y, transform.position.z);
+				}
+			}
+		}
         
         
     }

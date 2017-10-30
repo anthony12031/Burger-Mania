@@ -78,7 +78,7 @@ public class planificador : MonoBehaviour {
 	//crear proceso
 	public void crearOrden(){
 		Debug.Log ("crear proceso");
-		GameObject cliente =  controladorPersonajes.agregarPersonaje(seleccionPerro.getTipoPerro()+1);
+		GameObject cliente =  controladorPersonajes.agregarPersonaje(seleccionPerro.getTipoPerro()+1,1);
 		Proceso nuevoProceso = new Proceso (cliente,this,seleccionPerro.getTipoPerro()+1);
 		listos.Enqueue (nuevoProceso);
 	}
@@ -111,7 +111,7 @@ public class planificador : MonoBehaviour {
 
 	void ejecutarProceso(){
 		    procesoEnEjecucion = listos.Dequeue ();
-			controladorPersonajes.listoTOprocesador();
+			controladorPersonajes.listoToProcesador();
 	}
 	
 	// Update is called once per frame
@@ -139,7 +139,7 @@ public class planificador : MonoBehaviour {
 				pr.Quantum = tiempoQuantum;
 				pr.tiempoEnSuspendido = tiempoSuspendido;
 				Debug.Log("mandar a listo");
-				controladorPersonajes.suspendidoTOlisto ();
+				controladorPersonajes.suspendidoTOlisto(1);
 			}
 		}
 
