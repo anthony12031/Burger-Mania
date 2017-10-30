@@ -12,6 +12,7 @@ TagManager:
   - basura
   - time
   - monto
+  - reja
   layers:
   - Default
   - TransparentFX
@@ -60,4 +61,7 @@ TagManager:
     locked: 0
   - name: topLayer
     uniqueID: 1887680691
+    locked: 0
+  - name: Menu
+    uniqueID: 3397194401
     locked: 0
