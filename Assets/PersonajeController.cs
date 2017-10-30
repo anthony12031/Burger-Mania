@@ -251,6 +251,12 @@ public class PersonajeController : MonoBehaviour {
 			cliente.transform.parent.position = SalchichaControlador.posParrilla1.v3Pos;
 			procesadorPJ = cliente;
 		}
+		foreach (Transform child in cliente.transform.parent) {
+			if (child.gameObject.tag == "panPerro") {
+				child.gameObject.tag = "panPerroEnProcesador";
+				break;
+			}
+		}
 	
     }
 
@@ -431,6 +437,7 @@ public void listoTOsuspendido()
 			Debug.Log (child.gameObject.tag);
 			if (child.gameObject.CompareTag ("panPerroEnProcesador")) {
 				child.gameObject.GetComponent<PanPosicion> ().posicionEnParrilla.libre = true;
+				child.gameObject.tag = "panPerro";
 				break;
 			}
 		}

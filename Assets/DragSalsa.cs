@@ -87,9 +87,9 @@ public class DragSalsa : MonoBehaviour {
 			salsaNueva.transform.parent = perro.transform;
 			salsaNueva.transform.localPosition = posSalsa;
 		} 
-		else {
+
 			transform.position = posOriginal;
-		}
+		
 		isClicked = false;
 	}
 }
