@@ -98,6 +98,13 @@ public class planificador : MonoBehaviour {
 		procesoEnEjecucion = null;
 	}
 
+	public void terminarProceso(){
+		//sumar puntos 
+		//eliminar proceso en ejecucion actual
+		controladorPersonajes.terminarProcesoActual();
+		procesoEnEjecucion = null;
+	}
+
 	public  void notificacionQuantumTerminado(){
 		Debug.Log ("quantum acabo");
 		if (!procesoEnEjecucion.haFinalizado) {

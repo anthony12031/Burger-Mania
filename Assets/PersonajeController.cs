@@ -361,6 +361,13 @@ public void listoTOsuspendido()
     }
 
 
+	public void terminarProcesoActual(){
+		if (procesadorPJ.transform.parent)
+			Destroy (procesadorPJ.transform.parent.gameObject);
+		Destroy (procesadorPJ);
+		procesadorPJ = null;
+	}
+
 
     public void procesadorTOlisto()
     {     
@@ -407,17 +414,12 @@ public void listoTOsuspendido()
 		//nuevoPerro.GetComponent<Perros>().posicion = ColaBloqueadoPR;
 		ColaBloqueadoPR.Enqueue(nuevoPerro);
 
-
-
-
 		personajeBase.transform.position = new Vector3(pjx, pjy, pjz);
 		//sacar.transform.localScale
 		ColaBloqueadoPJ.Enqueue(personajeBase);
 		procesadorPJ = null;
 		procesadorPR = null;
-
 	}
-
 
 	public void procesadorTOsuspendido()
 	{
