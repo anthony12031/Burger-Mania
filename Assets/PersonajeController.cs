@@ -453,6 +453,7 @@ public void listoTOsuspendido()
 
         Destroy(personajeBase);
         Destroy(perroBase);
+
         if (perroBase.name.Contains("salchicha1"))
         {
             
@@ -477,6 +478,93 @@ public void listoTOsuspendido()
 
         //actualizarVista();
     }
+	public void procesadorTObloqueado()
+	{
+
+
+		personajeBase = procesadorPJ;
+		perroBase = procesadorPR;
+		//Destroy (procesadorPJ);
+		Destroy (procesadorPR);
+
+		float pjx = 0;
+		float pjy = 0;
+		float pjz = 0;
+		float prx = 0;
+		float pry = 0;
+		float prz = 0;
+
+
+		prx = -1.68f;
+		pry = -0.28f;
+		prz = 0;
+
+		pjx = prx + 0.14f;
+		pjy = pry - 0.05f;
+		pjz = prz;
+
+		nuevoPerro = Instantiate(perroBase, new Vector3(prx, pry, prz), Quaternion.identity) as GameObject;
+		//nuevoPerro.GetComponent<Perros>().posicion = ColaBloqueadoPR;
+		ColaBloqueadoPR.Enqueue(nuevoPerro);
+
+
+
+
+		procesadorPJ.transform.position = new Vector3(pjx, pjy, pjz);
+		procesadorPJ.GetComponent<Personaje>().posicion = -1;
+		procesadorPJ.GetComponent<Transform>().localScale = new Vector3(0.3F, 0.3F, 0.3F);
+		//sacar.transform.localScale
+		ColaBloqueadoPJ.Enqueue(procesadorPJ);
+		actualizarVista();
+		procesadorPJ = null;
+		procesadorPR = null;
+
+	}
+
+
+	public void procesadorTOsuspendido()
+	{
+
+
+		personajeBase = procesadorPJ;
+		perroBase = procesadorPR;
+		//Destroy (procesadorPJ);
+		Destroy (procesadorPR);
+
+		float pjx = 0;
+		float pjy = 0;
+		float pjz = 0;
+		float prx = 0;
+		float pry = 0;
+		float prz = 0;
+
+
+		prx = -2.7f;
+		pry = -0.4f;
+		prz = 0;
+
+		pjx = prx + 0.14f;
+		pjy = pry - 0.05f;
+		pjz = prz;
+
+		nuevoPerro = Instantiate(perroBase, new Vector3(prx, pry, prz), Quaternion.identity) as GameObject;
+		//nuevoPerro.GetComponent<Perros>().posicion = ColaBloqueadoPR;
+		ColaSuspendidosPR.Enqueue(nuevoPerro);
+
+
+
+
+		procesadorPJ.transform.position = new Vector3(pjx, pjy, pjz);
+		procesadorPJ.GetComponent<Personaje>().posicion = -1;
+		procesadorPJ.GetComponent<Transform>().localScale = new Vector3(0.3F, 0.3F, 0.3F);
+		//sacar.transform.localScale
+		ColaSuspendidosPJ.Enqueue(procesadorPJ);
+		actualizarVista();
+
+		procesadorPJ = null;
+		procesadorPR = null;
+
+	}
 
     // Update is called once per frame
     void Update () {
@@ -500,6 +588,11 @@ public void listoTOsuspendido()
         if (Input.GetKeyDown("2"))
             procesadorTOlisto();
 
+		if (Input.GetKeyDown("o"))
+			procesadorTOsuspendido();
+		
+		if (Input.GetKeyDown("p"))
+			procesadorTObloqueado();
         
 
 
