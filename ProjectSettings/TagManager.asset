@@ -10,6 +10,7 @@ TagManager:
   - salsaTomate
   - salsaMostaza
   - cliente
+  - panPerroEnProcesador
   layers:
   - Default
   - TransparentFX

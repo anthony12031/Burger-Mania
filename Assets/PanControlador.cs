@@ -60,6 +60,7 @@ public class PanControlador : MonoBehaviour {
 		if (posParrilla1.libre) {
 			GameObject pan = Instantiate (panPerro, posParrilla1.v3Pos, Quaternion.identity).gameObject;
 			pan.GetComponent<PanPosicion> ().posicionEnParrilla = posParrilla1;
+			pan.tag = "panPerroEnProcesador";
 			posParrilla1.libre = false;
 		}
 	}

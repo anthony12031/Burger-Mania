@@ -427,7 +427,7 @@ public void listoTOsuspendido()
 		procesadorPJ = null;
 		foreach (Transform child in cliente.transform.parent) {
 			Debug.Log (child.gameObject.tag);
-			if (child.gameObject.CompareTag ("panPerro")) {
+			if (child.gameObject.CompareTag ("panPerroEnProcesador")) {
 				child.gameObject.GetComponent<PanPosicion> ().posicionEnParrilla.libre = true;
 				break;
 			}

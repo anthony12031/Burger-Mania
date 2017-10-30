@@ -38,14 +38,14 @@ public class DragSalchicha : MonoBehaviour {
 
 	GameObject panPerroColision;
 	void OnTriggerStay2D(Collider2D coll){
-		if (coll.gameObject.CompareTag ("panPerro")) {
+		if (coll.gameObject.CompareTag ("panPerroEnProcesador")) {
 			if(!PanControlador.tieneSalchicha(coll.gameObject))
 				panPerroColision = coll.gameObject;
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D coll){
-		if (coll.gameObject.CompareTag ("panPerro")) {
+		if (coll.gameObject.CompareTag ("panPerroEnProcesador")) {
 			panPerroColision = null;
 		}
 	}

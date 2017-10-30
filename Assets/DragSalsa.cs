@@ -49,7 +49,8 @@ public class DragSalsa : MonoBehaviour {
 
 
 	void OnTriggerStay2D(Collider2D coll){
-		if (coll.gameObject.CompareTag ("perroCaliente")) {
+		if (coll.gameObject.CompareTag ("panPerroEnProcesador")) {
+			
 			if (gameObject.name == "frascoTomate") {
 				if (!tieneSalsa (coll.gameObject,"salsaTomate")) {
 					perro = coll.gameObject;
@@ -67,7 +68,7 @@ public class DragSalsa : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D coll){
 
-		if ( coll.gameObject.CompareTag ("perroCaliente")) {
+		if ( coll.gameObject.CompareTag ("panPerroEnProcesador")) {
 			perro = null;
 		}
 
