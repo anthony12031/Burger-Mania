@@ -127,11 +127,7 @@ public class PersonajeController : MonoBehaviour {
         nuevoPerro.GetComponent <Perros> ().posicion = ColaPerros.Count;
         ColaPerros.Enqueue(nuevoPerro);
 
-
-
         return nuevoPersonaje;
-        
-
     }
 		
 
@@ -139,9 +135,6 @@ public class PersonajeController : MonoBehaviour {
         Destroy(ColaClientes.Dequeue());
         Destroy(ColaPerros.Dequeue());
         actualizarVista();
-        //GameObject sacar = ColaClientes.Dequeue();
-        //sacar.GetComponent<Personaje>().moverA(3);
-        //sacar.transform.position = new Vector3(0,0,0);
     }
 
     void actualizarVista(){
@@ -160,6 +153,7 @@ public class PersonajeController : MonoBehaviour {
             ColaPerros.Enqueue(sacar);
         }
     }
+
     public void listoTObloqueado()
     {
         GameObject sacar = ColaPerros.Dequeue();

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class planificador : MonoBehaviour {
 
+
+	public float tiempoQuantum = 2;
+	public float tiempoSuspendido = 2;
 	//orden analogo a proceso
 	public GameObject Orden;
 	//colas de los procesos
@@ -29,10 +32,10 @@ public class planificador : MonoBehaviour {
 		public GameObject cliente;
 		public GameObject clienteOriginal;
 		public GameObject perroCaliente;
-		float Quantum = 5; //segundos;
+		public float Quantum ; //segundos;
 		public int tipoPerro;
 
-		float tiempoEnSuspendido = 5;//segundos
+		public float tiempoEnSuspendido ;//segundos
 
 		public bool haFinalizado = false;
 		planificador planificador;
@@ -41,6 +44,8 @@ public class planificador : MonoBehaviour {
 		public Proceso(GameObject cliente,planificador plan,int perro){
 			this.cliente = cliente;
 			this.clienteOriginal = cliente;
+			Quantum = plan.tiempoQuantum;
+			tiempoEnSuspendido = plan.tiempoSuspendido;
 			planificador = plan;
 			tipoPerro = perro;
 		}
@@ -67,11 +72,7 @@ public class planificador : MonoBehaviour {
 		public float getQuantumRestante(){
 			return Quantum;
 		}
-
-		public void setQuantum(float val){
-			Quantum = val;
-		}
-
+			
 	}
 
 	//crear proceso
@@ -102,7 +103,7 @@ public class planificador : MonoBehaviour {
 		if (!procesoEnEjecucion.haFinalizado) {
 			suspendidos.Enqueue (procesoEnEjecucion);
 			//llamar metodo para encolar en suspendido el cliente
-
+			controladorPersonajes.procesadorTOsuspendido();
 		}
 		procesoEnEjecucion = null;
 	}
@@ -134,7 +135,11 @@ public class planificador : MonoBehaviour {
 			if (suspendidos.Peek ().getTiempoEnSuspendidoRestante () <= 0) {
 				Proceso pr = suspendidos.Dequeue ();
 				//pasar  a la cola de listos este proceso
-
+				listos.Enqueue (pr);
+				pr.Quantum = tiempoQuantum;
+				pr.tiempoEnSuspendido = tiempoSuspendido;
+				Debug.Log("mandar a listo");
+				controladorPersonajes.suspendidoTOlisto ();
 			}
 		}
 
