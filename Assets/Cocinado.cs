@@ -18,7 +18,7 @@ public class Cocinado : MonoBehaviour {
 		
 		if (estaEnParrilla) {
 			tiempoCocinado += Time.deltaTime;
-			animator.SetInteger ("tiempo", (int)tiempoCocinado);
+			//animator.SetInteger ("tiempo", (int)tiempoCocinado);
 		}
 
 	}
