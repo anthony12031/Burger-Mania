@@ -64,7 +64,7 @@ public class planificador : MonoBehaviour {
 			return tiempoEnSuspendido;
 		}
 
-		public float getTiempoRestante(){
+		public float getQuantumRestante(){
 			return Quantum;
 		}
 
@@ -76,18 +76,13 @@ public class planificador : MonoBehaviour {
 
 	//crear proceso
 	public void crearOrden(){
-		GameObject cliente =  controladorPersonajes.agregarPersonaje(seleccionPerro.getTipoPerro()+1,null);
+		Debug.Log ("crear proceso");
+		GameObject cliente =  controladorPersonajes.agregarPersonaje(seleccionPerro.getTipoPerro()+1);
 		Proceso nuevoProceso = new Proceso (cliente,this,seleccionPerro.getTipoPerro()+1);
 		listos.Enqueue (nuevoProceso);
-
 	}
 
-	public void crearOrden(int tipoPerro,GameObject personaje){
-		GameObject cliente =  controladorPersonajes.agregarPersonaje(tipoPerro,personaje);
-		Proceso nuevoProceso = new Proceso (cliente,this,tipoPerro);
-		listos.Enqueue (nuevoProceso);
 
-	}
 
 	// Use this for initialization
 	void Start () {
@@ -107,45 +102,39 @@ public class planificador : MonoBehaviour {
 		if (!procesoEnEjecucion.haFinalizado) {
 			suspendidos.Enqueue (procesoEnEjecucion);
 			//llamar metodo para encolar en suspendido el cliente
-			procesoEnEjecucion.cliente.transform.position = new Vector2(-2,0);
 
 		}
 		procesoEnEjecucion = null;
 	}
 
 
-	void atender(){
+	void ejecutarProceso(){
 		    procesoEnEjecucion = listos.Dequeue ();
-			procesoEnEjecucion.cliente = Instantiate (procesoEnEjecucion.cliente, posAtendido, Quaternion.identity);
-			procesoEnEjecucion.cliente.GetComponent<Personaje> ().esAnimado = false;
-			procesoEnEjecucion.cliente.transform.localScale = new Vector3 (0.5f, 0.5f, 1);
-			controladorPersonajes.atenderCliente ();
-
+			controladorPersonajes.listoTOprocesador();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (procesoEnEjecucion == null) {
 			if (listos.Count > 0 ) {
-				atender ();
+				ejecutarProceso ();
 			}
 		} 
+		//ejecutar el proceso actual
 		else {
-			quantumTX.text = System.Convert.ToString (procesoEnEjecucion.getTiempoRestante ());
+			quantumTX.text = System.Convert.ToString (procesoEnEjecucion.getQuantumRestante());
 			procesoEnEjecucion.ejecutar (Time.deltaTime);	
 		}
-			
+		//aumentar el contador de los procesos en suspendido
 			foreach (Proceso pr in suspendidos) {
 				pr.tiempoEnSuspendidoTick (Time.deltaTime);
 			}
-
+		//pasar a la cola de listos los procesos que ya acabaron su tiempo en suspendido
 		if (suspendidos.Count > 0) {
 			if (suspendidos.Peek ().getTiempoEnSuspendidoRestante () <= 0) {
 				Proceso pr = suspendidos.Dequeue ();
-				pr.cliente.transform.localScale = new Vector3 (1, 1, 1);
-				pr.cliente.GetComponent<Personaje> ().esAnimado = true;
-				crearOrden (pr.tipoPerro, pr.cliente);
-				Destroy (pr.cliente);
+				//pasar  a la cola de listos este proceso
+
 			}
 		}
 
