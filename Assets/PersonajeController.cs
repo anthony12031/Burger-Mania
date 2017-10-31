@@ -43,6 +43,10 @@ public class PersonajeController : MonoBehaviour {
 	public Vector3 posListoCPU2;
 	public Vector3 posListoCPU3;
 
+	Vector2 posBloqueadoCPU1;
+	Vector2 posBloqueadoCPU2;
+	Vector2 posBloqueadoCPU3;
+
 	public float factorDivision = 3;
 
     public float inicial = -2.7f;
@@ -54,10 +58,14 @@ public class PersonajeController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		escalaEnFilaPJ = new Vector3(0.5F, 0.5F, 0.5F);
+		escalaEnFilaPJ = new Vector3(0.3F, 0.3F, 0.3F);
 		posListoCPU1 =  new Vector3(-0.76F, 0.8f, 0.3F);
 		posListoCPU2 =  new Vector3(0.3F, 0.8f, 0.3F);
 		posListoCPU3 =  new Vector3(1.3F, 0.8f, 0.3F);
+
+		posBloqueadoCPU1 = new Vector2(-1.6f,-0.3f);
+		posBloqueadoCPU2 = new Vector2(-1.6f,-0.6f);
+		posBloqueadoCPU3 = new Vector2(-1.6f,-0.9f);
 
         ColaClientes = new Queue<GameObject>();
         ColaPerros = new Queue<GameObject>();
@@ -151,10 +159,16 @@ public class PersonajeController : MonoBehaviour {
 
 	public void listoToBloqueado(int cpu)
     {
-	    Vector2 posBloqueadoCPU1 = new Vector2(-1.6f,0);
+	   
 		Vector2 pos = Vector2.zero;
 		if (cpu == 1) {
 			pos = posBloqueadoCPU1;
+		}
+		if (cpu == 2) {
+			pos = posBloqueadoCPU2;
+		}
+		if (cpu == 1) {
+			pos = posBloqueadoCPU3;
 		}
 		GameObject cliente = ColaClientes.Dequeue ();
 
