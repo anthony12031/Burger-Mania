@@ -43,7 +43,7 @@ public class SalchichaControlador : MonoBehaviour {
 	void Start () {
 
 		posParrilla1 = new PosicionParrilla(new Vector3 (1.5f, -0.35f, 0));
-		posParrilla2 = new PosicionParrilla(new Vector3 (2.3f, -0.35f, 0));
+		posParrilla2 = new PosicionParrilla(new Vector3 (2.0f, -0.35f, 0));
 		posParrilla3 = new PosicionParrilla(new Vector3 (2.67f, -0.35f, 0));
 
 	}

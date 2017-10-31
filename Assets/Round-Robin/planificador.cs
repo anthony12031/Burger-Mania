@@ -26,6 +26,8 @@ public class planificador : MonoBehaviour {
 	public PanControlador panControlador;
 	public Vector3 posAtendido;
 
+	public int CPU;
+
 
 
 	public class Proceso
@@ -102,6 +104,18 @@ public class planificador : MonoBehaviour {
 	public void terminarProceso(){
 		//sumar puntos 
 		//eliminar proceso en ejecucion actual
+		Recursos.Recurso recurso;
+		if (Recursos.recursosEnUso.TryGetValue(procesoEnEjecucion,out recurso)) {
+			recurso.libre = true;
+			Debug.Log ("liberando recurso: " + recurso.nombre);
+			Recursos.recursosEnUso.Remove (procesoEnEjecucion);
+		}
+		if (CPU == 1) {
+			Debug.Log (PanControlador.posParrilla1.libre);
+			if (!PanControlador.posParrilla1.libre)
+				PanControlador.posParrilla1.libre = true;
+		}
+
 		controladorPersonajes.terminarProcesoActual();
 		procesoEnEjecucion = null;
 	}
@@ -110,15 +124,15 @@ public class planificador : MonoBehaviour {
 		Debug.Log ("quantum acabo");
 		if (!procesoEnEjecucion.haFinalizado) {
 			suspendidos.Enqueue (procesoEnEjecucion);
-			if (Recursos.recursosEnUso [procesoEnEjecucion] != null) {
-				Recursos.recursosEnUso [procesoEnEjecucion].libre = true;
-				Debug.Log ("liberando recurso: " + Recursos.recursosEnUso [procesoEnEjecucion].nombre);
+			Recursos.Recurso recurso;
+			if (Recursos.recursosEnUso.TryGetValue(procesoEnEjecucion,out recurso)) {
+				recurso.libre = true;
+				Debug.Log ("liberando recurso: " + recurso.nombre);
 				Recursos.recursosEnUso.Remove (procesoEnEjecucion);
-
 			}
 
 			//llamar metodo para encolar en suspendido el cliente
-			controladorPersonajes.procesadorTOsuspendido();
+			controladorPersonajes.procesadorToSuspendido(CPU);
 		}
 		procesoEnEjecucion = null;
 	}
@@ -154,10 +168,10 @@ public class planificador : MonoBehaviour {
 
 		if (recursoOcupado) {
 			bloqueados.Enqueue (procesoAEjecutar);
-			controladorPersonajes.listoToBloqueado (1);
+			controladorPersonajes.listoToBloqueado (CPU);
 		} else {
 			procesoEnEjecucion = procesoAEjecutar;
-			controladorPersonajes.listoToProcesador ();
+			controladorPersonajes.listoToProcesador (CPU);
 		}
 
 	}

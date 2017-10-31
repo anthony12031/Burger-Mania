@@ -40,6 +40,8 @@ public class PersonajeController : MonoBehaviour {
 
 	public Vector3 escalaEnFilaPJ;
 	public Vector3 posListoCPU1;
+	public Vector3 posListoCPU2;
+	public Vector3 posListoCPU3;
 
 	public float factorDivision = 3;
 
@@ -54,6 +56,8 @@ public class PersonajeController : MonoBehaviour {
 
 		escalaEnFilaPJ = new Vector3(0.5F, 0.5F, 0.5F);
 		posListoCPU1 =  new Vector3(-0.76F, 0.8f, 0.3F);
+		posListoCPU2 =  new Vector3(0.3F, 0.8f, 0.3F);
+		posListoCPU3 =  new Vector3(1.3F, 0.8f, 0.3F);
 
         ColaClientes = new Queue<GameObject>();
         ColaPerros = new Queue<GameObject>();
@@ -188,18 +192,26 @@ public class PersonajeController : MonoBehaviour {
 		ColaBloqueadoPJ.Enqueue(cliente);   
     }
 
-    public void listoToProcesador()
+
+	public void listoToProcesador(int cpu)
     {
+		Vector2 pos = Vector2.zero;
+		if (cpu == 1)
+			pos = SalchichaControlador.posParrilla1.v3Pos;
+		if (cpu == 2)
+			pos = SalchichaControlador.posParrilla2.v3Pos;
+		if (cpu == 3)
+			pos = SalchichaControlador.posParrilla3.v3Pos;
 		GameObject cliente = ColaClientes.Dequeue ();
 		if (cliente.transform.parent == null) {
 			GameObject salchicha = perroCrudo1;
-			GameObject nuevaSalchicha = Instantiate (salchicha, SalchichaControlador.posParrilla1.v3Pos, Quaternion.identity) as GameObject;       
+			GameObject nuevaSalchicha = Instantiate (salchicha, pos, Quaternion.identity) as GameObject;       
 			cliente.transform.position = SalchichaControlador.posParrilla1.v3Pos;
 			cliente.transform.parent = nuevaSalchicha.transform;
 			cliente.transform.localPosition = new Vector2 (0.2f, 0);
 			procesadorPJ = cliente;
 		} else {
-			cliente.transform.parent.position = SalchichaControlador.posParrilla1.v3Pos;
+			cliente.transform.parent.position = pos;
 			procesadorPJ = cliente;
 		}
 		foreach (Transform child in cliente.transform.parent) {
@@ -326,7 +338,7 @@ public void listoTOsuspendido()
 	}
 
 
-    public void procesadorTOlisto()
+    public void procesadorToListo()
     {     
 		GameObject cliente = procesadorPJ;
 		Debug.Log (procesadorPJ);
@@ -342,7 +354,7 @@ public void listoTOsuspendido()
 
         //actualizarVista();
     }
-	public void procesadorTObloqueado()
+	public void procesadorToBloqueado()
 	{
 
 
@@ -378,10 +390,20 @@ public void listoTOsuspendido()
 		procesadorPR = null;
 	}
 
-	public void procesadorTOsuspendido()
+	public void procesadorToSuspendido(int CPU)
 	{
+		Vector2 pos = Vector2.zero;
+		if(CPU == 1 )
+			pos =  new Vector2(-2.8f, -0.3f);
+		if(CPU == 2 )
+			pos =  new Vector2(-2.8f, -1.0f);
+		if(CPU == 3 )
+			pos =  new Vector2(-2.8f, -1.6f);
+
+		pos.y += (float)ColaSuspendidosPJ.Count / 100;
+
 		GameObject cliente = procesadorPJ;
-		cliente.transform.parent.position = new Vector2(-2.5f, -0.3f);
+		cliente.transform.parent.position = pos;
 		ColaSuspendidosPJ.Enqueue(cliente);
 		procesadorPJ = null;
 		foreach (Transform child in cliente.transform.parent) {
@@ -392,7 +414,6 @@ public void listoTOsuspendido()
 			}
 		}
 		//procesadorPR = null;
-
 	}
 
 	public Vector2 getPosEnCola(Queue<GameObject> cola,int cpu){
@@ -413,6 +434,16 @@ public void listoTOsuspendido()
 				posX = posListoCPU1.x;
 				posY = posListoCPU1.y + ((float)(i+1))/factorDivision;
 			}
+			if (cpu == 2) {
+				posX = posListoCPU2.x;
+				posY = posListoCPU2.y + ((float)(i+1))/factorDivision;
+			}
+
+			if (cpu == 3) {
+				posX = posListoCPU3.x;
+				posY = posListoCPU3.y + ((float)(i+1))/factorDivision;
+			}
+
 			if(cliente.transform.parent == null)
 				cliente.transform.position = new Vector2 (posX, posY);
 			else
@@ -420,27 +451,16 @@ public void listoTOsuspendido()
 			ColaClientes.Enqueue (cliente);
 		}
 
-		/*for (int i = 0; i < ColaPerros.Count; i++) {
-			GameObject perro = ColaPerros.Dequeue ();
-			float posX=0;
-			float posY=0;
-			if (cpu == 1) {
-				posX = posListoCPU1.x;
-				posY = posListoCPU1.y + ((float)(i+1))/factorDivision;
-			}
-			perro.transform.position = new Vector2 (posX, posY);
-			ColaPerros.Enqueue (perro);
-		}*/
-		/* colas de procesos listos */
-
 	}
+		
+	public int CPU;
 
     // Update is called once per frame
     void Update () {
 
-		updateVistaColas (1);
+		updateVistaColas (CPU);
 
-        if (Input.GetKeyDown("c"))
+       /* if (Input.GetKeyDown("c"))
             agregarPersonaje(1,1);
         if (Input.GetKeyDown("r"))
             atenderCliente();
@@ -455,17 +475,17 @@ public void listoTOsuspendido()
 
 
         if (Input.GetKeyDown("1"))
-            listoToProcesador();
+            listoToProcesador(1);
        
         if (Input.GetKeyDown("2"))
-            procesadorTOlisto();
+            procesadorToListo();
 
 		if (Input.GetKeyDown("o"))
-			procesadorTOsuspendido();
+			procesadorToSuspendido();
 		
 		if (Input.GetKeyDown("p"))
-			procesadorTObloqueado();
-        
+			procesadorToBloqueado();
+        */
 
 
     }
