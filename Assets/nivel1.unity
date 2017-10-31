@@ -1369,8 +1369,8 @@ MonoBehaviour:
   PJlista: 1
   tiempo: 0
   tiempoAleatorio: 0
-  tiempoFinalbeta: 10
-  tiempoFinal: 10
+  tiempoFinalbeta: 300
+  tiempoFinal: 300
   tiempocompleto: 0
   iniciado: 0
   aleatorio: 0
