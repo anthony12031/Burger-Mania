@@ -55,7 +55,7 @@ public class Personaje : MonoBehaviour {
 		if (contador > 30)
 			espera = false;
 
-		if (hayPropina) {		
+		if (hayPropina && propina!=0) {		
 			//Debug.Log ("Aleatorio es" + rnum);
 			if (transform.position.x < rnum) {
 				hayPropina = false;
