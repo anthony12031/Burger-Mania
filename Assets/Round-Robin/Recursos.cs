@@ -5,24 +5,18 @@ using UnityEngine;
 public class Recursos : MonoBehaviour {
 
 	public static Dictionary<string,Recurso> lista;
+	public static Dictionary<planificador.Proceso,Recurso> recursosEnUso;
 
 	public class Recurso{
 
 		public string nombre;
-		public string estado;
+		public bool libre;
 
 		public Recurso(string nombre){
 			this.nombre = nombre;
-			estado = "libre";
+			libre =true;
 		}
 
-		public string getEstado(){
-			return estado;
-		}
-
-		public void setEstado(string nuevoEstado){
-			estado = nuevoEstado;
-		}
 
 	}
 
@@ -30,15 +24,14 @@ public class Recursos : MonoBehaviour {
 	void Start () {
 		Debug.Log ("creando recursos");
 		lista = new Dictionary<string,Recurso> ();
+		recursosEnUso = new Dictionary<planificador.Proceso,Recurso> ();
 		Recurso salsaTomate = new Recurso ("salsaTomate");
 		Recurso mostaza = new Recurso ("mostaza");
 		lista.Add (salsaTomate.nombre, salsaTomate);
 		lista.Add (mostaza.nombre, mostaza);
 	}
 
-	public static string getEstadoRecurso(string nombre){
-		return lista [nombre].getEstado ();
-	} 
+
 	
 	// Update is called once per frame
 	void Update () {

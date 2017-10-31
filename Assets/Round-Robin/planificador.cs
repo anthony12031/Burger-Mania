@@ -110,6 +110,13 @@ public class planificador : MonoBehaviour {
 		Debug.Log ("quantum acabo");
 		if (!procesoEnEjecucion.haFinalizado) {
 			suspendidos.Enqueue (procesoEnEjecucion);
+			if (Recursos.recursosEnUso [procesoEnEjecucion] != null) {
+				Recursos.recursosEnUso [procesoEnEjecucion].libre = true;
+				Debug.Log ("liberando recurso: " + Recursos.recursosEnUso [procesoEnEjecucion].nombre);
+				Recursos.recursosEnUso.Remove (procesoEnEjecucion);
+
+			}
+
 			//llamar metodo para encolar en suspendido el cliente
 			controladorPersonajes.procesadorTOsuspendido();
 		}
@@ -119,23 +126,40 @@ public class planificador : MonoBehaviour {
 
 	void ejecutarProceso(){
 		Proceso procesoAEjecutar = listos.Dequeue ();
-		 
+		bool recursoOcupado = false; 
 			//identificar que recursos necesita el proceso 
 			//si estan disponibles ejecutarlo
 			//si no pasarlo a la cola de bloqueados
-			GameObject pedido = procesoEnEjecucion.cliente.transform.GetChild (0).gameObject;
-		if (pedido.name.Contains ("pedido_perro")) {
-			Debug.Log ("no necesita nada");
+		GameObject pedido = procesoAEjecutar.cliente.transform.GetChild (0).gameObject;
 
-		}
 		if (pedido.name.Contains ("pedido_perroTomate")) {
-			Debug.Log ("necesita tomate");
+			if (!Recursos.lista ["salsaTomate"].libre) {
+				recursoOcupado = true;
+			} else {
+				Recursos.recursosEnUso.Add (procesoAEjecutar, Recursos.lista ["salsaTomate"]);
+				Debug.Log ("usando recurso: " + Recursos.lista ["salsaTomate"].nombre);
+				Recursos.lista ["salsaTomate"].libre = false;
+			}
+
 		}
 		if (pedido.name.Contains ("pedido_perroMostaza")) {
-			Debug.Log ("necesita mostaza");
+			if (!Recursos.lista ["mostaza"].libre) {
+				recursoOcupado = true;
+			} else {
+				Recursos.recursosEnUso.Add (procesoAEjecutar, Recursos.lista ["mostaza"]);
+				Debug.Log ("usando recurso: " + Recursos.lista ["mostaza"].nombre);
+				Recursos.lista ["mostaza"].libre = false;
+			}
 		}
 
-			//controladorPersonajes.listoToBloqueado(1);
+		if (recursoOcupado) {
+			bloqueados.Enqueue (procesoAEjecutar);
+			controladorPersonajes.listoToBloqueado (1);
+		} else {
+			procesoEnEjecucion = procesoAEjecutar;
+			controladorPersonajes.listoToProcesador ();
+		}
+
 	}
 	
 	// Update is called once per frame

@@ -76,8 +76,7 @@ public class PersonajeController : MonoBehaviour {
     }
 		
 	public GameObject agregarPersonaje(int orden,int cpu){
-		Debug.Log ("tipo orden: " + orden);
-
+		
         if (PJlista > 8)
         {
             PJlista = 1;
@@ -386,7 +385,6 @@ public void listoTOsuspendido()
 		ColaSuspendidosPJ.Enqueue(cliente);
 		procesadorPJ = null;
 		foreach (Transform child in cliente.transform.parent) {
-			Debug.Log (child.gameObject.tag);
 			if (child.gameObject.CompareTag ("panPerroEnProcesador")) {
 				child.gameObject.GetComponent<PanPosicion> ().posicionEnParrilla.libre = true;
 				child.gameObject.tag = "panPerro";
