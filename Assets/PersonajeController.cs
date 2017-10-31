@@ -277,39 +277,10 @@ public void listoTOsuspendido()
     }
 
 
-    public void bloqueadoTOlisto()
+    public void bloqueadoToListo()
     {
-        personajeBase = ColaBloqueadoPJ.Dequeue();
-        perroBase = ColaBloqueadoPR.Dequeue();
-
-        nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
-        nuevoPersonaje.GetComponent<Personaje>().posicion = ColaClientes.Count;        
-        nuevoPersonaje.GetComponent<Transform>().localScale = new Vector3(0.64F, 0.64F, 0.64F);
-        ColaClientes.Enqueue(nuevoPersonaje);
-
-        Debug.Log(perroBase.name);
-        Destroy(personajeBase);
-        Destroy(perroBase);
-        if (perroBase.name.Contains("salchicha1"))
-        {         
-            perroBase = perroT1;
-        }
-        if (perroBase.name.Contains("salchicha2"))
-        {
-            perroBase = perroT2;
-        }
-        if (perroBase.name.Contains("salchicha3"))
-        {
-            perroBase = perroT3;
-        }
-        if (perroBase.name.Contains("salchicha4"))
-        {
-            perroBase = perroT4;
-        }
-
-        nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;
-        nuevoPerro.GetComponent<Perros>().posicion = ColaPerros.Count;
-        ColaPerros.Enqueue(nuevoPerro);
+		ColaClientes.Enqueue(ColaBloqueadoPJ.Dequeue());
+        
     }
 
 	public void suspendidoTOlisto(int cpu)
