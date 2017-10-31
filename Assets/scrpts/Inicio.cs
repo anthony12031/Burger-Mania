@@ -5,6 +5,7 @@ using UnityEngine;
 public class Inicio : MonoBehaviour {
 	GameObject[] menu;
 	GameObject[] pjcontrolador;
+	GameObject[] logos;
 	// Use this for initialization
 	void Start () {
 		
@@ -25,5 +26,12 @@ public class Inicio : MonoBehaviour {
 		foreach (GameObject pj in pjcontrolador) {
 			pj.GetComponent<PersonajeController> ().iniciar ();
 		}
+
+		logos = GameObject.FindGameObjectsWithTag("logo");
+		foreach (GameObject l in logos) {
+			l.SetActive (false);
+		}
+
+
 	}
 }
