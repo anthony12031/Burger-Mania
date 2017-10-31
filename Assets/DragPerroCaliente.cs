@@ -24,7 +24,7 @@ public class DragPerroCaliente : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D coll){
 		if ( coll.gameObject.CompareTag ("cliente")) {
 			Destroy (gameObject);
-			planificador.notificacionProcesoTerminado ();
+			//planificador.notificacionProcesoTerminado ();
 		}
 
 	}

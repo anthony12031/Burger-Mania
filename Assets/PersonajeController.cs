@@ -29,14 +29,14 @@ public class PersonajeController : MonoBehaviour {
     public GameObject procesadorPR;
     public GameObject procesadorPJ;
 
-    public static Queue<GameObject> ColaClientes;
-    public static Queue<GameObject> ColaPerros;
+    public  Queue<GameObject> ColaClientes;
+    public  Queue<GameObject> ColaPerros;
 
-    public static Queue<GameObject> ColaBloqueadoPJ;
-    public static Queue<GameObject> ColaBloqueadoPR;
+    public  Queue<GameObject> ColaBloqueadoPJ;
+    public  Queue<GameObject> ColaBloqueadoPR;
 
-    public static Queue<GameObject> ColaSuspendidosPJ;
-    public static Queue<GameObject> ColaSuspendidosPR;
+    public  Queue<GameObject> ColaSuspendidosPJ;
+    public  Queue<GameObject> ColaSuspendidosPR;
 
 	public Vector3 escalaEnFilaPJ;
 	public Vector3 posListoCPU1;
@@ -67,14 +67,6 @@ public class PersonajeController : MonoBehaviour {
 
         ColaSuspendidosPJ = new Queue<GameObject>();
         ColaSuspendidosPR = new Queue<GameObject>();
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    Instantiate(personaje1, new Vector3(inicial, 0.9f, 0), Quaternion.identity);
-        //    inicial += 0.6f; 
-
-        //}
-
-        
 
 
     }
@@ -154,24 +146,6 @@ public class PersonajeController : MonoBehaviour {
     public void atenderCliente(){
         Destroy(ColaClientes.Dequeue());
         Destroy(ColaPerros.Dequeue());
-        actualizarVista();
-    }
-
-    void actualizarVista(){
-        //s ColaClientes
-     /*   int i = 0;
-       for (i = 0; i < ColaClientes.Count; i++)
-        {
-            GameObject sacar = ColaClientes.Dequeue();
-            sacar.GetComponent<Personaje>().posicion -= 1;
-            ColaClientes.Enqueue(sacar);
-        }
-        for (i = 0; i < ColaPerros.Count; i++)
-        {
-            GameObject sacar = ColaPerros.Dequeue();
-            sacar.GetComponent<Perros>().posicion -= 1;
-            ColaPerros.Enqueue(sacar);
-        }*/
     }
 
 
@@ -457,37 +431,7 @@ public void listoTOsuspendido()
 
     // Update is called once per frame
     void Update () {
-
-		updateVistaColas (CPU);
-
-       /* if (Input.GetKeyDown("c"))
-            agregarPersonaje(1,1);
-        if (Input.GetKeyDown("r"))
-            atenderCliente();
-        if (Input.GetKeyDown("b"))
-            listoToBloqueado(1);
-        if (Input.GetKeyDown("l"))
-            bloqueadoTOlisto();
-        if (Input.GetKeyDown("s"))
-            listoTOsuspendido();
-        if (Input.GetKeyDown("k"))
-            suspendidoTOlisto(1);
-
-
-        if (Input.GetKeyDown("1"))
-            listoToProcesador(1);
-       
-        if (Input.GetKeyDown("2"))
-            procesadorToListo();
-
-		if (Input.GetKeyDown("o"))
-			procesadorToSuspendido();
-		
-		if (Input.GetKeyDown("p"))
-			procesadorToBloqueado();
-        */
-
-
+	  updateVistaColas (CPU);
     }
 
 }

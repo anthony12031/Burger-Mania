@@ -16,7 +16,7 @@ public class planificador : MonoBehaviour {
 	Queue<Proceso> bloqueados;
 	Queue<Proceso> suspendidos;
 	//el proceso que se esta ejecutando actualmente
-	static Proceso  procesoEnEjecucion;
+	Proceso  procesoEnEjecucion;
 
 	seleccionTipoPerro seleccionPerro;
 	public PersonajeController controladorPersonajes;
@@ -79,10 +79,10 @@ public class planificador : MonoBehaviour {
 	}
 
 	//crear proceso
-	public void crearOrden(){
+	public void crearOrden(int tipoPerro){
 		Debug.Log ("crear proceso");
-		GameObject cliente =  controladorPersonajes.agregarPersonaje(seleccionPerro.getTipoPerro()+1,1);
-		Proceso nuevoProceso = new Proceso (cliente,this,seleccionPerro.getTipoPerro()+1);
+		GameObject cliente =  controladorPersonajes.agregarPersonaje(tipoPerro,1);
+		Proceso nuevoProceso = new Proceso (cliente,this,tipoPerro);
 		listos.Enqueue (nuevoProceso);
 	}
 
@@ -96,7 +96,7 @@ public class planificador : MonoBehaviour {
 		suspendidos = new Queue<Proceso> ();
 	}
 
-	public static void notificacionProcesoTerminado(){
+	public  void notificacionProcesoTerminado(){
 		Debug.Log ("Termino proceso");
 		procesoEnEjecucion = null;
 	}
