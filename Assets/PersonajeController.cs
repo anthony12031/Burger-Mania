@@ -43,9 +43,25 @@ public class PersonajeController : MonoBehaviour {
 	public Vector3 posListoCPU2;
 	public Vector3 posListoCPU3;
 
+	public Transform transPosListoCPU1;
+	public Transform transPosListoCPU2;
+	public Transform transPosListoCPU3;
+
 	Vector2 posBloqueadoCPU1;
 	Vector2 posBloqueadoCPU2;
 	Vector2 posBloqueadoCPU3;
+
+	public Transform transPosBloqueadoCPU1;
+	public Transform transPosBloqueadoCPU2;
+	public Transform transPosBloqueadoCPU3;
+
+	Vector2 posSuspendidoCPU1;
+	Vector2 posSuspendidoCPU2;
+	Vector2 posSuspendidoCPU3;
+
+	public Transform transPosSuspendidoCPU1;
+	public Transform transPosSuspendidoCPU2;
+	public Transform transPosSuspendidoCPU3;
 
 	public float factorDivision = 3;
 
@@ -59,13 +75,17 @@ public class PersonajeController : MonoBehaviour {
 	void Start () {
 
 		escalaEnFilaPJ = new Vector3(0.3F, 0.3F, 0.3F);
-		posListoCPU1 =  new Vector3(-0.76F, 0.8f, 0.3F);
-		posListoCPU2 =  new Vector3(0.3F, 0.8f, 0.3F);
-		posListoCPU3 =  new Vector3(1.3F, 0.8f, 0.3F);
+		posListoCPU1 =  transPosListoCPU1.position;
+		posListoCPU2 =  transPosListoCPU2.position;
+		posListoCPU3 =  transPosListoCPU3.position;
 
-		posBloqueadoCPU1 = new Vector2(-1.6f,-0.3f);
-		posBloqueadoCPU2 = new Vector2(-1.6f,-0.6f);
-		posBloqueadoCPU3 = new Vector2(-1.6f,-0.9f);
+		posBloqueadoCPU1 = transPosBloqueadoCPU1.position;
+		posBloqueadoCPU2 =  transPosBloqueadoCPU2.position;
+		posBloqueadoCPU3 =  transPosBloqueadoCPU3.position;
+
+		posSuspendidoCPU1 = transPosSuspendidoCPU1.position;
+		posSuspendidoCPU2 = transPosSuspendidoCPU2.position;
+		posSuspendidoCPU3 = transPosSuspendidoCPU3.position;
 
         ColaClientes = new Queue<GameObject>();
         ColaPerros = new Queue<GameObject>();
@@ -353,11 +373,11 @@ public void listoTOsuspendido()
 	{
 		Vector2 pos = Vector2.zero;
 		if(CPU == 1 )
-			pos =  new Vector2(-2.8f, -0.3f);
+			pos =  posSuspendidoCPU1;
 		if(CPU == 2 )
-			pos =  new Vector2(-2.8f, -1.0f);
+			pos =  posSuspendidoCPU2;
 		if(CPU == 3 )
-			pos =  new Vector2(-2.8f, -1.6f);
+			pos =  posSuspendidoCPU3;
 
 		pos.y += (float)ColaSuspendidosPJ.Count / 100;
 
