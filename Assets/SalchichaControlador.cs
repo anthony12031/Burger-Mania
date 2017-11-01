@@ -5,6 +5,11 @@ using UnityEngine;
 public class SalchichaControlador : MonoBehaviour {
 
 	public Transform salchicha;
+
+	public Transform salchicha1;
+	public Transform salchicha2;
+	public Transform salchicha3;
+
 	public static PosicionParrilla posParrilla1;
 	public static PosicionParrilla posParrilla2;
 	public static PosicionParrilla posParrilla3;
@@ -42,9 +47,9 @@ public class SalchichaControlador : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		posParrilla1 = new PosicionParrilla(new Vector3 (1.5f, -0.35f, 0));
-		posParrilla2 = new PosicionParrilla(new Vector3 (2.0f, -0.35f, 0));
-		posParrilla3 = new PosicionParrilla(new Vector3 (2.67f, -0.35f, 0));
+		posParrilla1 = new PosicionParrilla(salchicha1.position);
+		posParrilla2 = new PosicionParrilla(salchicha2.position);
+		posParrilla3 = new PosicionParrilla(salchicha3.position);
 
 	}
 
