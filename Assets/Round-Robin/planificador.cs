@@ -66,6 +66,7 @@ public class planificador : MonoBehaviour {
 			tiempoEnSuspendido = plan.tiempoSuspendido;
 			planificador = plan;
 			tipoPerro = perro;
+			this.TTL = Random.Range(10,30);
 		}
 
 		public void ejecutar(float tiempo){
@@ -147,7 +148,6 @@ public class planificador : MonoBehaviour {
 		if (!procesoEnEjecucion.haFinalizado) {
 			liberarRecursos ();
 			suspendidos.Enqueue (procesoEnEjecucion);
-
 			//llamar metodo para encolar en suspendido el cliente
 			controladorPersonajes.procesadorToSuspendido(CPU);
 		}
@@ -220,6 +220,27 @@ public class planificador : MonoBehaviour {
 			controladorPersonajes.listoToBloqueado (CPU);
 		} else {
 			procesoEnEjecucion = procesoAEjecutar;
+			//calcular quantum
+			if (esAutomatico && listos.Count>0) {
+				float media = 0;
+				foreach (Proceso pr in listos) {
+					media += pr.TTL;
+				} 
+				media /= listos.Count;
+				Debug.Log ("media: "+media);
+				float varianza = 0;
+				foreach (Proceso pr in listos) {	
+					Debug.Log (pr.TTL - media);
+					varianza += (pr.TTL - media)*(pr.TTL - media);
+				}
+				varianza /= listos.Count;
+				float desviacion = +Mathf.Sqrt (varianza);
+				Debug.Log ("desviacion: "+Mathf.Sqrt(varianza));
+				if (desviacion > 0) {
+					procesoAEjecutar.Quantum = desviacion;
+					Debug.Log ("Q de proceso: "+procesoAEjecutar.Quantum);
+				}
+			}			
 			controladorPersonajes.listoToProcesador (CPU);
 		}
 	}
