@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class planificador : MonoBehaviour {
 
 
+	public bool esAutomatico = false;
 	public float tiempoQuantum = 2;
 	public float tiempoSuspendido = 2;
 	public float tiempoEnBloqueado = 2;
@@ -31,6 +32,8 @@ public class planificador : MonoBehaviour {
 
 	public int CPU;
 
+	public Text TTLText;
+
 
 
 	public class Proceso
@@ -40,6 +43,7 @@ public class planificador : MonoBehaviour {
 		public GameObject perroCaliente;
 		public float Quantum ; //segundos;
 		public int tipoPerro;
+		public float TTL = 30;
 
 		public float tiempoEnSuspendido ;//segundos
 
@@ -57,9 +61,22 @@ public class planificador : MonoBehaviour {
 		}
 
 		public void ejecutar(float tiempo){
-			
-				if (Quantum > 0)
-					Quantum -= tiempo;
+				
+			if (planificador.esAutomatico) {
+				if (Quantum > TTL) {
+					Quantum = TTL;			
+				}
+				if (TTL <= 0) {
+					Debug.Log ("termino proceso");
+					planificador.terminarProceso ();
+					return;
+				}
+			}
+			if (Quantum > 0) {
+				Quantum -= tiempo;
+				TTL -= tiempo;
+			}
+					
 				else {
 					Quantum = 0;
 					planificador.notificacionQuantumTerminado ();
@@ -213,8 +230,14 @@ public class planificador : MonoBehaviour {
 		//ejecutar el proceso actual
 		else {
 			quantumTX.text = System.Convert.ToString (procesoEnEjecucion.getQuantumRestante());
+			if (TTLText != null) {
+				TTLText.text = System.Convert.ToString (procesoEnEjecucion.TTL);
+				if(procesoEnEjecucion.TTL<0)
+					TTLText.text  = "0";
+			}
 			if(procesoEnEjecucion.getQuantumRestante()<0)
 				quantumTX.text = "0";
+			
 			procesoEnEjecucion.ejecutar (Time.deltaTime);	
 		}
 		//aumentar el contador de los procesos en suspendido
