@@ -74,7 +74,7 @@ public class PersonajeController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		escalaEnFilaPJ = new Vector3(0.3F, 0.3F, 0.3F);
+		escalaEnFilaPJ = new Vector3(0.6F, 0.6F, 0.6F);
 		posListoCPU1 =  transPosListoCPU1.position;
 		posListoCPU2 =  transPosListoCPU2.position;
 		posListoCPU3 =  transPosListoCPU3.position;
