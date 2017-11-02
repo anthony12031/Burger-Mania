@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
 
 public class planificador : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class planificador : MonoBehaviour {
 	public float tiempoQuantum = 2;
 	public float tiempoSuspendido = 2;
 	public float tiempoEnBloqueado = 2;
+	public int x=0;
+	float timed = 0;
 	//orden analogo a proceso
 	public GameObject Orden;
 	//colas de los procesos
@@ -76,7 +79,7 @@ public class planificador : MonoBehaviour {
 				}
 				if (TTL <= 0) {
 					Debug.Log ("termino proceso");
-					planificador.terminarProceso ();
+					//planificador.terminarProceso ();
 					return;
 				}
 			}
@@ -87,7 +90,7 @@ public class planificador : MonoBehaviour {
 					
 				else {
 					Quantum = 0;
-					planificador.notificacionQuantumTerminado ();
+					//planificador.notificacionQuantumTerminado ();
 				}
 		}
 
@@ -223,9 +226,19 @@ public class planificador : MonoBehaviour {
 			controladorPersonajes.listoToProcesador (CPU);
 		}
 	}
-	
+
+	void hilo()
+	{
+		Thread myThread = new System.Threading.Thread(delegate(){
+			procesoEnEjecucion.ejecutar (timed);
+		});
+		myThread.Start();
+	}
+
 	// Update is called once per frame
 	void Update () {
+
+		timed = Time.deltaTime;
 		if (procesoEnEjecucion == null) {
 			if (listos.Count > 0 ) {
 				ejecutarProceso ();
@@ -241,8 +254,20 @@ public class planificador : MonoBehaviour {
 			}
 			if(procesoEnEjecucion.getQuantumRestante()<0)
 				quantumTX.text = "0";
-			
-			procesoEnEjecucion.ejecutar (Time.deltaTime);	
+
+
+			hilo ();
+			if (procesoEnEjecucion.TTL <= 0) {
+				Debug.Log ("termino proceso");
+				terminarProceso ();
+			}
+
+			if (procesoEnEjecucion.Quantum <= 0) {
+				procesoEnEjecucion.Quantum = 0;
+				notificacionQuantumTerminado ();
+			}
+
+			Debug.Log (procesoEnEjecucion.Quantum);
 		}
 		//aumentar el contador de los procesos en suspendido
 			foreach (Proceso pr in suspendidos) {
