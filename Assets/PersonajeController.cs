@@ -187,7 +187,7 @@ public class PersonajeController : MonoBehaviour {
 		if (cpu == 2) {
 			pos = posBloqueadoCPU2;
 		}
-		if (cpu == 1) {
+		if (cpu == 3) {
 			pos = posBloqueadoCPU3;
 		}
 		GameObject cliente = ColaClientes.Dequeue ();

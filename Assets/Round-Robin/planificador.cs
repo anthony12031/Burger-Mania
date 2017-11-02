@@ -17,7 +17,6 @@ public class planificador : MonoBehaviour {
 	Queue<Proceso> bloqueados;
 	Queue<Proceso> suspendidos;
 
-	Dictionary<string,Queue<Proceso>> bloqueadoXRecurso;
 
 	//el proceso que se esta ejecutando actualmente
 	Proceso  procesoEnEjecucion;
@@ -111,9 +110,6 @@ public class planificador : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		seleccionPerro = GetComponent<seleccionTipoPerro> ();
-		bloqueadoXRecurso = new Dictionary<string,Queue<Proceso>> ();
-		bloqueadoXRecurso.Add ("salsaTomate", new Queue<Proceso> ());
-		bloqueadoXRecurso.Add ("mostaza", new Queue<Proceso> ());
 		listos = new Queue<Proceso> ();
 		bloqueados = new Queue<Proceso> ();
 		suspendidos = new Queue<Proceso> ();
@@ -146,7 +142,6 @@ public class planificador : MonoBehaviour {
 	public  void notificacionQuantumTerminado(){
 		Debug.Log ("quantum acabo");
 		if (!procesoEnEjecucion.haFinalizado) {
-			Debug.Log ("procesos bloqueados: "+bloqueadoXRecurso ["salsaTomate"].Count);
 			liberarRecursos ();
 			suspendidos.Enqueue (procesoEnEjecucion);
 
@@ -162,18 +157,6 @@ public class planificador : MonoBehaviour {
 			recurso.libre = true;
 			Debug.Log ("liberando recurso: " + recurso.nombre);
 			Recursos.recursosEnUso.Remove (procesoEnEjecucion);
-			Queue<Proceso> blqs;
-			if (bloqueadoXRecurso.TryGetValue (recurso.nombre, out blqs)) {
-				Debug.Log ("procesos bloqueados: "+blqs.Count);
-				while (blqs.Count > 0) {
-					Proceso pr = blqs.Dequeue ();
-
-					Debug.Log (pr);
-					listos.Enqueue (pr);
-					controladorPersonajes.bloqueadoToListo ();
-				}
-			}
-
 		}
 
 	}
@@ -190,8 +173,6 @@ public class planificador : MonoBehaviour {
 		if (pedido.name.Contains ("pedido_perroTomate")) {
 			if (!Recursos.lista ["salsaTomate"].libre) {
 				recursoOcupado = true;
-				bloqueadoXRecurso ["salsaTomate"].Enqueue (procesoAEjecutar); 
-				Debug.Log ("procesos bloqueados: "+bloqueadoXRecurso ["salsaTomate"].Count);
 			} else {
 				Recursos.recursosEnUso.Add (procesoAEjecutar, Recursos.lista ["salsaTomate"]);
 				Debug.Log ("usando recurso: " + Recursos.lista ["salsaTomate"].nombre);
@@ -202,8 +183,6 @@ public class planificador : MonoBehaviour {
 		if (pedido.name.Contains ("pedido_perroMostaza")) {
 			if (!Recursos.lista ["mostaza"].libre) {
 				recursoOcupado = true;
-				Queue<Proceso> bloqs;
-				bloqueadoXRecurso ["mostaza"].Enqueue (procesoAEjecutar); 
 			} else {
 				Recursos.recursosEnUso.Add (procesoAEjecutar, Recursos.lista ["mostaza"]);
 				Debug.Log ("usando recurso: " + Recursos.lista ["mostaza"].nombre);
@@ -212,7 +191,7 @@ public class planificador : MonoBehaviour {
 		}
 
 		if (recursoOcupado) {
-			//bloqueados.Enqueue (procesoAEjecutar);
+			bloqueados.Enqueue (procesoAEjecutar);
 			controladorPersonajes.listoToBloqueado (CPU);
 		} else {
 			procesoEnEjecucion = procesoAEjecutar;
@@ -232,8 +211,8 @@ public class planificador : MonoBehaviour {
 			quantumTX.text = System.Convert.ToString (procesoEnEjecucion.getQuantumRestante());
 			if (TTLText != null) {
 				TTLText.text = System.Convert.ToString (procesoEnEjecucion.TTL);
-				if(procesoEnEjecucion.TTL<0)
-					TTLText.text  = "0";
+				if (procesoEnEjecucion.TTL < 0)
+					TTLText.text = "0";
 			}
 			if(procesoEnEjecucion.getQuantumRestante()<0)
 				quantumTX.text = "0";
