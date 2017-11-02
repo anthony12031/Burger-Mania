@@ -6,6 +6,7 @@ public class Recursos : MonoBehaviour {
 
 	public static Dictionary<string,Recurso> lista;
 	public static Dictionary<planificador.Proceso,Recurso> recursosEnUso;
+	public static Dictionary<string,Queue<planificador.Proceso>> bloqueados;
 
 	public class Recurso{
 
@@ -29,6 +30,9 @@ public class Recursos : MonoBehaviour {
 		Recurso mostaza = new Recurso ("mostaza");
 		lista.Add (salsaTomate.nombre, salsaTomate);
 		lista.Add (mostaza.nombre, mostaza);
+		bloqueados = new Dictionary<string,Queue<planificador.Proceso>>();
+		bloqueados.Add ("salsaTomate", new Queue<planificador.Proceso> ());
+		bloqueados.Add ("mostaza", new Queue<planificador.Proceso> ());
 	}
 
 

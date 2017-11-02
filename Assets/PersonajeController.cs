@@ -299,6 +299,7 @@ public void listoTOsuspendido()
 
     public void bloqueadoToListo()
     {
+		Debug.Log ("personajes en bloqueado: " + ColaBloqueadoPJ.Count);
 		ColaClientes.Enqueue(ColaBloqueadoPJ.Dequeue());
         
     }
