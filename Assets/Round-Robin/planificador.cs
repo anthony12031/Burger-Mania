@@ -248,6 +248,12 @@ public class planificador : MonoBehaviour {
 			foreach (Proceso pr in suspendidos) {
 				pr.tiempoEnSuspendidoTick (Time.deltaTime);
 			}
+
+		if (listos.Count == 0) {
+			if (suspendidos.Count > 0) 
+				suspendidos.Peek ().tiempoEnSuspendido = 0;
+		}
+
 		//pasar a la cola de listos los procesos que ya acabaron su tiempo en suspendido
 		if (suspendidos.Count > 0) {
 			if (suspendidos.Peek ().getTiempoEnSuspendidoRestante () <= 0) {
