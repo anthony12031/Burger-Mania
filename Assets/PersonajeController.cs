@@ -17,8 +17,8 @@ public class PersonajeController : MonoBehaviour {
     public GameObject nuevoPerro;
     public GameObject perroBase;
     public GameObject perroT1;
-    public GameObject perroT2;
-    public GameObject perroT3;
+    public GameObject perroConTomate;
+    public GameObject perroConMostaza;
     public GameObject perroT4;
 
     public GameObject perroCrudo1;
@@ -137,17 +137,12 @@ public class PersonajeController : MonoBehaviour {
         switch (orden)
         {
             case 1:
-                perroBase = perroT1;
+                perroBase = perroConTomate;
                 break;
             case 2:
-                perroBase = perroT2;
+                perroBase = perroConMostaza;
                 break;
-            case 3:
-                perroBase = perroT3;
-                break;
-            case 4:
-                perroBase = perroT4;
-                break;
+   
         }
       
 
