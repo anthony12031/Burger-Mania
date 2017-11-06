@@ -145,7 +145,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_RootOrder
-      value: 28
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_Name
@@ -247,81 +247,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &124644200
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1076557737597376, guid: ae02cf06cd623864f8359f980f392e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 379743371}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 124644203}
-  - component: {fileID: 124644202}
-  - component: {fileID: 124644201}
-  m_Layer: 0
-  m_Name: planificadorCPU3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &124644201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 379743371}
-  m_GameObject: {fileID: 124644200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7725e5c870e37e44785adf650a93ed78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  esAutomatico: 1
-  tiempoQuantum: 10
-  tiempoSuspendido: 10
-  tiempoEnBloqueado: 10
-  x: 0
-  Orden: {fileID: 1399015781844378, guid: c741c45f1cac062479d7bd5f4910af02, type: 2}
-  controladorPersonajes: {fileID: 1832970684}
-  controladorPersonajesCPU1: {fileID: 1246276482}
-  controladorPersonajesCPU2: {fileID: 1979694189}
-  controladorPersonajesCPU3: {fileID: 1832970684}
-  planificadorCPU1: {fileID: 840538829}
-  planificadorCPU2: {fileID: 1389768980}
-  planificadorCPU3: {fileID: 124644201}
-  quantumTX: {fileID: 0}
-  panControlador: {fileID: 0}
-  posAtendido: {x: 0, y: 0, z: 0}
-  CPU: 3
-  TTLText: {fileID: 0}
---- !u!114 &124644202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114278281621287942, guid: ae02cf06cd623864f8359f980f392e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 379743371}
-  m_GameObject: {fileID: 124644200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474c7f6b3cca2f946a22ad09cb5bc1f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dpTipoPerro: {fileID: 0}
---- !u!4 &124644203
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 379743371}
-  m_GameObject: {fileID: 124644200}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -0.41, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &130570570
 Prefab:
@@ -842,7 +767,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_RootOrder
-      value: 33
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_Name
@@ -1209,7 +1134,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_RootOrder
-      value: 32
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_Name
@@ -1256,142 +1181,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
---- !u!1001 &379743371
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 114278281621287942, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: dpTipoPerro
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: controladorPersonajes
-      value: 
-      objectReference: {fileID: 1832970684}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: quantumTX
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: panControlador
-      value: 
-      objectReference: {fileID: 2136776972}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: posAtendido.x
-      value: 0.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: posAtendido.y
-      value: -0.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: tiempoQuantum
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: tiempoSuspendido
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: tiempoEnBloqueado
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076557737597376, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_Name
-      value: planificadorCPU3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: CPU
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: esAutomatico
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: TTLText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: controladorPersonajesCPU1
-      value: 
-      objectReference: {fileID: 1246276482}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: controladorPersonajesCPU2
-      value: 
-      objectReference: {fileID: 1979694189}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: controladorPersonajesCPU3
-      value: 
-      objectReference: {fileID: 1832970684}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: planificadorCPU1
-      value: 
-      objectReference: {fileID: 840538829}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: planificadorCPU2
-      value: 
-      objectReference: {fileID: 1389768980}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: planificadorCPU3
-      value: 
-      objectReference: {fileID: 124644201}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &381169496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,7 +1655,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_RootOrder
-      value: 25
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_Name
@@ -1879,11 +1668,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &470125410 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  m_PrefabInternal: {fileID: 470125409}
 --- !u!1001 &480339524
 Prefab:
   m_ObjectHideFlags: 0
@@ -2175,7 +1959,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_RootOrder
-      value: 23
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_Name
@@ -2188,11 +1972,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &511626195 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  m_PrefabInternal: {fileID: 511626194}
 --- !u!1 &516662438 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1736567771092324, guid: 37748bed066e80746b2197dd04b34076,
@@ -2282,7 +2061,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_RootOrder
-      value: 27
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_Name
@@ -2849,7 +2628,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_RootOrder
-      value: 31
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_Name
@@ -2862,11 +2641,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &731954766 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  m_PrefabInternal: {fileID: 731954765}
 --- !u!1 &774663165
 GameObject:
   m_ObjectHideFlags: 0
@@ -2994,81 +2768,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 774663165}
---- !u!1 &840538826
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1076557737597376, guid: ae02cf06cd623864f8359f980f392e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 1176299896}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 840538828}
-  - component: {fileID: 840538827}
-  - component: {fileID: 840538829}
-  m_Layer: 0
-  m_Name: planificadorCPU1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &840538827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114278281621287942, guid: ae02cf06cd623864f8359f980f392e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 1176299896}
-  m_GameObject: {fileID: 840538826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474c7f6b3cca2f946a22ad09cb5bc1f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dpTipoPerro: {fileID: 0}
---- !u!4 &840538828
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 1176299896}
-  m_GameObject: {fileID: 840538826}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -0.41, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &840538829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 1176299896}
-  m_GameObject: {fileID: 840538826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7725e5c870e37e44785adf650a93ed78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  esAutomatico: 0
-  tiempoQuantum: 10
-  tiempoSuspendido: 10
-  tiempoEnBloqueado: 10
-  x: 0
-  Orden: {fileID: 1399015781844378, guid: c741c45f1cac062479d7bd5f4910af02, type: 2}
-  controladorPersonajes: {fileID: 1246276482}
-  controladorPersonajesCPU1: {fileID: 1246276482}
-  controladorPersonajesCPU2: {fileID: 1979694189}
-  controladorPersonajesCPU3: {fileID: 1832970684}
-  planificadorCPU1: {fileID: 840538829}
-  planificadorCPU2: {fileID: 1389768980}
-  planificadorCPU3: {fileID: 124644201}
-  quantumTX: {fileID: 0}
-  panControlador: {fileID: 0}
-  posAtendido: {x: 0, y: 0, z: 0}
-  CPU: 1
-  TTLText: {fileID: 0}
 --- !u!1001 &855186554
 Prefab:
   m_ObjectHideFlags: 0
@@ -3106,7 +2805,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_RootOrder
-      value: 24
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_Name
@@ -3119,11 +2818,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &855186555 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  m_PrefabInternal: {fileID: 855186554}
 --- !u!4 &858031109 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1,
@@ -3445,7 +3139,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_RootOrder
-      value: 34
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_Name
@@ -3663,132 +3357,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1176299896
-Prefab:
+--- !u!1 &1115807294
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 114278281621287942, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: dpTipoPerro
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: controladorPersonajes
-      value: 
-      objectReference: {fileID: 1246276482}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: quantumTX
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: panControlador
-      value: 
-      objectReference: {fileID: 2136776972}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: posAtendido.x
-      value: 0.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: posAtendido.y
-      value: -0.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: tiempoQuantum
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: tiempoSuspendido
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: tiempoEnBloqueado
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076557737597376, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_Name
-      value: planificadorCPU1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: CPU
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: controladorPersonajesCPU1
-      value: 
-      objectReference: {fileID: 1246276482}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: controladorPersonajesCPU2
-      value: 
-      objectReference: {fileID: 1979694189}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: controladorPersonajesCPU3
-      value: 
-      objectReference: {fileID: 1832970684}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: planificadorCPU1
-      value: 
-      objectReference: {fileID: 840538829}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: planificadorCPU2
-      value: 
-      objectReference: {fileID: 1389768980}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: planificadorCPU3
-      value: 
-      objectReference: {fileID: 124644201}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-  m_IsPrefabParent: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1115807296}
+  - component: {fileID: 1115807295}
+  m_Layer: 0
+  m_Name: planificadorSRTF-CPU1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1115807295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1115807294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4174fbfe371c9ae46967663e804f1fc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1115807296
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1115807294}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.056337312, y: 0.2047928, z: -0.052734375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 30
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1177773841
 GameObject:
   m_ObjectHideFlags: 0
@@ -3900,7 +3508,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_RootOrder
-      value: 26
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_Name
@@ -3913,93 +3521,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1246276481
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1246276483}
-  - component: {fileID: 1246276482}
-  m_Layer: 0
-  m_Name: PersonajeControladorCPU1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1246276482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1246276481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f01e928e4f75104f968c1441f47cc1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  personajeBase: {fileID: 0}
-  nuevoPersonaje: {fileID: 0}
-  personaje1: {fileID: 1014798297266932, guid: 521e22d166c19e240a5d1a7bc1c5b741, type: 2}
-  personaje2: {fileID: 1992404089210938, guid: 7617d93ae31f1134dab4ac89988d615d, type: 2}
-  personaje3: {fileID: 1412279078554092, guid: 8788af30e93b3aa4e9a5a974d4f7e8a5, type: 2}
-  personajeA: {fileID: 1332812115314268, guid: 20ce2719ba56fab46a7f0cd50c5ef37b, type: 2}
-  personajeB: {fileID: 1767908691002022, guid: 9ffa737b6ed21354587df8f273c28a6f, type: 2}
-  personajeC: {fileID: 1989965042493876, guid: e34d4b9f807bd0f4cb460f12d6b5ffa5, type: 2}
-  personajeD: {fileID: 1146477194381204, guid: eedbe517680268947ad0541410cc959b, type: 2}
-  personajeE: {fileID: 1470780344716212, guid: b9168dceaca2cd4459ba3fb570c5884a, type: 2}
-  nuevoPerro: {fileID: 0}
-  perroBase: {fileID: 0}
-  perroT1: {fileID: 1914310236699034, guid: 4b80e02b3ef817347ad1f3aa546be192, type: 2}
-  perroConTomate: {fileID: 1786067779849268, guid: e6c04b49fad6ed44b851b74ea8cbb56b,
-    type: 2}
-  perroConMostaza: {fileID: 1442735318250670, guid: 76b5d108302a514498611e4ce415faba,
-    type: 2}
-  perroT4: {fileID: 1889541067746290, guid: 0365f72f378047f44a3ea5b911abd4b8, type: 2}
-  perroCrudo1: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  perroCrudo2: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  perroCrudo3: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  perroCrudo4: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  procesadorPR: {fileID: 0}
-  procesadorPJ: {fileID: 0}
-  escalaEnFilaPJ: {x: 0.3, y: 0.3, z: 0.3}
-  posListoCPU1: {x: -0.76, y: 0.96, z: 0.3}
-  posListoCPU2: {x: 0, y: 0, z: 0}
-  posListoCPU3: {x: 0, y: 0, z: 0}
-  transPosListoCPU1: {fileID: 2081420675}
-  transPosListoCPU2: {fileID: 1736789090}
-  transPosListoCPU3: {fileID: 1425873547}
-  transPosBloqueadoCPU1: {fileID: 1466613971}
-  transPosBloqueadoCPU2: {fileID: 1891340814}
-  transPosBloqueadoCPU3: {fileID: 731954766}
-  transPosSuspendidoCPU1: {fileID: 511626195}
-  transPosSuspendidoCPU2: {fileID: 855186555}
-  transPosSuspendidoCPU3: {fileID: 470125410}
-  factorDivision: 5
-  inicial: -2.7
-  salto: 1
-  estado: 0
-  PJlista: 1
-  CPU: 1
---- !u!4 &1246276483
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1246276481}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7835286, y: -0.28385636, z: -0.053481914}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 18
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1251175595
 GameObject:
   m_ObjectHideFlags: 0
@@ -4504,81 +4025,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1373454793}
---- !u!1 &1389768979
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1076557737597376, guid: ae02cf06cd623864f8359f980f392e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 1745713414}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1389768982}
-  - component: {fileID: 1389768981}
-  - component: {fileID: 1389768980}
-  m_Layer: 0
-  m_Name: planificadorCPU2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1389768980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 1745713414}
-  m_GameObject: {fileID: 1389768979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7725e5c870e37e44785adf650a93ed78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  esAutomatico: 1
-  tiempoQuantum: 10
-  tiempoSuspendido: 3
-  tiempoEnBloqueado: 10
-  x: 0
-  Orden: {fileID: 1399015781844378, guid: c741c45f1cac062479d7bd5f4910af02, type: 2}
-  controladorPersonajes: {fileID: 1979694189}
-  controladorPersonajesCPU1: {fileID: 1246276482}
-  controladorPersonajesCPU2: {fileID: 1979694189}
-  controladorPersonajesCPU3: {fileID: 1832970684}
-  planificadorCPU1: {fileID: 840538829}
-  planificadorCPU2: {fileID: 1389768980}
-  planificadorCPU3: {fileID: 124644201}
-  quantumTX: {fileID: 0}
-  panControlador: {fileID: 0}
-  posAtendido: {x: 0, y: 0, z: 0}
-  CPU: 2
-  TTLText: {fileID: 0}
---- !u!114 &1389768981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114278281621287942, guid: ae02cf06cd623864f8359f980f392e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 1745713414}
-  m_GameObject: {fileID: 1389768979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474c7f6b3cca2f946a22ad09cb5bc1f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dpTipoPerro: {fileID: 0}
---- !u!4 &1389768982
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13,
-    type: 2}
-  m_PrefabInternal: {fileID: 1745713414}
-  m_GameObject: {fileID: 1389768979}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -0.41, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1394522939
 GameObject:
   m_ObjectHideFlags: 0
@@ -4718,11 +4164,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!4 &1425873547 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  m_PrefabInternal: {fileID: 984694599}
 --- !u!1 &1461342751
 GameObject:
   m_ObjectHideFlags: 0
@@ -4828,7 +4269,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_RootOrder
-      value: 29
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_Name
@@ -4841,11 +4282,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &1466613971 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1466613970}
 --- !u!1 &1494315094
 GameObject:
   m_ObjectHideFlags: 0
@@ -5282,147 +4718,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1726841590}
---- !u!4 &1736789090 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  m_PrefabInternal: {fileID: 242396259}
---- !u!1001 &1745713414
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4658910576028574, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 114278281621287942, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: dpTipoPerro
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: controladorPersonajes
-      value: 
-      objectReference: {fileID: 1979694189}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: quantumTX
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: panControlador
-      value: 
-      objectReference: {fileID: 2136776972}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: posAtendido.x
-      value: 0.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: posAtendido.y
-      value: -0.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: tiempoQuantum
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: tiempoSuspendido
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: tiempoEnBloqueado
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1076557737597376, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-      propertyPath: m_Name
-      value: planificadorCPU2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: CPU
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: esAutomatico
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: TTLText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: controladorPersonajesCPU1
-      value: 
-      objectReference: {fileID: 1246276482}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: controladorPersonajesCPU2
-      value: 
-      objectReference: {fileID: 1979694189}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: controladorPersonajesCPU3
-      value: 
-      objectReference: {fileID: 1832970684}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: planificadorCPU1
-      value: 
-      objectReference: {fileID: 840538829}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: planificadorCPU2
-      value: 
-      objectReference: {fileID: 1389768980}
-    - target: {fileID: 114759245797868214, guid: ae02cf06cd623864f8359f980f392e13,
-        type: 2}
-      propertyPath: planificadorCPU3
-      value: 
-      objectReference: {fileID: 124644201}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: ae02cf06cd623864f8359f980f392e13, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1804763150
 GameObject:
   m_ObjectHideFlags: 0
@@ -5433,7 +4728,7 @@ GameObject:
   - component: {fileID: 1804763152}
   - component: {fileID: 1804763151}
   m_Layer: 0
-  m_Name: 9
+  m_Name: fondo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5492,94 +4787,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 35
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1832970683
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1832970685}
-  - component: {fileID: 1832970684}
-  m_Layer: 0
-  m_Name: PersonajeControladorCPU3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1832970684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1832970683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f01e928e4f75104f968c1441f47cc1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  personajeBase: {fileID: 0}
-  nuevoPersonaje: {fileID: 0}
-  personaje1: {fileID: 1014798297266932, guid: 521e22d166c19e240a5d1a7bc1c5b741, type: 2}
-  personaje2: {fileID: 1992404089210938, guid: 7617d93ae31f1134dab4ac89988d615d, type: 2}
-  personaje3: {fileID: 1412279078554092, guid: 8788af30e93b3aa4e9a5a974d4f7e8a5, type: 2}
-  personajeA: {fileID: 1332812115314268, guid: 20ce2719ba56fab46a7f0cd50c5ef37b, type: 2}
-  personajeB: {fileID: 1767908691002022, guid: 9ffa737b6ed21354587df8f273c28a6f, type: 2}
-  personajeC: {fileID: 1989965042493876, guid: e34d4b9f807bd0f4cb460f12d6b5ffa5, type: 2}
-  personajeD: {fileID: 1146477194381204, guid: eedbe517680268947ad0541410cc959b, type: 2}
-  personajeE: {fileID: 1470780344716212, guid: b9168dceaca2cd4459ba3fb570c5884a, type: 2}
-  nuevoPerro: {fileID: 0}
-  perroBase: {fileID: 0}
-  perroT1: {fileID: 1914310236699034, guid: 4b80e02b3ef817347ad1f3aa546be192, type: 2}
-  perroConTomate: {fileID: 1786067779849268, guid: e6c04b49fad6ed44b851b74ea8cbb56b,
-    type: 2}
-  perroConMostaza: {fileID: 1442735318250670, guid: 76b5d108302a514498611e4ce415faba,
-    type: 2}
-  perroT4: {fileID: 1889541067746290, guid: 0365f72f378047f44a3ea5b911abd4b8, type: 2}
-  perroCrudo1: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  perroCrudo2: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  perroCrudo3: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  perroCrudo4: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  procesadorPR: {fileID: 0}
-  procesadorPJ: {fileID: 0}
-  escalaEnFilaPJ: {x: 0.3, y: 0.3, z: 0.3}
-  posListoCPU1: {x: -0.76, y: 0.96, z: 0.3}
-  posListoCPU2: {x: 0, y: 0, z: 0}
-  posListoCPU3: {x: 0, y: 0, z: 0}
-  transPosListoCPU1: {fileID: 2081420675}
-  transPosListoCPU2: {fileID: 1736789090}
-  transPosListoCPU3: {fileID: 1425873547}
-  transPosBloqueadoCPU1: {fileID: 1466613971}
-  transPosBloqueadoCPU2: {fileID: 1891340814}
-  transPosBloqueadoCPU3: {fileID: 731954766}
-  transPosSuspendidoCPU1: {fileID: 511626195}
-  transPosSuspendidoCPU2: {fileID: 855186555}
-  transPosSuspendidoCPU3: {fileID: 470125410}
-  factorDivision: 5
-  inicial: -2.7
-  salto: 1
-  estado: 0
-  PJlista: 1
-  CPU: 3
---- !u!4 &1832970685
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1832970683}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7835286, y: -0.28385636, z: -0.053481914}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1872144962
 GameObject:
@@ -5728,7 +4936,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 840538829}
+      - m_Target: {fileID: 0}
         m_MethodName: terminarProceso
         m_Mode: 1
         m_Arguments:
@@ -5979,9 +5187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e5a010949500f4eb2285282a0d0471, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planificadorCPU1: {fileID: 840538826}
-  planificadorCPU2: {fileID: 1389768979}
-  planificadorCPU3: {fileID: 124644200}
 --- !u!1001 &1891340813
 Prefab:
   m_ObjectHideFlags: 0
@@ -6019,7 +5224,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_RootOrder
-      value: 30
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
       propertyPath: m_Name
@@ -6032,11 +5237,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9880087fe969b984394a0c86e06e7df1, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &1891340814 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  m_PrefabInternal: {fileID: 1891340813}
 --- !u!1001 &1909694699
 Prefab:
   m_ObjectHideFlags: 0
@@ -6238,93 +5438,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1975002295}
---- !u!1 &1979694188
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1979694190}
-  - component: {fileID: 1979694189}
-  m_Layer: 0
-  m_Name: PersonajeControladorCPU2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1979694189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1979694188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f01e928e4f75104f968c1441f47cc1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  personajeBase: {fileID: 0}
-  nuevoPersonaje: {fileID: 0}
-  personaje1: {fileID: 1014798297266932, guid: 521e22d166c19e240a5d1a7bc1c5b741, type: 2}
-  personaje2: {fileID: 1992404089210938, guid: 7617d93ae31f1134dab4ac89988d615d, type: 2}
-  personaje3: {fileID: 1412279078554092, guid: 8788af30e93b3aa4e9a5a974d4f7e8a5, type: 2}
-  personajeA: {fileID: 1332812115314268, guid: 20ce2719ba56fab46a7f0cd50c5ef37b, type: 2}
-  personajeB: {fileID: 1767908691002022, guid: 9ffa737b6ed21354587df8f273c28a6f, type: 2}
-  personajeC: {fileID: 1989965042493876, guid: e34d4b9f807bd0f4cb460f12d6b5ffa5, type: 2}
-  personajeD: {fileID: 1146477194381204, guid: eedbe517680268947ad0541410cc959b, type: 2}
-  personajeE: {fileID: 1470780344716212, guid: b9168dceaca2cd4459ba3fb570c5884a, type: 2}
-  nuevoPerro: {fileID: 0}
-  perroBase: {fileID: 0}
-  perroT1: {fileID: 1914310236699034, guid: 4b80e02b3ef817347ad1f3aa546be192, type: 2}
-  perroConTomate: {fileID: 1786067779849268, guid: e6c04b49fad6ed44b851b74ea8cbb56b,
-    type: 2}
-  perroConMostaza: {fileID: 1442735318250670, guid: 76b5d108302a514498611e4ce415faba,
-    type: 2}
-  perroT4: {fileID: 1889541067746290, guid: 0365f72f378047f44a3ea5b911abd4b8, type: 2}
-  perroCrudo1: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  perroCrudo2: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  perroCrudo3: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  perroCrudo4: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  procesadorPR: {fileID: 0}
-  procesadorPJ: {fileID: 0}
-  escalaEnFilaPJ: {x: 0.3, y: 0.3, z: 0.3}
-  posListoCPU1: {x: -0.76, y: 0.96, z: 0.3}
-  posListoCPU2: {x: 0, y: 0, z: 0}
-  posListoCPU3: {x: 0, y: 0, z: 0}
-  transPosListoCPU1: {fileID: 2081420675}
-  transPosListoCPU2: {fileID: 1736789090}
-  transPosListoCPU3: {fileID: 1425873547}
-  transPosBloqueadoCPU1: {fileID: 1466613971}
-  transPosBloqueadoCPU2: {fileID: 1891340814}
-  transPosBloqueadoCPU3: {fileID: 731954766}
-  transPosSuspendidoCPU1: {fileID: 511626195}
-  transPosSuspendidoCPU2: {fileID: 855186555}
-  transPosSuspendidoCPU3: {fileID: 470125410}
-  factorDivision: 5
-  inicial: -2.7
-  salto: 1
-  estado: 0
-  PJlista: 1
-  CPU: 2
---- !u!4 &1979694190
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1979694188}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7835286, y: -0.28385636, z: -0.053481914}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1992154022
 GameObject:
   m_ObjectHideFlags: 0
@@ -6461,11 +5574,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2065630293}
---- !u!4 &2081420675 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4186514084060448, guid: 9880087fe969b984394a0c86e06e7df1,
-    type: 2}
-  m_PrefabInternal: {fileID: 335950137}
 --- !u!1 &2105517582
 GameObject:
   m_ObjectHideFlags: 0

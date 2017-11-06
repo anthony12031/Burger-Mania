@@ -7,9 +7,9 @@ public class OrdenDespachador : MonoBehaviour {
 	seleccionTipoPerro seleccionPerro;
 	SeleccionCPU seleccionCPU;
 
-	public GameObject planificadorCPU1;
-	public GameObject planificadorCPU2;
-	public GameObject planificadorCPU3;
+	public IPlanificador planificadorCPU1;
+	public IPlanificador planificadorCPU2;
+	public IPlanificador planificadorCPU3;
 
 
 	// Use this for initialization
@@ -24,13 +24,13 @@ public class OrdenDespachador : MonoBehaviour {
 		int cpu = seleccionCPU.getCPU () + 1;
 
 		if (cpu == 1) {
-			planificadorCPU1.GetComponent<planificador> ().crearOrden (tipoPerro);
+			planificadorCPU1.crearOrden (tipoPerro);
 		}
 		if (cpu == 2) {
-			planificadorCPU2.GetComponent<planificador> ().crearOrden (tipoPerro);
+			planificadorCPU2.crearOrden (tipoPerro);
 		}
 		if (cpu == 3) {
-			planificadorCPU3.GetComponent<planificador> ().crearOrden (tipoPerro);
+			planificadorCPU3.crearOrden (tipoPerro);
 		}
 
 	}

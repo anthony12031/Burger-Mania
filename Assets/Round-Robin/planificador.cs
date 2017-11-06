@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
 
-public class planificador : MonoBehaviour {
+public class planificador : MonoBehaviour,IPlanificador {
 
 	public bool esAutomatico = false;
 	public float tiempoQuantum = 2;
