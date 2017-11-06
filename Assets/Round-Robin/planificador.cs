@@ -266,14 +266,14 @@ public class planificador : MonoBehaviour {
 		} 
 		//ejecutar el proceso actual
 		else {
-			quantumTX.text = System.Convert.ToString (procesoEnEjecucion.getQuantumRestante());
-			if (TTLText != null) {
-				TTLText.text = System.Convert.ToString (procesoEnEjecucion.TTL);
-				if (procesoEnEjecucion.TTL < 0)
-					TTLText.text = "0";
-			}
-			if(procesoEnEjecucion.getQuantumRestante()<0)
-				quantumTX.text = "0";
+			//quantumTX.text = System.Convert.ToString (procesoEnEjecucion.getQuantumRestante());
+			//if (TTLText != null) {
+			//	TTLText.text = System.Convert.ToString (procesoEnEjecucion.TTL);
+			//	if (procesoEnEjecucion.TTL < 0)
+			//		TTLText.text = "0";
+			//}
+			//if(procesoEnEjecucion.getQuantumRestante()<0)
+			//	quantumTX.text = "0";
 
 
 			hilo ();
