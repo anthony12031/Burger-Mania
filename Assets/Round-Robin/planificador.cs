@@ -6,7 +6,6 @@ using System.Threading;
 
 public class planificador : MonoBehaviour {
 
-
 	public bool esAutomatico = false;
 	public float tiempoQuantum = 2;
 	public float tiempoSuspendido = 2;
@@ -283,12 +282,23 @@ public class planificador : MonoBehaviour {
 				terminarProceso ();
 			}
 
-			if (procesoEnEjecucion.Quantum <= 0) {
-				procesoEnEjecucion.Quantum = 0;
-				notificacionQuantumTerminado ();
+			if (procesoEnEjecucion != null) {
+				if (procesoEnEjecucion.Quantum <= 0) {
+					procesoEnEjecucion.Quantum = 0;
+					/*if (procesoEnEjecucion.CPU == 1) {
+						planificadorCPU1.notificacionQuantumTerminado ();
+					}
+					if (procesoEnEjecucion.CPU == 2) {
+						planificadorCPU2.notificacionQuantumTerminado ();
+					}
+					if (procesoEnEjecucion.CPU == 3) {
+						planificadorCPU3.notificacionQuantumTerminado ();
+					}*/
+					notificacionQuantumTerminado ();
+				}
 			}
 
-			Debug.Log (procesoEnEjecucion.Quantum);
+		//	Debug.Log (procesoEnEjecucion.Quantum);
 		}
 		//aumentar el contador de los procesos en suspendido
 			foreach (Proceso pr in suspendidos) {
