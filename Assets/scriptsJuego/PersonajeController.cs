@@ -96,7 +96,6 @@ public class PersonajeController : MonoBehaviour {
         ColaSuspendidosPJ = new Queue<GameObject>();
         ColaSuspendidosPR = new Queue<GameObject>();
 
-
     }
 		
 	public GameObject agregarPersonaje(int orden,int cpu){
@@ -229,66 +228,23 @@ public class PersonajeController : MonoBehaviour {
 
 
 
-public void listoTOsuspendido()
+	public void listoToSuspendido(int CPU)
     {
-        
-        ////////////////////
-        GameObject sacar = ColaPerros.Dequeue();
-        if (sacar.name.Contains("pedido_perro"))
-        {
-            Destroy(sacar);
-            sacar = perroCrudo1;
-            sacar.name = "salchicha1";
-        }
-        if (sacar.name.Contains("pedido_perroTomate"))
-        {
-            Destroy(sacar);
-            sacar = perroCrudo2;
-            sacar.name = "salchicha2";
-        }
-        if (sacar.name.Contains("pedido_perroMostaza"))
-        {
-            Destroy(sacar);
-            sacar = perroCrudo3;
-            sacar.name = "salchicha3";
-        }
-        if (sacar.name.Contains("pedido_perroTomateMostaza"))
-        {
-            Destroy(sacar);
-            sacar = perroCrudo4;
-            sacar.name = "salchicha4";
-        }
+		Vector2 pos = Vector2.zero;
+		if(CPU == 1 )
+			pos =  posSuspendidoCPU1;
+		if(CPU == 2 )
+			pos =  posSuspendidoCPU2;
+		if(CPU == 3 )
+			pos =  posSuspendidoCPU3;
 
-        float pjx = 0;
-        float pjy = 0;
-        float pjz = 0;
-        float prx = 0;
-        float pry = 0;
-        float prz = 0;
-
-
-        prx = -2.7f;
-        pry = -0.4f;
-        prz = 0;
-
-        pjx = prx + 0.14f;
-        pjy = pry - 0.05f;
-        pjz = prz;
-
-        nuevoPerro = Instantiate(sacar, new Vector3(prx, pry, prz), Quaternion.identity) as GameObject;
-        //nuevoPerro.GetComponent<Perros>().posicion = ColaBloqueadoPR;
-        ColaSuspendidosPR.Enqueue(nuevoPerro);
-
-        //ColaBloqueadoPR.Enqueue(sacar);
-
-        sacar = ColaClientes.Dequeue();
-
-        sacar.transform.position = new Vector3(pjx, pjy, pjz);
-        sacar.GetComponent<Personaje>().posicion = -1;
-        sacar.GetComponent<Transform>().localScale = new Vector3(0.3F, 0.3F, 0.3F);
-        //sacar.transform.localScale
-        ColaSuspendidosPJ.Enqueue(sacar);
-      //  actualizarVista();
+		pos.y += (float)ColaSuspendidosPJ.Count / 100;
+		GameObject cliente = ColaClientes.Dequeue();
+		if(cliente.transform.parent != null)
+			cliente.transform.parent.position = pos;
+		else
+			cliente.transform.position = pos;
+		ColaSuspendidosPJ.Enqueue(cliente);
     }
 
 
@@ -399,7 +355,7 @@ public void listoTOsuspendido()
 		return Vector2.zero;
 	}
 
-	void updateVistaColas(int cpu){
+	public void updateVistaColas(int cpu){
 		/* colas de procesos listos */
 		for (int i = 0; i < ColaClientes.Count; i++) {
 			GameObject cliente = ColaClientes.Dequeue ();
@@ -428,11 +384,12 @@ public void listoTOsuspendido()
 
 	}
 		
-	public int CPU;
 
     // Update is called once per frame
     void Update () {
-	  updateVistaColas (CPU);
+		//updateVistaColas (CPU);
     }
+
+
 
 }

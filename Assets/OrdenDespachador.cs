@@ -7,9 +7,9 @@ public class OrdenDespachador : MonoBehaviour {
 	seleccionTipoPerro seleccionPerro;
 	SeleccionCPU seleccionCPU;
 
-	public IPlanificador planificadorCPU1;
-	public IPlanificador planificadorCPU2;
-	public IPlanificador planificadorCPU3;
+	public GameObject planificadorCPU1;
+	public GameObject planificadorCPU2;
+	public GameObject planificadorCPU3;
 
 
 	// Use this for initialization
@@ -24,19 +24,53 @@ public class OrdenDespachador : MonoBehaviour {
 		int cpu = seleccionCPU.getCPU () + 1;
 
 		if (cpu == 1) {
-			planificadorCPU1.crearOrden (tipoPerro);
+			planificadorCPU1.GetComponent<PlanificadorSRTF>().crearOrden (tipoPerro);
 		}
 		if (cpu == 2) {
-			planificadorCPU2.crearOrden (tipoPerro);
+			planificadorCPU2.GetComponent<PlanificadorSRTF>().crearOrden (tipoPerro);
 		}
 		if (cpu == 3) {
-			planificadorCPU3.crearOrden (tipoPerro);
+			planificadorCPU3.GetComponent<PlanificadorSRTF>().crearOrden (tipoPerro);
 		}
 
 	}
 
 	// Update is called once per frame
 	void Update () {
-		
+		getInput ();
+	}
+
+	void getInput(){
+		//listos
+		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().crearOrden (1);
+		}	
+		if (Input.GetKeyDown (KeyCode.Alpha2)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().crearOrden (1);
+		}
+		if (Input.GetKeyDown (KeyCode.Alpha3)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().crearOrden (1);
+		}
+		// listo a suspendidos
+		if (Input.GetKeyDown (KeyCode.Q)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().listoToSuspendido ();
+		}
+		if (Input.GetKeyDown (KeyCode.W)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().listoToSuspendido ();
+		}
+		if (Input.GetKeyDown (KeyCode.E)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().listoToSuspendido ();
+		}
+
+		// listo a bloqueado
+		if (Input.GetKeyDown (KeyCode.A)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().listoToBloqueado ();
+		}
+		if (Input.GetKeyDown (KeyCode.S)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().listoToBloqueado ();
+		}
+		if (Input.GetKeyDown (KeyCode.D)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().listoToBloqueado ();
+		}
 	}
 }
