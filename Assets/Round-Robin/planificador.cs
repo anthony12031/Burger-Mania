@@ -255,6 +255,11 @@ public class planificador : MonoBehaviour,IPlanificador {
 		myThread.Start();
 	}
 
+	void listoTOprocesador(int CPU){
+		controladorPersonajes.listoToProcesador (CPU);
+	}
+
+
 	// Update is called once per frame
 	void Update () {
 

@@ -72,5 +72,6 @@ public class OrdenDespachador : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.D)) {
 			planificadorCPU3.GetComponent<PlanificadorSRTF> ().listoToBloqueado ();
 		}
+
 	}
 }

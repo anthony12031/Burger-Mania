@@ -65,10 +65,12 @@ public class PersonajeController : MonoBehaviour {
 
 	public float factorDivision = 3;
 
-    public float inicial = -2.7f;
+    public float inicial = 0.4f;
     public float salto = 5f;
     public int estado = 0; // 0. ningun movimiento
     public int PJlista = 1;
+	int sizeSUS = 0;
+	int sizeBLO = 0;
     //1. moviendo a posicion x
     
 	// Use this for initialization
@@ -149,12 +151,12 @@ public class PersonajeController : MonoBehaviour {
         nuevoPersonaje.GetComponent<Personaje>().posicion = -1;
         ColaClientes.Enqueue(nuevoPersonaje);
 
-        nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1.9f, 0), Quaternion.identity) as GameObject;
+        nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1f, 0), Quaternion.identity) as GameObject;
         nuevoPerro.GetComponent <Perros> ().posicion = -1;
       //  ColaPerros.Enqueue(nuevoPerro);
 
 		nuevoPerro.transform.parent = nuevoPersonaje.transform;
-		nuevoPerro.transform.localPosition = new Vector2(0,-0.8f);
+		nuevoPerro.transform.localPosition = new Vector2(0,-1f);
 
 		nuevoPersonaje.transform.localScale = escalaEnFilaPJ;
 		nuevoPerro.transform.localScale = escalaEnFilaPJ*2;
@@ -177,6 +179,7 @@ public class PersonajeController : MonoBehaviour {
 		Vector2 pos = Vector2.zero;
 		if (cpu == 1) {
 			pos = posBloqueadoCPU1;
+
 		}
 		if (cpu == 2) {
 			pos = posBloqueadoCPU2;
@@ -184,12 +187,25 @@ public class PersonajeController : MonoBehaviour {
 		if (cpu == 3) {
 			pos = posBloqueadoCPU3;
 		}
+
+		sizeBLO = ColaBloqueadoPJ.Count;
 		GameObject cliente = ColaClientes.Dequeue ();
 
 		if (cliente.transform.parent != null) {
+			pos [0] = pos [0] - 0.6f;
 			cliente.transform.parent.position = pos;
+			cliente.transform.parent.localScale = new Vector3 (0.3f,0.3f,0.3f);
 		} else {
+			cliente.GetComponent<Personaje> ().inicial = pos[0];
+			pos [0] = pos [0] - 0.6f;
 			cliente.transform.position = pos;
+			cliente.transform.localScale = new Vector3 (0.3f,0.3f,0.3f);
+			cliente.GetComponent<Personaje> ().posicion = sizeBLO;
+			cliente.GetComponent<Personaje> ().salto = 0.2f;
+			//cliente.GetComponent<Personaje> ().inicial = -2.22f;
+
+
+
 		}
 		ColaBloqueadoPJ.Enqueue(cliente);   
     }
@@ -239,12 +255,22 @@ public class PersonajeController : MonoBehaviour {
 			pos =  posSuspendidoCPU3;
 
 		pos.y += (float)ColaSuspendidosPJ.Count / 100;
+
+		sizeSUS = ColaSuspendidosPJ.Count;
 		GameObject cliente = ColaClientes.Dequeue();
-		if(cliente.transform.parent != null)
+		if (cliente.transform.parent != null) {
+			pos [0] = pos [0] - 0.6f;
 			cliente.transform.parent.position = pos;
-		else
+			cliente.transform.parent.localScale = new Vector3 (0.3f,0.3f,0.3f);
+		} else {
+			cliente.GetComponent<Personaje> ().inicial = pos[0];
+			pos [0] = pos [0] - 0.6f;
 			cliente.transform.position = pos;
-		ColaSuspendidosPJ.Enqueue(cliente);
+			cliente.transform.localScale = new Vector3 (0.3f,0.3f,0.3f);
+			cliente.GetComponent<Personaje> ().posicion = sizeSUS;
+			cliente.GetComponent<Personaje> ().salto = 0.2f;
+		}
+		ColaSuspendidosPJ.Enqueue(cliente);   
     }
 
 

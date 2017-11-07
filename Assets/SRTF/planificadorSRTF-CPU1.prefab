@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4174fbfe371c9ae46967663e804f1fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CPU: 1
 --- !u!114 &114821439993168440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -76,9 +77,9 @@ MonoBehaviour:
   nuevoPerro: {fileID: 0}
   perroBase: {fileID: 0}
   perroT1: {fileID: 1914310236699034, guid: 4b80e02b3ef817347ad1f3aa546be192, type: 2}
-  perroConTomate: {fileID: 1786067779849268, guid: e6c04b49fad6ed44b851b74ea8cbb56b,
+  perroConTomate: {fileID: 1431723033867006, guid: 76f098fb91533f44eade2f8d24ee8cbd,
     type: 2}
-  perroConMostaza: {fileID: 1442735318250670, guid: 76b5d108302a514498611e4ce415faba,
+  perroConMostaza: {fileID: 1636914510047416, guid: 41839214396035b4aadd6d0eb901b530,
     type: 2}
   perroT4: {fileID: 1889541067746290, guid: 0365f72f378047f44a3ea5b911abd4b8, type: 2}
   perroCrudo1: {fileID: 0}
@@ -105,4 +106,3 @@ MonoBehaviour:
   salto: 5
   estado: 0
   PJlista: 1
-  CPU: 1
