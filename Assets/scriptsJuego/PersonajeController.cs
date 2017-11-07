@@ -277,13 +277,17 @@ public class PersonajeController : MonoBehaviour {
     public void bloqueadoToListo()
     {
 		Debug.Log ("personajes en bloqueado: " + ColaBloqueadoPJ.Count);
-		ColaClientes.Enqueue(ColaBloqueadoPJ.Dequeue());
+		GameObject sacado = ColaBloqueadoPJ.Dequeue ();
+		sacado.transform.localScale = new Vector3 (0.6f,0.6f,0.6f);
+		ColaClientes.Enqueue(sacado);
         
     }
 
 	public void suspendidoTOlisto(int cpu)
     {
-		ColaClientes.Enqueue(ColaSuspendidosPJ.Dequeue());   
+		GameObject sacado = ColaSuspendidosPJ.Dequeue ();
+		sacado.transform.localScale = new Vector3 (0.6f,0.6f,0.6f);
+		ColaClientes.Enqueue(sacado);   
     }
 
 

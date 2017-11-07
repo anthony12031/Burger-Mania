@@ -73,5 +73,40 @@ public class OrdenDespachador : MonoBehaviour {
 			planificadorCPU3.GetComponent<PlanificadorSRTF> ().listoToBloqueado ();
 		}
 
+		// suspendido a listo
+		if (Input.GetKeyDown (KeyCode.R)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().SuspendidoTolisto ();
+		}
+		if (Input.GetKeyDown (KeyCode.T)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().SuspendidoTolisto ();
+		}
+		if (Input.GetKeyDown (KeyCode.Y)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().SuspendidoTolisto ();
+		}
+
+		// bloqueado a listo
+		if (Input.GetKeyDown (KeyCode.F)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().BloqueadoTolisto ();
+		}
+		if (Input.GetKeyDown (KeyCode.G)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().BloqueadoTolisto ();
+		}
+		if (Input.GetKeyDown (KeyCode.H)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().BloqueadoTolisto ();
+		}
+
+
+
+		// listo a procesador
+		if (Input.GetKeyDown (KeyCode.Alpha4)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().listoTOprocesador (1);
+		}
+		if (Input.GetKeyDown (KeyCode.Alpha5)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().listoTOprocesador (2);
+		}
+		if (Input.GetKeyDown (KeyCode.Alpha6)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().listoTOprocesador (3);
+		}
+
 	}
 }
