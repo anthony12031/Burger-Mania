@@ -213,6 +213,9 @@ public class PersonajeController : MonoBehaviour {
 
 	public void listoToProcesador(int cpu)
     {
+
+		if (procesadorPJ == null) {
+
 		Vector2 pos = Vector2.zero;
 		if (cpu == 1)
 			pos = SalchichaControlador.posParrilla1.v3Pos;
@@ -239,7 +242,7 @@ public class PersonajeController : MonoBehaviour {
 				break;
 			}
 		}
-	
+	}
     }
 
 
