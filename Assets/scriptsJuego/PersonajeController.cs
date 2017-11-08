@@ -175,7 +175,7 @@ public class PersonajeController : MonoBehaviour {
 
 	public void listoToBloqueado(int cpu)
     {
-	   
+		if(ColaClientes.Count>0){
 		Vector2 pos = Vector2.zero;
 		if (cpu == 1) {
 			pos = posBloqueadoCPU1;
@@ -208,6 +208,7 @@ public class PersonajeController : MonoBehaviour {
 
 		}
 		ColaBloqueadoPJ.Enqueue(cliente);   
+	}
     }
 
 
@@ -249,38 +250,39 @@ public class PersonajeController : MonoBehaviour {
 
 
 	public void listoToSuspendido(int CPU)
-    {
+	{
+		if(ColaClientes.Count>0){
 		Vector2 pos = Vector2.zero;
-		if(CPU == 1 )
-			pos =  posSuspendidoCPU1;
-		if(CPU == 2 )
-			pos =  posSuspendidoCPU2;
-		if(CPU == 3 )
-			pos =  posSuspendidoCPU3;
+		if (CPU == 1)
+			pos = posSuspendidoCPU1;
+		if (CPU == 2)
+			pos = posSuspendidoCPU2;
+		if (CPU == 3)
+			pos = posSuspendidoCPU3;
 
 		pos.y += (float)ColaSuspendidosPJ.Count / 100;
 
 		sizeSUS = ColaSuspendidosPJ.Count;
-		GameObject cliente = ColaClientes.Dequeue();
+		GameObject cliente = ColaClientes.Dequeue ();
 		if (cliente.transform.parent != null) {
 			pos [0] = pos [0] - 0.6f;
 			cliente.transform.parent.position = pos;
-			cliente.transform.parent.localScale = new Vector3 (0.3f,0.3f,0.3f);
+			cliente.transform.parent.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
 		} else {
-			cliente.GetComponent<Personaje> ().inicial = pos[0];
+			cliente.GetComponent<Personaje> ().inicial = pos [0];
 			pos [0] = pos [0] - 0.6f;
 			cliente.transform.position = pos;
-			cliente.transform.localScale = new Vector3 (0.3f,0.3f,0.3f);
+			cliente.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
 			cliente.GetComponent<Personaje> ().posicion = sizeSUS;
 			cliente.GetComponent<Personaje> ().salto = 0.2f;
 		}
-		ColaSuspendidosPJ.Enqueue(cliente);   
+		ColaSuspendidosPJ.Enqueue (cliente);   
+	}
     }
 
 
     public void bloqueadoToListo()
     {
-		Debug.Log ("personajes en bloqueado: " + ColaBloqueadoPJ.Count);
 		GameObject sacado = ColaBloqueadoPJ.Dequeue ();
 		sacado.transform.localScale = new Vector3 (0.6f,0.6f,0.6f);
 		ColaClientes.Enqueue(sacado);
@@ -320,7 +322,7 @@ public class PersonajeController : MonoBehaviour {
     public void procesadorToListo()
     {     
 		GameObject cliente = procesadorPJ;
-		Debug.Log (procesadorPJ);
+
         //perroBase = procesadorPR;
 
         //nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
@@ -336,14 +338,14 @@ public class PersonajeController : MonoBehaviour {
 	public void procesadorToBloqueado(int CPU)
 	{
 
-
+		if(procesadorPJ!=null){
 		Vector2 pos = Vector2.zero;
-		if(CPU == 1 )
-			pos =  posBloqueadoCPU1;
-		if(CPU == 2 )
-			pos =  posBloqueadoCPU2;
-		if(CPU == 3 )
-			pos =  posBloqueadoCPU3;
+		if (CPU == 1)
+			pos = posBloqueadoCPU1;
+		if (CPU == 2)
+			pos = posBloqueadoCPU2;
+		if (CPU == 3)
+			pos = posBloqueadoCPU3;
 
 		//pos.y += (float)ColaSuspendidosPJ.Count / 100;
 
@@ -352,17 +354,17 @@ public class PersonajeController : MonoBehaviour {
 		sizeBLO = ColaBloqueadoPJ.Count;
 		GameObject cliente = procesadorPJ;
 
-		cliente.GetComponent<Personaje> ().inicial = pos[0];
+		cliente.GetComponent<Personaje> ().inicial = pos [0];
 		pos [0] = pos [0] - 0.6f;
 		cliente.transform.parent.position = pos;
-		cliente.transform.localScale = new Vector3 (0.3f,0.3f,0.3f);
-		Debug.Log ("sizeBLO" + sizeBLO);
+		cliente.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
+		
 		cliente.GetComponent<Personaje> ().posicion = sizeBLO;
 
 		cliente.GetComponent<Personaje> ().salto = 0.2f;
 
 
-		ColaBloqueadoPJ.Enqueue(cliente);
+		ColaBloqueadoPJ.Enqueue (cliente);
 		procesadorPJ = null;
 		foreach (Transform child in cliente.transform.parent) {
 			if (child.gameObject.CompareTag ("panPerroEnProcesador")) {
@@ -377,48 +379,52 @@ public class PersonajeController : MonoBehaviour {
 		Destroy (salchicha.gameObject);
 		procesadorPR = null;
 	}
+	}
 
 	public void procesadorToSuspendido(int CPU)
 	{
-		Vector2 pos = Vector2.zero;
-		if(CPU == 1 )
-			pos =  posSuspendidoCPU1;
-		if(CPU == 2 )
-			pos =  posSuspendidoCPU2;
-		if(CPU == 3 )
-			pos =  posSuspendidoCPU3;
+		if(procesadorPJ!=null){
+			Vector2 pos = Vector2.zero;
+			if (CPU == 1)
+				pos = posSuspendidoCPU1;
+			if (CPU == 2)
+				pos = posSuspendidoCPU2;
+			if (CPU == 3)
+				pos = posSuspendidoCPU3;
 
-		//pos.y += (float)ColaSuspendidosPJ.Count / 100;
-
-
-
-		sizeSUS = ColaSuspendidosPJ.Count;
-		GameObject cliente = procesadorPJ;
-
-		cliente.GetComponent<Personaje> ().inicial = pos[0];
-		pos [0] = pos [0] - 0.6f;
-		cliente.transform.parent.position = pos;
-		cliente.transform.localScale = new Vector3 (0.3f,0.3f,0.3f);
-		Debug.Log ("sizeSUS" + sizeSUS);
-		cliente.GetComponent<Personaje> ().posicion = sizeSUS;
-
-		cliente.GetComponent<Personaje> ().salto = 0.2f;
+			//pos.y += (float)ColaSuspendidosPJ.Count / 100;
 
 
-		ColaSuspendidosPJ.Enqueue(cliente);
-		procesadorPJ = null;
-		foreach (Transform child in cliente.transform.parent) {
-			if (child.gameObject.CompareTag ("panPerroEnProcesador")) {
-				child.gameObject.GetComponent<PanPosicion> ().posicionEnParrilla.libre = true;
-				child.gameObject.tag = "panPerro";
-				break;
+
+			sizeSUS = ColaSuspendidosPJ.Count;
+			GameObject cliente = procesadorPJ;
+
+			cliente.GetComponent<Personaje> ().inicial = pos [0];
+			pos [0] = pos [0] - 0.6f;
+			cliente.transform.parent.position = pos;
+			cliente.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
+
+			cliente.GetComponent<Personaje> ().posicion = sizeSUS;
+
+			cliente.GetComponent<Personaje> ().salto = 0.2f;
+
+
+			ColaSuspendidosPJ.Enqueue (cliente);
+			procesadorPJ = null;
+			foreach (Transform child in cliente.transform.parent) {
+				if (child.gameObject.CompareTag ("panPerroEnProcesador")) {
+					child.gameObject.GetComponent<PanPosicion> ().posicionEnParrilla.libre = true;
+					child.gameObject.tag = "panPerro";
+					break;
+				}
 			}
-		}
 
-		Transform salchicha = cliente.transform.parent;
-		cliente.transform.parent = null;
-		Destroy (salchicha.gameObject);
-		procesadorPR = null;
+			Transform salchicha = cliente.transform.parent;
+			cliente.transform.parent = null;
+			Destroy (salchicha.gameObject);
+			procesadorPR = null;
+		
+	}
 	}
 
 	public Vector2 getPosEnCola(Queue<GameObject> cola,int cpu){
