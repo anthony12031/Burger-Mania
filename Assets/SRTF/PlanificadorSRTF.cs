@@ -32,6 +32,14 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		controladorPersonaje.listoToProcesador (CPU);
 	}
 
+	public void procesadorToSuspendido(int CPU){
+		controladorPersonaje.procesadorToSuspendido (CPU);
+	}
+
+	public void procesadorToBloqueado(int CPU){
+		controladorPersonaje.procesadorToBloqueado (CPU);
+	}
+
 	// Use this for initialization
 	void Start () {
 		controladorPersonaje = GetComponent<PersonajeController> ();

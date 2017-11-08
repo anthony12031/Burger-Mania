@@ -108,5 +108,28 @@ public class OrdenDespachador : MonoBehaviour {
 			planificadorCPU3.GetComponent<PlanificadorSRTF> ().listoTOprocesador (3);
 		}
 
+		// procesador a suspendido
+		if (Input.GetKeyDown (KeyCode.I)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().procesadorToSuspendido (1);
+		}
+		if (Input.GetKeyDown (KeyCode.O)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().procesadorToSuspendido (2);
+		}
+		if (Input.GetKeyDown (KeyCode.P)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().procesadorToSuspendido (3);
+		}
+
+		// procesador a bloqueado
+		if (Input.GetKeyDown (KeyCode.J)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().procesadorToBloqueado (1);
+		}
+		if (Input.GetKeyDown (KeyCode.K)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().procesadorToBloqueado (2);
+		}
+		if (Input.GetKeyDown (KeyCode.L)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().procesadorToBloqueado (3);
+		}
+
+
 	}
 }
