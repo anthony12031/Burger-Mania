@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 212635681289164430}
   m_Layer: 0
   m_Name: TTL
-  m_TagString: Untagged
+  m_TagString: ttl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

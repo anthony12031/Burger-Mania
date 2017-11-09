@@ -8,14 +8,16 @@ public class ProcesoSRTF : AProceso {
 	public List<Recursos.Recurso> recursos;
 	public TextMesh textoTTL;
 	public Thread hiloDeEjecucion;
+	public GameObject representacion;
 
 
 
-	public ProcesoSRTF(IPlanificador plan,int CPU,GameObject ttl):base(plan,CPU){
+	public ProcesoSRTF(IPlanificador plan,int CPU,GameObject ttl,GameObject rep):base(plan,CPU){
 		recursos = new List<Recursos.Recurso> ();
 		textoTTL = ttl.transform.GetChild (0).GetComponent<TextMesh> ();
 		textoTTL.text = System.Convert.ToString(TTL);
 		enEjecucion = true;
+		representacion = rep;
 	}
 
 

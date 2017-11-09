@@ -24,6 +24,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		controladorPersonaje = GetComponent<PersonajeController> ();
 		listos = new Cola<ProcesoSRTF> ();
 		suspendidos = new Cola<ProcesoSRTF> ();
+		controladorPersonaje.ColaClientes = listos;
 	}
 
 	public Cola<ProcesoSRTF> ordenarCola(Cola<ProcesoSRTF> cola){
@@ -53,11 +54,16 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 	}
 
 	public void crearProceso(int tipoPerro){
-		GameObject ttl = controladorPersonaje.agregarPersonaje (tipoPerro, CPU);
-		ProcesoSRTF nuevoProceso = new ProcesoSRTF (this, CPU,ttl);
+		GameObject representacion = controladorPersonaje.agregarPersonaje (tipoPerro, CPU);
+		GameObject TTL = null;
+		foreach (Transform tr in representacion.transform) {
+			if (tr.tag == "ttl") {
+				TTL = tr.gameObject;
+				break;
+			}
+		}
+		ProcesoSRTF nuevoProceso = new ProcesoSRTF (this, CPU,TTL,representacion);
 		listos.Enqueue (nuevoProceso);	
-		Debug.Log ("Enque");
-		Debug.Log (listos.Peek ());
 		Thread hiloProceso = new Thread (new ThreadStart (nuevoProceso.ejecutar));
 		hiloProceso.Start ();
 		nuevoProceso.hiloDeEjecucion = hiloProceso;
@@ -110,9 +116,9 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 	// Update is called once per frame
 	void Update () {
-		controladorPersonaje.updateVistaColas (CPU);
 		//organizar cola de listos
-		organizarListos();
+		//listos = ordenarCola(listos);
+		controladorPersonaje.updateVistaColas (CPU);
 		//Debug.Log (procesoEnEjecucion);
 		if (procesoEnEjecucion == null) {
 			//si hay procesos ejecutarl el siguiente

@@ -31,7 +31,7 @@ public class PersonajeController : MonoBehaviour {
     public GameObject procesadorPR;
     public GameObject procesadorPJ;
 
-    public  Queue<GameObject> ColaClientes;
+	public  Queue<ProcesoSRTF> ColaClientes;
     public  Queue<GameObject> ColaPerros;
 
     public  Queue<GameObject> ColaBloqueadoPJ;
@@ -91,7 +91,7 @@ public class PersonajeController : MonoBehaviour {
 		posSuspendidoCPU2 = transPosSuspendidoCPU2.position;
 		posSuspendidoCPU3 = transPosSuspendidoCPU3.position;
 
-        ColaClientes = new Queue<GameObject>();
+       // ColaClientes = new Queue<GameObject>();
         ColaPerros = new Queue<GameObject>();
 
         ColaBloqueadoPJ = new Queue<GameObject>();
@@ -151,7 +151,7 @@ public class PersonajeController : MonoBehaviour {
 
         nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
         nuevoPersonaje.GetComponent<Personaje>().posicion = -1;
-        ColaClientes.Enqueue(nuevoPersonaje);
+        //ColaClientes.Enqueue(nuevoPersonaje);
 
 		GameObject ttl = Instantiate (TTL, Vector2.zero, Quaternion.identity);
 		ttl.transform.parent = nuevoPersonaje.transform;
@@ -167,14 +167,14 @@ public class PersonajeController : MonoBehaviour {
 		nuevoPersonaje.transform.localScale = escalaEnFilaPJ;
 		nuevoPerro.transform.localScale = escalaEnFilaPJ*2;
 
-		return ttl;
+		return nuevoPersonaje;
     }
 		
 
 
 
     public void atenderCliente(){
-        Destroy(ColaClientes.Dequeue());
+        Destroy(ColaClientes.Dequeue ().representacion);
         Destroy(ColaPerros.Dequeue());
     }
 
@@ -195,7 +195,7 @@ public class PersonajeController : MonoBehaviour {
 		}
 
 		sizeBLO = ColaBloqueadoPJ.Count;
-		GameObject cliente = ColaClientes.Dequeue ();
+			GameObject cliente = ColaClientes.Dequeue ().representacion;
 
 		if (cliente.transform.parent != null) {
 			pos [0] = pos [0] - 0.6f;
@@ -230,7 +230,7 @@ public class PersonajeController : MonoBehaviour {
 			pos = SalchichaControlador.posParrilla2.v3Pos;
 		if (cpu == 3)
 			pos = SalchichaControlador.posParrilla3.v3Pos;
-		GameObject cliente = ColaClientes.Dequeue ();
+		GameObject cliente = ColaClientes.Dequeue ().representacion;
 		if (cliente.transform.parent == null) {
 			GameObject salchicha = perroCrudo1;
 			GameObject nuevaSalchicha = Instantiate (salchicha, pos, Quaternion.identity) as GameObject;       
@@ -269,7 +269,7 @@ public class PersonajeController : MonoBehaviour {
 		pos.y += (float)ColaSuspendidosPJ.Count / 100;
 
 		sizeSUS = ColaSuspendidosPJ.Count;
-		GameObject cliente = ColaClientes.Dequeue ();
+		GameObject cliente = ColaClientes.Dequeue ().representacion;
 		if (cliente.transform.parent != null) {
 			pos [0] = pos [0] - 0.6f;
 			cliente.transform.parent.position = pos;
@@ -444,7 +444,7 @@ public class PersonajeController : MonoBehaviour {
 	public void updateVistaColas(int cpu){
 		/* colas de procesos listos */
 		for (int i = 0; i < ColaClientes.Count; i++) {
-			GameObject cliente = ColaClientes.Dequeue ();
+			GameObject cliente = ColaClientes.Dequeue ().representacion;
 			float posX=0;
 			float posY=0;
 			if (cpu == 1) {
