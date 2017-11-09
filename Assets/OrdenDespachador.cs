@@ -24,13 +24,13 @@ public class OrdenDespachador : MonoBehaviour {
 		int cpu = seleccionCPU.getCPU () + 1;
 
 		if (cpu == 1) {
-			planificadorCPU1.GetComponent<PlanificadorSRTF>().crearOrden (tipoPerro);
+			planificadorCPU1.GetComponent<PlanificadorSRTF>().crearProceso (tipoPerro);
 		}
 		if (cpu == 2) {
-			planificadorCPU2.GetComponent<PlanificadorSRTF>().crearOrden (tipoPerro);
+			planificadorCPU2.GetComponent<PlanificadorSRTF>().crearProceso (tipoPerro);
 		}
 		if (cpu == 3) {
-			planificadorCPU3.GetComponent<PlanificadorSRTF>().crearOrden (tipoPerro);
+			planificadorCPU3.GetComponent<PlanificadorSRTF>().crearProceso (tipoPerro);
 		}
 
 	}
@@ -43,13 +43,13 @@ public class OrdenDespachador : MonoBehaviour {
 	void getInput(){
 		//listos
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
-			planificadorCPU1.GetComponent<PlanificadorSRTF> ().crearOrden (1);
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().crearProceso (1);
 		}	
 		if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			planificadorCPU2.GetComponent<PlanificadorSRTF> ().crearOrden (1);
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().crearProceso (1);
 		}
 		if (Input.GetKeyDown (KeyCode.Alpha3)) {
-			planificadorCPU3.GetComponent<PlanificadorSRTF> ().crearOrden (1);
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().crearProceso (1);
 		}
 		// listo a suspendidos
 		if (Input.GetKeyDown (KeyCode.Q)) {

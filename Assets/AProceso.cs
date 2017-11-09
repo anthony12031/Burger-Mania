@@ -1,23 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
-public abstract class AProceso  {
+public abstract class AProceso :MonoBehaviour {
 	public float TTL = 30;
 	public int CPU;
-	public float tiempoEnSuspendido ;//segundos
+	public float tiempoEnSuspendido = 10 ;//segundos
 	public bool haFinalizado = false;
-	planificador planificador;
-	bool enEjecucion = false;
+	IPlanificador planificador;
+	public volatile bool enEjecucion = false;
 
-	public AProceso(planificador plan,int CPU){
+	public AutoResetEvent eventoDeEjecucion;
+	public AutoResetEvent eventoDeSuspendido;
+	public AutoResetEvent eventoDeBloqueado;
+
+
+	public AProceso(IPlanificador plan,int CPU){
 		this.CPU = CPU;
-		tiempoEnSuspendido = plan.tiempoSuspendido;
 		planificador = plan;
 		this.TTL = Random.Range(10,30);
+		eventoDeEjecucion = new AutoResetEvent (false);
+		eventoDeSuspendido  = new AutoResetEvent (false);
+		eventoDeBloqueado  = new AutoResetEvent (false);
 	}
 
-	abstract public void ejecutar (float tiempo);
+	abstract public void ejecutar ();
+
 
 	public void tiempoEnSuspendidoTick(float tiempo){
 		if(tiempoEnSuspendido >0 )

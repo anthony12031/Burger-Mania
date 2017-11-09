@@ -110,7 +110,7 @@ public class planificador : MonoBehaviour,IPlanificador {
 	}
 
 	//crear proceso
-	public void crearOrden(int tipoPerro){
+	public void crearProceso(int tipoPerro){
 		Debug.Log ("crear proceso");
 		GameObject cliente =  controladorPersonajes.agregarPersonaje(tipoPerro,1);
 		Proceso nuevoProceso = new Proceso (cliente,this,tipoPerro,CPU);

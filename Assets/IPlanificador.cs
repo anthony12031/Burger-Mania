@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IPlanificador  {
-	 void crearOrden (int tipoPerro);
+	void crearProceso (int tipoPerro);
 }
