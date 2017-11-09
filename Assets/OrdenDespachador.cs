@@ -72,5 +72,64 @@ public class OrdenDespachador : MonoBehaviour {
 		if (Input.GetKeyDown (KeyCode.D)) {
 			planificadorCPU3.GetComponent<PlanificadorSRTF> ().listoToBloqueado ();
 		}
+
+		// suspendido a listo
+		if (Input.GetKeyDown (KeyCode.R)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().SuspendidoTolisto ();
+		}
+		if (Input.GetKeyDown (KeyCode.T)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().SuspendidoTolisto ();
+		}
+		if (Input.GetKeyDown (KeyCode.Y)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().SuspendidoTolisto ();
+		}
+
+		// bloqueado a listo
+		if (Input.GetKeyDown (KeyCode.F)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().BloqueadoTolisto ();
+		}
+		if (Input.GetKeyDown (KeyCode.G)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().BloqueadoTolisto ();
+		}
+		if (Input.GetKeyDown (KeyCode.H)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().BloqueadoTolisto ();
+		}
+
+
+
+		// listo a procesador
+		if (Input.GetKeyDown (KeyCode.Alpha4)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().listoTOprocesador (1);
+		}
+		if (Input.GetKeyDown (KeyCode.Alpha5)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().listoTOprocesador (2);
+		}
+		if (Input.GetKeyDown (KeyCode.Alpha6)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().listoTOprocesador (3);
+		}
+
+		// procesador a suspendido
+		if (Input.GetKeyDown (KeyCode.I)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().procesadorToSuspendido (1);
+		}
+		if (Input.GetKeyDown (KeyCode.O)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().procesadorToSuspendido (2);
+		}
+		if (Input.GetKeyDown (KeyCode.P)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().procesadorToSuspendido (3);
+		}
+
+		// procesador a bloqueado
+		if (Input.GetKeyDown (KeyCode.J)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().procesadorToBloqueado (1);
+		}
+		if (Input.GetKeyDown (KeyCode.K)) {
+			planificadorCPU2.GetComponent<PlanificadorSRTF> ().procesadorToBloqueado (2);
+		}
+		if (Input.GetKeyDown (KeyCode.L)) {
+			planificadorCPU3.GetComponent<PlanificadorSRTF> ().procesadorToBloqueado (3);
+		}
+
+
 	}
 }

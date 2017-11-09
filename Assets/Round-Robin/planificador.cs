@@ -255,6 +255,8 @@ public class planificador : MonoBehaviour,IPlanificador {
 		myThread.Start();
 	}
 
+
+
 	// Update is called once per frame
 	void Update () {
 

@@ -6,7 +6,7 @@ public class Personaje : MonoBehaviour {
 	public Animator animP1;
 	public Sprite personaje1;
 	public float contador = 0;
-    public float inicial = -2.7f;
+    public float inicial;
     public float salto = 0.6f;
 	public bool esAnimado = true;
     // public int estadoMov = 0;
@@ -34,10 +34,9 @@ public class Personaje : MonoBehaviour {
             animP1.SetInteger("estado", 4);
         }
 
-
-        if (posicion != -1) { 
-        if (System.Math.Abs((inicial + (posicion * salto)) - transform.position.x)>0.1){
-            if((inicial + (posicion * salto)) < transform.position.x){
+		 if (posicion != -1) { 
+        if (System.Math.Abs((inicial - (posicion * salto)) - transform.position.x)>0.02){
+            if((inicial - (posicion * salto)) < transform.position.x){
                 transform.position = new Vector3(transform.position.x - 0.02f, transform.position.y, transform.position.z);
             }else{
                 transform.position = new Vector3(transform.position.x + 0.02f, transform.position.y, transform.position.z);
