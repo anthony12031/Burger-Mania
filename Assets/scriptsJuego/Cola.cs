@@ -40,6 +40,32 @@ public  class Cola<T>{
 	}
 
 
+//	public Cola<int> ordenarCola(Cola<int> cola){
+//		int size = cola.Count();
+//		Cola<int> colaFinal = new Cola<int> ();
+//
+//		int menor;
+//		int contador = 0;
+//
+//		for (int j=0;j<size;j++) {
+//			menor = cola.Dequeue ();
+//			for (int i=0;i< cola.Count();i++) {
+//				int sacar = cola.Dequeue ();
+//				if (menor > sacar) {
+//					cola.Enqueue (menor);
+//					menor = sacar;
+//				} else {
+//					cola.Enqueue (sacar);
+//				}
+//
+//			}
+//			colaFinal.Enqueue (menor);
+//		}
+//
+//		return colaFinal;
+//
+//	}
+
 		
 
 }

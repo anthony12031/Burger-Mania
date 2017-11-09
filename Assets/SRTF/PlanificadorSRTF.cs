@@ -8,7 +8,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 	public delegate void eventoDeHiloDelegate(string tipoEvento);
 
 
-	Cola<ProcesoSRTF> listos;
+	public Cola<ProcesoSRTF> listos;
 	Cola<ProcesoSRTF> suspendidos;
 
 	PersonajeController controladorPersonaje;
@@ -24,6 +24,32 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		listos = new Cola<ProcesoSRTF> ();
 		suspendidos = new Cola<ProcesoSRTF> ();
 		Debug.Log (listos.Count ().GetType ());
+	}
+
+	public Cola<ProcesoSRTF> ordenarCola(Cola<ProcesoSRTF> cola){
+		int size = cola.Count();
+		Cola<ProcesoSRTF> colaFinal = new Cola<ProcesoSRTF> ();
+
+		ProcesoSRTF menor;
+		int contador = 0;
+
+		for (int j=0;j<size;j++) {
+		menor = cola.Dequeue ();
+			for (int i=0;i<cola.Count();i++) {
+			ProcesoSRTF sacar = cola.Dequeue ();
+			if (menor.TTL > sacar.TTL) {
+				cola.Enqueue (menor);
+				menor = sacar;
+			} else {
+				cola.Enqueue (sacar);
+			}
+					
+		}
+		colaFinal.Enqueue (menor);
+		}
+
+		return colaFinal;
+
 	}
 
 	public void crearProceso(int tipoPerro){
