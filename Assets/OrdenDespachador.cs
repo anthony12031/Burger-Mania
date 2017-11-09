@@ -130,6 +130,10 @@ public class OrdenDespachador : MonoBehaviour {
 			planificadorCPU3.GetComponent<PlanificadorSRTF> ().procesadorToBloqueado (3);
 		}
 
+		if (Input.GetKeyDown (KeyCode.M)) {
+			planificadorCPU1.GetComponent<PlanificadorSRTF> ().listos = planificadorCPU1.GetComponent<PlanificadorSRTF> ().ordenarCola (planificadorCPU1.GetComponent<PlanificadorSRTF> ().listos);
+		}
+
 
 	}
 }
