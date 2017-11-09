@@ -6,24 +6,28 @@ using System.Threading;
 public class ProcesoSRTF : AProceso {
 
 	public List<Recursos.Recurso> recursos;
+	public TextMesh textoTTL;
+	public Thread hiloDeEjecucion;
 
 
-	public ProcesoSRTF(IPlanificador plan,int CPU):base(plan,CPU){
+
+	public ProcesoSRTF(IPlanificador plan,int CPU,GameObject ttl):base(plan,CPU){
 		recursos = new List<Recursos.Recurso> ();
+		textoTTL = ttl.transform.GetChild (0).GetComponent<TextMesh> ();
+		textoTTL.text = System.Convert.ToString(TTL);
+		enEjecucion = true;
 	}
 
 
 	public override void ejecutar ()
 	{
-		while (true) {
+		while (enEjecucion) {
 			Debug.Log ("antes de ejecutar");
 			eventoDeEjecucion.WaitOne ();
-			enEjecucion = true;
-			while (enEjecucion) {
 				Thread.Sleep (1000);
 				Debug.Log ("ejecutando");
 			}
-		}
+
 
 	}
 

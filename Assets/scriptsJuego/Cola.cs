@@ -20,8 +20,8 @@ public  class Cola<T>{
 	public T Dequeue(){
 			T x;
 			nodo<T> aux = cab;
-			cab = aux.sig;
 			x = aux.dato;
+			cab = aux.sig;
 			return x;
 	}
 

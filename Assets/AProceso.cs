@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 
-public abstract class AProceso :MonoBehaviour {
+public abstract class AProceso  {
 	public float TTL = 30;
 	public int CPU;
-	public float tiempoEnSuspendido = 10 ;//segundos
+	public float tiempoEnSuspendido = 5 ;//segundos
 	public bool haFinalizado = false;
 	IPlanificador planificador;
 	public volatile bool enEjecucion = false;
@@ -19,7 +19,7 @@ public abstract class AProceso :MonoBehaviour {
 	public AProceso(IPlanificador plan,int CPU){
 		this.CPU = CPU;
 		planificador = plan;
-		this.TTL = Random.Range(10,30);
+		this.TTL = Random.Range(3,7);
 		eventoDeEjecucion = new AutoResetEvent (false);
 		eventoDeSuspendido  = new AutoResetEvent (false);
 		eventoDeBloqueado  = new AutoResetEvent (false);

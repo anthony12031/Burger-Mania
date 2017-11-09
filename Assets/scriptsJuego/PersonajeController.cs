@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PersonajeController : MonoBehaviour {
+
+	public GameObject TTL;
     public GameObject personajeBase;
     public GameObject nuevoPersonaje;
     public GameObject personaje1;
@@ -151,6 +153,10 @@ public class PersonajeController : MonoBehaviour {
         nuevoPersonaje.GetComponent<Personaje>().posicion = -1;
         ColaClientes.Enqueue(nuevoPersonaje);
 
+		GameObject ttl = Instantiate (TTL, Vector2.zero, Quaternion.identity);
+		ttl.transform.parent = nuevoPersonaje.transform;
+		ttl.transform.localPosition = new Vector2 (1, 0);
+
         nuevoPerro = Instantiate(perroBase, new Vector3(inicial + (6 * salto), 1f, 0), Quaternion.identity) as GameObject;
         nuevoPerro.GetComponent <Perros> ().posicion = -1;
       //  ColaPerros.Enqueue(nuevoPerro);
@@ -161,7 +167,7 @@ public class PersonajeController : MonoBehaviour {
 		nuevoPersonaje.transform.localScale = escalaEnFilaPJ;
 		nuevoPerro.transform.localScale = escalaEnFilaPJ*2;
 
-        return nuevoPersonaje;
+		return ttl;
     }
 		
 
