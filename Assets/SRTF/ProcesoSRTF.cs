@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 public class ProcesoSRTF : AProceso {
 
@@ -19,6 +20,7 @@ public class ProcesoSRTF : AProceso {
 			eventoDeEjecucion.WaitOne ();
 			enEjecucion = true;
 			while (enEjecucion) {
+				Thread.Sleep (1000);
 				Debug.Log ("ejecutando");
 			}
 		}

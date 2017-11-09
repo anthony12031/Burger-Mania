@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public unsafe class Cola<T>{
+public  class Cola<T>{
 	nodo<T> cab,fin;
 
 
@@ -44,7 +44,7 @@ public unsafe class Cola<T>{
 
 }
 
-public unsafe class nodo <T> {  
+public  class nodo <T> {  
 	public T  dato;
 	public nodo<T> sig;
 }  
