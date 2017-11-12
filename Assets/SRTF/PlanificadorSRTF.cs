@@ -9,7 +9,8 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 
 	public Cola<ProcesoSRTF> listos;
-	Cola<ProcesoSRTF> suspendidos;
+	public Cola<ProcesoSRTF> suspendidos;
+	public Cola<ProcesoSRTF> bloqueados;
 
 
 	PersonajeController controladorPersonaje;
@@ -24,7 +25,8 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		controladorPersonaje = GetComponent<PersonajeController> ();
 		listos = new Cola<ProcesoSRTF> ();
 		suspendidos = new Cola<ProcesoSRTF> ();
-		controladorPersonaje.ColaClientes = listos;
+		bloqueados = new Cola<ProcesoSRTF> ();
+		//controladorPersonaje.ColaClientes = listos;
 	}
 
 	public Cola<ProcesoSRTF> ordenarCola(Cola<ProcesoSRTF> cola){
