@@ -10,11 +10,10 @@ public class ProcesoSRTF : AProceso {
 	public Thread hiloDeEjecucion;
 	public GameObject representacion;
 
-
-
-	public ProcesoSRTF(IPlanificador plan,int CPU,GameObject ttl,GameObject rep):base(plan,CPU){
+	public ProcesoSRTF(IPlanificador plan,int CPU,GameObject rep):base(plan,CPU){
 		recursos = new List<Recursos.Recurso> ();
-		textoTTL = ttl.transform.GetChild (0).GetComponent<TextMesh> ();
+		textoTTL = rep.transform.GetChild (0).GetComponent<TextMesh> ();
+
 		textoTTL.text = System.Convert.ToString(TTL);
 		enEjecucion = true;
 		representacion = rep;
@@ -24,7 +23,7 @@ public class ProcesoSRTF : AProceso {
 	public override void ejecutar ()
 	{
 		while (enEjecucion) {
-			Debug.Log ("antes de ejecutar");
+		//	Debug.Log ("antes de ejecutar");
 			eventoDeEjecucion.WaitOne ();
 				Thread.Sleep (1000);
 				Debug.Log ("ejecutando");

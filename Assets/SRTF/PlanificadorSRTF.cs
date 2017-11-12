@@ -57,14 +57,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 	public void crearProceso(int tipoPerro){
 		GameObject representacion = controladorPersonaje.agregarPersonaje (tipoPerro, CPU);
-		GameObject TTL = null;
-		foreach (Transform tr in representacion.transform) {
-			if (tr.tag == "ttl") {
-				TTL = tr.gameObject;
-				break;
-			}
-		}
-		ProcesoSRTF nuevoProceso = new ProcesoSRTF (this, CPU,TTL,representacion);
+		ProcesoSRTF nuevoProceso = new ProcesoSRTF (this, CPU,representacion);
 		listos.Enqueue (nuevoProceso);	
 		Thread hiloProceso = new Thread (new ThreadStart (nuevoProceso.ejecutar));
 		hiloProceso.Start ();
@@ -159,7 +152,6 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 		}
 		suspendidos = susTemp;
-
 
 	}
 		
