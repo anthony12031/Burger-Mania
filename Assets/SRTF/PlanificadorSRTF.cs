@@ -13,7 +13,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 	public Cola<ProcesoSRTF> bloqueados;
 
 
-	PersonajeController controladorPersonaje;
+	nuevoPersonajeController controladorPersonaje;
 	public int CPU;
 
 	public void eventoDeHilo(string evento){
@@ -22,7 +22,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 	// Use this for initialization
 	void Start () {
-		controladorPersonaje = GetComponent<PersonajeController> ();
+		controladorPersonaje = GetComponent<nuevoPersonajeController> ();
 		listos = new Cola<ProcesoSRTF> ();
 		suspendidos = new Cola<ProcesoSRTF> ();
 		bloqueados = new Cola<ProcesoSRTF> ();
@@ -92,7 +92,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		if (recursosLibres) {
 			//procesoAejecutar.eventoDeEjecucion.Set ();
 			procesoEnEjecucion = procesoAejecutar;
-			listoTOprocesador (CPU);
+			controladorPersonaje.listoToProcesador (CPU, procesoEnEjecucion.representacion);
 		} 
 		//sino pasarlo a bloqueado hasta que se libere el recurso
 		else {
@@ -112,7 +112,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 	// Update is called once per frame
 	void Update () {
 		//organizar cola de listos
-		//listos = ordenarCola(listos);
+		listos = ordenarCola(listos);
 		controladorPersonaje.updateVistaColas (CPU);
 		//Debug.Log (procesoEnEjecucion);
 		if (procesoEnEjecucion == null) {
@@ -122,7 +122,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 			}
 		} 
 		//hay un proceso en ejecucion comparar su TTL con el siguiente proceso
-		else {
+		/*else {
 			procesoEnEjecucion.TTL -= Time.deltaTime;
 			procesoEnEjecucion.textoTTL.text = System.Convert.ToString(procesoEnEjecucion.TTL);
 			if (procesoEnEjecucion.TTL <= 0) {
@@ -152,35 +152,35 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 		}
 		suspendidos = susTemp;
-
+*/
 	}
 		
 	public void listoToSuspendido(){
-		controladorPersonaje.listoToSuspendido (CPU);
+		//controladorPersonaje.listoToSuspendido (CPU);
 	}
 
 	public void listoToBloqueado(){
-		controladorPersonaje.listoToBloqueado (CPU);
+		//controladorPersonaje.listoToBloqueado (CPU);
 	}
 
 	public void SuspendidoTolisto(){
-		controladorPersonaje.suspendidoTOlisto (CPU);
+		//controladorPersonaje.suspendidoTOlisto (CPU);
 	}
 
 	public void BloqueadoTolisto(){
-		controladorPersonaje.bloqueadoToListo ();
+		//controladorPersonaje.bloqueadoToListo ();
 	}
 
 	public void listoTOprocesador(int CPU){
-		controladorPersonaje.listoToProcesador (CPU);
+		//controladorPersonaje.listoToProcesador (CPU);
 	}
 
 	public void procesadorToSuspendido(int CPU){
-		controladorPersonaje.procesadorToSuspendido (CPU);
+		//controladorPersonaje.procesadorToSuspendido (CPU);
 	}
 
 	public void procesadorToBloqueado(int CPU){
-		controladorPersonaje.procesadorToBloqueado (CPU);
+		//controladorPersonaje.procesadorToBloqueado (CPU);
 	}
 
 

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4957959129923224}
   - component: {fileID: 114255345268478522}
   - component: {fileID: 114821439993168440}
+  - component: {fileID: 114467950967036592}
   m_Layer: 0
   m_Name: planificadorSRTF-CPU1
   m_TagString: Untagged
@@ -28,6 +29,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1731187696727070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4428172454159704}
+  m_Layer: 0
+  m_Name: posAtendido
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4428172454159704
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1731187696727070}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.13633731, y: -0.5247928, z: 0.052734375}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4957959129923224}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4957959129923224
 Transform:
   m_ObjectHideFlags: 1
@@ -37,7 +66,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.056337312, y: 0.2047928, z: -0.052734375}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4428172454159704}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53,6 +83,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CPU: 1
+--- !u!114 &114467950967036592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1143301478744192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52ece497edc2eca498b97590adb2f0fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TTL: {fileID: 1283332712621510, guid: 3ae432693b6d1cb47b433dc064874181, type: 2}
+  personajeBase: {fileID: 0}
+  nuevoPersonaje: {fileID: 0}
+  personaje1: {fileID: 1014798297266932, guid: 521e22d166c19e240a5d1a7bc1c5b741, type: 2}
+  personaje2: {fileID: 1992404089210938, guid: 7617d93ae31f1134dab4ac89988d615d, type: 2}
+  personaje3: {fileID: 1412279078554092, guid: 8788af30e93b3aa4e9a5a974d4f7e8a5, type: 2}
+  personajeA: {fileID: 1332812115314268, guid: 20ce2719ba56fab46a7f0cd50c5ef37b, type: 2}
+  personajeB: {fileID: 1767908691002022, guid: 9ffa737b6ed21354587df8f273c28a6f, type: 2}
+  personajeC: {fileID: 1989965042493876, guid: e34d4b9f807bd0f4cb460f12d6b5ffa5, type: 2}
+  personajeD: {fileID: 1146477194381204, guid: eedbe517680268947ad0541410cc959b, type: 2}
+  personajeE: {fileID: 1470780344716212, guid: b9168dceaca2cd4459ba3fb570c5884a, type: 2}
+  nuevoPerro: {fileID: 0}
+  perroBase: {fileID: 0}
+  perroT1: {fileID: 1914310236699034, guid: 4b80e02b3ef817347ad1f3aa546be192, type: 2}
+  perroConTomate: {fileID: 1431723033867006, guid: 76f098fb91533f44eade2f8d24ee8cbd,
+    type: 2}
+  perroConMostaza: {fileID: 1636914510047416, guid: 41839214396035b4aadd6d0eb901b530,
+    type: 2}
+  perroT4: {fileID: 1889541067746290, guid: 0365f72f378047f44a3ea5b911abd4b8, type: 2}
+  perroCrudo1: {fileID: 1275209428092030, guid: 9880087fe969b984394a0c86e06e7df1,
+    type: 2}
+  perroCrudo2: {fileID: 0}
+  perroCrudo3: {fileID: 0}
+  perroCrudo4: {fileID: 0}
+  procesadorPR: {fileID: 0}
+  procesadorPJ: {fileID: 0}
+  escalaEnFilaPJ: {x: 0, y: 0, z: 0}
+  posListoCPU1: {x: 0, y: 0, z: 0}
+  posListoCPU2: {x: 0, y: 0, z: 0}
+  posListoCPU3: {x: 0, y: 0, z: 0}
+  transPosListoCPU1: {fileID: 0}
+  transPosListoCPU2: {fileID: 0}
+  transPosListoCPU3: {fileID: 0}
+  transPosBloqueadoCPU1: {fileID: 0}
+  transPosBloqueadoCPU2: {fileID: 0}
+  transPosBloqueadoCPU3: {fileID: 0}
+  transPosSuspendidoCPU1: {fileID: 0}
+  transPosSuspendidoCPU2: {fileID: 0}
+  transPosSuspendidoCPU3: {fileID: 0}
+  factorDivision: 3
+  inicial: 0.4
+  salto: 5
+  estado: 0
+  PJlista: 1
 --- !u!114 &114821439993168440
 MonoBehaviour:
   m_ObjectHideFlags: 1
