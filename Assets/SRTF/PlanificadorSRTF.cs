@@ -102,11 +102,11 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 	void terminarProceso(){
 		procesoEnEjecucion.enEjecucion = false;
-		controladorPersonaje.terminarProcesoActual ();
+		controladorPersonaje.terminarProcesoActual (procesoEnEjecucion.representacion);
 		procesoEnEjecucion = null;
 		//liberar recursos
 	}
-
+		
 	ProcesoSRTF procesoEnEjecucion;
 
 	// Update is called once per frame
@@ -122,7 +122,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 			}
 		} 
 		//hay un proceso en ejecucion comparar su TTL con el siguiente proceso
-		/*else {
+		else {
 			procesoEnEjecucion.TTL -= Time.deltaTime;
 			procesoEnEjecucion.textoTTL.text = System.Convert.ToString(procesoEnEjecucion.TTL);
 			if (procesoEnEjecucion.TTL <= 0) {
@@ -133,7 +133,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 			if (listos.Count()>0 && procesoEnEjecucion != null) {
 				if (procesoEnEjecucion.TTL > listos.Peek ().TTL) {
 					suspendidos.Enqueue (procesoEnEjecucion);
-					procesadorToSuspendido (CPU);
+					controladorPersonaje.procesadorToSuspendido (CPU,procesoEnEjecucion.representacion);
 					procesoEnEjecucion = null;
 				}
 			}
@@ -145,14 +145,13 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 			pr.tiempoEnSuspendido -= Time.deltaTime;
 			if (pr.tiempoEnSuspendido <= 0) {
 				listos.Enqueue (pr);
-				controladorPersonaje.suspendidoTOlisto (CPU);
+				controladorPersonaje.suspendidoTOlisto (CPU,pr.representacion);
 			} else {
 				susTemp.Enqueue (pr);
 			}
 
 		}
 		suspendidos = susTemp;
-*/
 	}
 		
 	public void listoToSuspendido(){
