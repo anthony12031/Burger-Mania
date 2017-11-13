@@ -52,7 +52,10 @@ public class PanControlador : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
+		GameObject panEnMeson = GameObject.FindWithTag ("panPerroEnProcesador");
+		if (panEnMeson == null) {
+			posParrilla1.libre = true;
+		}
 	}
 
 	void OnMouseDown(){

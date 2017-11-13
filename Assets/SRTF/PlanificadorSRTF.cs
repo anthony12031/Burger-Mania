@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
+using UnityEngine.UI;
 
 public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 	public delegate void eventoDeHiloDelegate(string tipoEvento);
 
-
+	public float tiempoSpawn;
+	public float tiempoTranscurrido;
 	public Cola<ProcesoSRTF> listos;
 	public Cola<ProcesoSRTF> suspendidos;
 	public Cola<ProcesoSRTF> bloqueados;
+
+	public Text totalCPU;
+	float totalCPUFloat = 0;
 
 
 	nuevoPersonajeController controladorPersonaje;
@@ -101,7 +106,49 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		controladorPersonaje.terminarProcesoActual (procesoEnEjecucion.representacion);
 		procesoEnEjecucion.recurso.libre = true;
 		procesoEnEjecucion = null;
+		if (CPU == 2 || CPU == 3) {
+			totalCPUFloat += 1;
+		}
 		//liberar recursos
+	}
+
+	public bool tieneSalsa(string tipoSalsa,string tagSalsa,Transform parent){
+		bool tieneSalsa= false;
+		if (parent.childCount > 1) {
+			foreach (Transform child in parent.GetChild(1)) {
+				if (child.CompareTag (tagSalsa)) {
+					tieneSalsa = true;
+					break;
+				}
+			}
+		}
+		return tieneSalsa;
+	}
+
+	public void terminarProcesoManual(){
+		if (procesoEnEjecucion != null) {
+			Transform parent = procesoEnEjecucion.representacion.transform.parent;
+
+			if (parent != null) {
+				if (procesoEnEjecucion.recurso.nombre == "salsaTomate") {
+					//verificar si tiene tomate
+					bool tieneTomate = tieneSalsa("salsaTomate","salsaTomate",parent);
+					bool tieneMostaza = tieneSalsa ("mostaza", "salsaMostaza", parent);
+					if (tieneTomate && !tieneMostaza) {
+						totalCPUFloat += 1;
+					} 
+				}
+				if (procesoEnEjecucion.recurso.nombre == "mostaza") {
+					//verificar si tiene tomate
+					bool tieneTomate = tieneSalsa("salsaTomate","salsaTomate",parent);
+					bool tieneMostaza = tieneSalsa ("mostaza", "salsaMostaza", parent);
+					if (tieneMostaza && !tieneTomate) {
+						totalCPUFloat += 1;
+					}
+				}
+			}
+			terminarProceso ();
+		}
 	}
 		
 	ProcesoSRTF procesoEnEjecucion;
@@ -162,6 +209,21 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 			}
 		}
 		bloqueados = bloTemp;
+
+		//actualizar total entregas
+		totalCPU.text = System.Convert.ToString(totalCPUFloat);
+
+		//crear procesos
+
+		tiempoTranscurrido += Time.deltaTime;
+		if (tiempoTranscurrido >= tiempoSpawn) {
+			if (CPU == 2 || CPU == 3) {
+				crearProceso (Random.Range (1, 2), Random.Range (3, 10));
+				tiempoTranscurrido = 0;
+			}
+		}
+
+
 	}
 		
 	public void listoToSuspendido(){

@@ -62,7 +62,7 @@ public class SalchichaControlador : MonoBehaviour {
 		//PosicionParrilla posLibre = getSigPosLibre();
 		//if (posLibre != null) {
 	
-		GameObject nuevaSalchicha = Instantiate (salchicha, posParrilla1.v3Pos, Quaternion.identity).gameObject;
+		//GameObject nuevaSalchicha = Instantiate (salchicha, posParrilla1.v3Pos, Quaternion.identity).gameObject;
 			//nuevaSalchicha.GetComponent<DragSalchicha> ().posicionEnParrilla = posLibre;
 			//posLibre.libre = false;
 		//}
