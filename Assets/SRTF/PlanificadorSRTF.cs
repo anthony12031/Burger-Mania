@@ -55,9 +55,9 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 	}
 
-	public void crearProceso(int tipoPerro){
+	public void crearProceso(int tipoPerro,float tiempoProceso){
 		GameObject representacion = controladorPersonaje.agregarPersonaje (tipoPerro, CPU);
-		ProcesoSRTF nuevoProceso = new ProcesoSRTF (this, CPU,representacion);
+		ProcesoSRTF nuevoProceso = new ProcesoSRTF (this, CPU,representacion,tiempoProceso);
 		listos.Enqueue (nuevoProceso);	
 		Thread hiloProceso = new Thread (new ThreadStart (nuevoProceso.ejecutar));
 		hiloProceso.Start ();

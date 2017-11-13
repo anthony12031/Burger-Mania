@@ -10,7 +10,7 @@ public class ProcesoSRTF : AProceso {
 	public Thread hiloDeEjecucion;
 	public GameObject representacion;
 
-	public ProcesoSRTF(IPlanificador plan,int CPU,GameObject rep):base(plan,CPU){
+	public ProcesoSRTF(IPlanificador plan,int CPU,GameObject rep,float t):base(plan,CPU,t){
 		recursos = new List<Recursos.Recurso> ();
 		textoTTL = rep.transform.GetChild (0).GetChild(0).GetComponent<TextMesh> ();
 		textoTTL.text = System.Convert.ToString(TTL);

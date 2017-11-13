@@ -16,10 +16,13 @@ public abstract class AProceso  {
 	public AutoResetEvent eventoDeBloqueado;
 
 
-	public AProceso(IPlanificador plan,int CPU){
+	public AProceso(IPlanificador plan,int CPU,float t){
 		this.CPU = CPU;
 		planificador = plan;
-		this.TTL = Random.Range(3,7);
+		if (t < 0)
+			this.TTL = Random.Range (3, 7);
+		else
+			this.TTL = t;
 		eventoDeEjecucion = new AutoResetEvent (false);
 		eventoDeSuspendido  = new AutoResetEvent (false);
 		eventoDeBloqueado  = new AutoResetEvent (false);
