@@ -8,6 +8,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 	public delegate void eventoDeHiloDelegate(string tipoEvento);
 
+	public ProcesoSRTF procesoEnEjecucion;
 	public float tiempoSpawn;
 	public float tiempoTranscurrido;
 	public Cola<ProcesoSRTF> listos;
@@ -15,7 +16,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 	public Cola<ProcesoSRTF> bloqueados;
 
 	public Text totalCPU;
-	float totalCPUFloat = 0;
+	public float totalCPUFloat = 0;
 
 
 	nuevoPersonajeController controladorPersonaje;
@@ -82,7 +83,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		
 	}
 
-	void ejecutarSiguienteProceso(){
+	public void ejecutarSiguienteProceso(){
 		Debug.Log ("ejecutando sig proceso");
 		ProcesoSRTF procesoAejecutar = listos.Dequeue ();
 		//verificar que los recursos esten libres
@@ -151,22 +152,18 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		}
 	}
 		
-	ProcesoSRTF procesoEnEjecucion;
 
-	// Update is called once per frame
-	void Update () {
-		//organizar cola de listos
-		listos = ordenarCola(listos);
-		controladorPersonaje.updateVistaColas (CPU);
+
+	public void planificar(){
 		//Debug.Log (procesoEnEjecucion);
-		if (procesoEnEjecucion == null) {
+		/*if (procesoEnEjecucion == null) {
 			//si hay procesos ejecutarl el siguiente
 			if (listos.Count()  > 0) {
 				ejecutarSiguienteProceso ();
 			}
-		} 
+		} */
 		//hay un proceso en ejecucion comparar su TTL con el siguiente proceso
-		else {
+		if(procesoEnEjecucion != null) {
 			procesoEnEjecucion.TTL -= Time.deltaTime;
 			procesoEnEjecucion.textoTTL.text = System.Convert.ToString(procesoEnEjecucion.TTL);
 			if (procesoEnEjecucion.TTL <= 0) {
@@ -216,14 +213,29 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		//crear procesos
 
 		tiempoTranscurrido += Time.deltaTime;
-		if (tiempoTranscurrido >= tiempoSpawn) {
-			if (CPU == 2 || CPU == 3) {
-				crearProceso (Random.Range (1, 2), Random.Range (3, 10));
+		if (tiempoTranscurrido >= tiempoSpawn) { 
+			int totalprs = bloqueados.Count () + suspendidos.Count () + bloqueados.Count ();
+			Debug.Log ("prs: "+totalprs);
+			if (totalprs <= 3) {
+				int tipoPerro = 1;
+				if (CPU == 1)
+					tipoPerro = 1;
+				else {
+					tipoPerro = 2;
+				}
+				crearProceso (tipoPerro, Random.Range (3, 8));
 				tiempoTranscurrido = 0;
 			}
 		}
 
+	}
 
+	// Update is called once per frame
+	void Update () {
+		//organizar cola de listos
+		listos = ordenarCola(listos);
+		controladorPersonaje.updateVistaColas (CPU);
+		planificar ();
 	}
 		
 	public void listoToSuspendido(){

@@ -19,7 +19,7 @@ public abstract class AProceso  {
 	public AProceso(IPlanificador plan,int CPU,float t){
 		this.CPU = CPU;
 		planificador = plan;
-		if (t < 0)
+		if (t <= 0)
 			this.TTL = Random.Range (3, 7);
 		else
 			this.TTL = t;

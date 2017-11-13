@@ -6838,6 +6838,11 @@ Prefab:
       propertyPath: totalCPU
       value: 
       objectReference: {fileID: 1300555141}
+    - target: {fileID: 114255345268478522, guid: e0acb3069c409a245b92d5866f448872,
+        type: 2}
+      propertyPath: tiempoSpawn
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114821439993168440, guid: e0acb3069c409a245b92d5866f448872, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e0acb3069c409a245b92d5866f448872, type: 2}

@@ -48,6 +48,42 @@ public class OrdenDespachador : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		getInput ();
+
+
+		if (planificadorCPU1.GetComponent<PlanificadorSRTF> ().procesoEnEjecucion == null) {
+			//si hay procesos ejecutarl el siguiente
+			if (planificadorCPU1.GetComponent<PlanificadorSRTF> ().listos.Count () > 0) {
+				planificadorCPU1.GetComponent<PlanificadorSRTF> ().ejecutarSiguienteProceso ();
+			}
+		}
+
+		float prCPU2 = planificadorCPU2.GetComponent<PlanificadorSRTF> ().totalCPUFloat;
+		float prCPU3 = planificadorCPU3.GetComponent<PlanificadorSRTF> ().totalCPUFloat;
+
+		if (prCPU2 > prCPU3) {
+			if (planificadorCPU3.GetComponent<PlanificadorSRTF> ().procesoEnEjecucion == null) {
+				//si hay procesos ejecutarl el siguiente
+				if ( planificadorCPU3.GetComponent<PlanificadorSRTF> ().listos.Count()  > 0) {
+					planificadorCPU3.GetComponent<PlanificadorSRTF> ().ejecutarSiguienteProceso ();
+				}
+			} 
+		}
+		if (prCPU2 < prCPU3) {
+			if (planificadorCPU2.GetComponent<PlanificadorSRTF> ().procesoEnEjecucion == null) {
+				//si hay procesos ejecutarl el siguiente
+				if (planificadorCPU2.GetComponent<PlanificadorSRTF> ().listos.Count () > 0) {
+					planificadorCPU2.GetComponent<PlanificadorSRTF> ().ejecutarSiguienteProceso ();
+				}
+			} 
+		} else {
+			if (planificadorCPU2.GetComponent<PlanificadorSRTF> ().procesoEnEjecucion == null) {
+				//si hay procesos ejecutarl el siguiente
+				if (planificadorCPU2.GetComponent<PlanificadorSRTF> ().listos.Count () > 0) {
+					planificadorCPU2.GetComponent<PlanificadorSRTF> ().ejecutarSiguienteProceso ();
+				}
+			}
+		} 
+
 	}
 
 	void getInput(){
