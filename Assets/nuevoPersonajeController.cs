@@ -186,9 +186,8 @@ public class nuevoPersonajeController : MonoBehaviour {
 	}
 
 
-	public void listoToBloqueado(int cpu)
+	public void listoToBloqueado(int cpu,GameObject cliente)
 	{
-		if(ColaClientes.Count>0){
 			Vector2 pos = Vector2.zero;
 			if (cpu == 1) {
 				pos = posBloqueadoCPU1;
@@ -200,10 +199,8 @@ public class nuevoPersonajeController : MonoBehaviour {
 			if (cpu == 3) {
 				pos = posBloqueadoCPU3;
 			}
-
-			sizeBLO = ColaBloqueadoPJ.Count;
-			GameObject cliente = ColaClientes.Dequeue ();
-
+			sizeBLO = GetComponent<PlanificadorSRTF>().bloqueados.Count();
+			//GameObject cliente = ColaClientes.Dequeue ();
 			if (cliente.transform.parent != null) {
 				pos [0] = pos [0] - 0.6f;
 				cliente.transform.parent.position = pos;
@@ -216,12 +213,7 @@ public class nuevoPersonajeController : MonoBehaviour {
 				cliente.GetComponent<Personaje> ().posicion = sizeBLO;
 				cliente.GetComponent<Personaje> ().salto = 0.2f;
 				//cliente.GetComponent<Personaje> ().inicial = -2.22f;
-
-
-
 			}
-			ColaBloqueadoPJ.Enqueue(cliente);   
-		}
 	}
 
 
@@ -439,6 +431,7 @@ public class nuevoPersonajeController : MonoBehaviour {
 		for (int i = 0; i < listos.Count(); i++) {
 			ProcesoSRTF pr = listos.Dequeue ();
 			GameObject cliente = pr.representacion;
+			cliente.transform.localScale = escalaEnFilaPJ;
 			float posX=0;
 			float posY=0;
 			if (cpu == 1) {

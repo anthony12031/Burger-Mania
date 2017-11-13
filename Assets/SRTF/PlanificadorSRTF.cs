@@ -65,11 +65,11 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 		//necesita tomate
 		if (tipoPerro == 1) {
-			nuevoProceso.recursos.Add (Recursos.lista ["salsaTomate"]);
+			nuevoProceso.recurso = Recursos.lista ["salsaTomate"];
 		}
 		//necesita mostaza
 		if (tipoPerro == 2) {
-			nuevoProceso.recursos.Add (Recursos.lista ["mostaza"]);
+			nuevoProceso.recurso = Recursos.lista ["mostaza"];
 		}
 	}
 
@@ -81,28 +81,25 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		Debug.Log ("ejecutando sig proceso");
 		ProcesoSRTF procesoAejecutar = listos.Dequeue ();
 		//verificar que los recursos esten libres
-		bool recursosLibres = true;
-		foreach(Recursos.Recurso recurso in procesoAejecutar.recursos){
-			if (!recurso.libre) {
-				recursosLibres = false;
-				break;
-			}
-		}
 		//si los recursos estan libres ejecutar y bloquear los recursos que usa
-		if (recursosLibres) {
+		if (procesoAejecutar.recurso.libre) {
 			//procesoAejecutar.eventoDeEjecucion.Set ();
 			procesoEnEjecucion = procesoAejecutar;
 			controladorPersonaje.listoToProcesador (CPU, procesoEnEjecucion.representacion);
+			procesoAejecutar.recurso.libre = false;
 		} 
 		//sino pasarlo a bloqueado hasta que se libere el recurso
 		else {
 			Debug.Log("recurso en uso");
+			bloqueados.Enqueue (procesoAejecutar);
+			controladorPersonaje.listoToBloqueado (CPU, procesoAejecutar.representacion);
 		}
 	}
 
 	void terminarProceso(){
 		procesoEnEjecucion.enEjecucion = false;
 		controladorPersonaje.terminarProcesoActual (procesoEnEjecucion.representacion);
+		procesoEnEjecucion.recurso.libre = true;
 		procesoEnEjecucion = null;
 		//liberar recursos
 	}
@@ -134,6 +131,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 				if (procesoEnEjecucion.TTL > listos.Peek ().TTL) {
 					suspendidos.Enqueue (procesoEnEjecucion);
 					controladorPersonaje.procesadorToSuspendido (CPU,procesoEnEjecucion.representacion);
+					procesoEnEjecucion.recurso.libre = true;
 					procesoEnEjecucion = null;
 				}
 			}
@@ -152,6 +150,18 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 		}
 		suspendidos = susTemp;
+
+		//actualizar bloqueados
+		Cola<ProcesoSRTF> bloTemp = new Cola<ProcesoSRTF>();
+		while(bloqueados.Count()>0){
+			ProcesoSRTF pr = bloqueados.Dequeue ();
+			if (pr.recurso.libre) {
+				listos.Enqueue (pr);
+			} else {
+				bloTemp.Enqueue (pr);
+			}
+		}
+		bloqueados = bloTemp;
 	}
 		
 	public void listoToSuspendido(){

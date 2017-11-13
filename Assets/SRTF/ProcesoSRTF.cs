@@ -5,13 +5,13 @@ using System.Threading;
 
 public class ProcesoSRTF : AProceso {
 
-	public List<Recursos.Recurso> recursos;
+	public Recursos.Recurso recurso;
 	public TextMesh textoTTL;
 	public Thread hiloDeEjecucion;
 	public GameObject representacion;
 
 	public ProcesoSRTF(IPlanificador plan,int CPU,GameObject rep,float t):base(plan,CPU,t){
-		recursos = new List<Recursos.Recurso> ();
+		//recursos = new List<Recursos.Recurso> ();
 		textoTTL = rep.transform.GetChild (0).GetChild(0).GetComponent<TextMesh> ();
 		textoTTL.text = System.Convert.ToString(TTL);
 		enEjecucion = true;
