@@ -29,7 +29,7 @@ public class OrdenDespachador : MonoBehaviour {
 	}
 
 	public void crearOrden(){
-		Debug.Log ("crear orden");
+		//Debug.Log ("crear orden");
 		int tipoPerro = seleccionPerro.getTipoPerro ()+1;
 		int cpu = seleccionCPU.getCPU () + 1;
 

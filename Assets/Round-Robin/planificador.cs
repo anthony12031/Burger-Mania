@@ -112,7 +112,7 @@ public class planificador : MonoBehaviour {
 	//crear proceso
 	public void crearProceso(int tipoPerro){
 		Debug.Log ("crear proceso");
-		GameObject cliente =  controladorPersonajes.agregarPersonaje(tipoPerro,1);
+		GameObject cliente =  controladorPersonajes.agregarPersonaje(tipoPerro,1,1);
 		Proceso nuevoProceso = new Proceso (cliente,this,tipoPerro,CPU);
 		listos.Enqueue (nuevoProceso);
 	}

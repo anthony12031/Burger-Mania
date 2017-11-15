@@ -112,7 +112,7 @@ public class PersonajeController : MonoBehaviour {
 
 	}
 
-	public GameObject agregarPersonaje(int orden,int cpu){
+	public GameObject agregarPersonaje(int orden,int cpu, int id){
 
 		if (PJlista > 8)
 		{
@@ -161,6 +161,7 @@ public class PersonajeController : MonoBehaviour {
 
 		nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
 		nuevoPersonaje.GetComponent<Personaje>().posicion = -1;
+		nuevoPersonaje.GetComponent<Personaje>().id = id;
 		ColaClientes.Enqueue(nuevoPersonaje);
 
 		GameObject ttl = Instantiate (TTL, Vector2.zero, Quaternion.identity);

@@ -110,7 +110,7 @@ public class nuevoPersonajeController : MonoBehaviour {
 
 	}
 
-	public GameObject agregarPersonaje(int orden,int cpu){
+	public GameObject agregarPersonaje(int orden,int cpu, int id){
 
 		if (PJlista > 8)
 		{
@@ -159,7 +159,8 @@ public class nuevoPersonajeController : MonoBehaviour {
 
 		nuevoPersonaje = Instantiate(personajeBase, new Vector3(inicial + (6 * salto), 0.9f, 0), Quaternion.identity) as GameObject;
 		nuevoPersonaje.GetComponent<Personaje>().posicion = -1;
-
+		nuevoPersonaje.GetComponent<Personaje>().id = id;
+		nuevoPersonaje.GetComponent<Personaje>().cpu = cpu;
 		GameObject ttl = Instantiate (TTL, Vector2.zero, Quaternion.identity);
 		ttl.transform.parent = nuevoPersonaje.transform;
 		ttl.transform.localPosition = new Vector2 (0.8f, 0);
@@ -212,6 +213,7 @@ public class nuevoPersonajeController : MonoBehaviour {
 				cliente.transform.localScale = new Vector3 (0.3f,0.3f,0.3f);
 				cliente.GetComponent<Personaje> ().posicion = sizeBLO;
 				cliente.GetComponent<Personaje> ().salto = 0.2f;
+				cliente.GetComponent<Personaje> ().estado= 2;
 				//cliente.GetComponent<Personaje> ().inicial = -2.22f;
 			}
 	}
@@ -226,7 +228,8 @@ public class nuevoPersonajeController : MonoBehaviour {
 				pos = SalchichaControlador.posParrilla2.v3Pos;
 			if (cpu == 3)
 				pos = SalchichaControlador.posParrilla3.v3Pos;
-		
+
+			cliente.GetComponent<Personaje> ().estado = 1;
 			if (cliente.transform.parent == null) {
 				GameObject salchicha = perroCrudo1;
 				GameObject nuevaSalchicha = Instantiate (salchicha, pos, Quaternion.identity) as GameObject;       
@@ -275,6 +278,7 @@ public class nuevoPersonajeController : MonoBehaviour {
 				cliente.GetComponent<Personaje> ().posicion = sizeSUS;
 				cliente.GetComponent<Personaje> ().salto = 0.2f;
 			}
+			cliente.GetComponent<Personaje> ().estado = 3;
 			ColaSuspendidosPJ.Enqueue (cliente);   
 		}
 	}
@@ -284,12 +288,14 @@ public class nuevoPersonajeController : MonoBehaviour {
 	{
 		GameObject sacado = ColaBloqueadoPJ.Dequeue ();
 		sacado.transform.localScale = new Vector3 (0.6f,0.6f,0.6f);
+		sacado.GetComponent<Personaje> ().estado = 0;
 		ColaClientes.Enqueue(sacado);
 
 		int sizeBLOJ = ColaBloqueadoPJ.Count; 
 		for(int i=0;i<sizeBLOJ;i++){
 			GameObject sacar = ColaBloqueadoPJ.Dequeue();
 			sacar.GetComponent<Personaje>().posicion = sacar.GetComponent<Personaje>().posicion - 1;
+
 			ColaBloqueadoPJ.Enqueue (sacar);
 		}
 
@@ -297,7 +303,7 @@ public class nuevoPersonajeController : MonoBehaviour {
 
 	public void suspendidoTOlisto(int cpu,GameObject cliente)
 	{
-		
+		cliente.GetComponent<Personaje> ().estado = 0;
 		cliente.transform.localScale = escalaEnFilaPJ;
 		suspendidos = GetComponent<PlanificadorSRTF>().suspendidos; 
 		int sizeSUSPJ = suspendidos.Count ();
@@ -309,12 +315,26 @@ public class nuevoPersonajeController : MonoBehaviour {
 		}
 	}
 
+    public void quitarVista(GameObject porEliminar) {
+        if(porEliminar.tag != "texto")
+            porEliminar.GetComponent<SpriteRenderer>().enabled = false;
+        else
+            porEliminar.GetComponent<MeshRenderer>().enabled = false;
+
+        for (int i = 0; i<porEliminar.transform.childCount; i++) {
+            quitarVista(porEliminar.transform.GetChild(i).gameObject);
+        }
+    }
 
 	public void terminarProcesoActual(GameObject cliente){
 		if (cliente.transform.parent)
-			Destroy (cliente.transform.parent.gameObject);
-		Destroy (cliente);
-	}
+			cliente.transform.parent.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        cliente.GetComponent<Personaje>().estado = -1;
+        cliente.GetComponent<SpriteRenderer>().enabled = false;
+        quitarVista(cliente);
+
+
+    }
 
 
 	public void procesadorToListo(GameObject cliente)
@@ -351,8 +371,10 @@ public class nuevoPersonajeController : MonoBehaviour {
 
 			sizeBLO = ColaBloqueadoPJ.Count;
 			GameObject cliente = procesadorPJ;
+			cliente.GetComponent<Personaje> ().estado = 2;
 
 			cliente.GetComponent<Personaje> ().inicial = pos [0];
+
 			pos [0] = pos [0] - 0.6f;
 			cliente.transform.parent.position = pos;
 			cliente.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);
@@ -393,7 +415,8 @@ public class nuevoPersonajeController : MonoBehaviour {
 
 			sizeSUS = ColaSuspendidosPJ.Count;
 			//GameObject cliente = procesadorPJ;
-			cliente.GetComponent<Personaje> ().inicial = pos [0];
+		cliente.GetComponent<Personaje> ().inicial = pos [0];
+		cliente.GetComponent<Personaje> ().estado = 3;
 			pos [0] = pos [0] - 0.6f;
 			cliente.transform.parent.position = pos;
 			cliente.transform.localScale = new Vector3 (0.3f, 0.3f, 0.3f);

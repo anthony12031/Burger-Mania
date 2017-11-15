@@ -9,9 +9,16 @@ public class Personaje : MonoBehaviour {
     public float inicial;
     public float salto = 0.6f;
 	public bool esAnimado = true;
+	public int id;
+	public int cpu;
     // public int estadoMov = 0;
     //public int movex = 0;
     public int posicion = 11;
+	public int estado = 0;
+	//0 es listo
+	//1 es en procesador
+	//2 es en bloqueado
+	//3 es en suspendido
 	// Use this for initialization
 	void Start () {
         

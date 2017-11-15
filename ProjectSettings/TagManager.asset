@@ -12,6 +12,9 @@ TagManager:
   - cliente
   - panPerroEnProcesador
   - ttl
+  - contentGantt
+  - texto
+  - botonCamara
   layers:
   - Default
   - TransparentFX

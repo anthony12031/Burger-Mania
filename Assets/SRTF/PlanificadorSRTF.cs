@@ -17,6 +17,11 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 	public Text totalCPU;
 	public float totalCPUFloat = 0;
+	int personajeContador = 0;
+	public int personajeContador1 = 0;
+	public int personajeContador2 = 0;
+	public int personajeContador3 = 0;
+	public gantt diagrama;
 
 
 	nuevoPersonajeController controladorPersonaje;
@@ -62,8 +67,27 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 	}
 
 	public void crearProceso(int tipoPerro,float tiempoProceso){
-		GameObject representacion = controladorPersonaje.agregarPersonaje (tipoPerro, CPU);
+		
+		switch (CPU) {
+		case 1:
+			personajeContador1++;
+			personajeContador = personajeContador1;
+			break;
+		case 2:
+			personajeContador2++;
+			personajeContador = personajeContador2;
+			break;
+		case 3:
+			personajeContador3++;
+			personajeContador = personajeContador3;
+			break;
+		}
+		int lista = controladorPersonaje.PJlista;
+		GameObject representacion = controladorPersonaje.agregarPersonaje (tipoPerro, CPU, personajeContador);
+
 		ProcesoSRTF nuevoProceso = new ProcesoSRTF (this, CPU,representacion,tiempoProceso);
+		diagrama.agregarPersonaje (CPU, lista, nuevoProceso.representacion.GetComponent<Personaje> ().id);
+        diagrama.inicio = true;
 		listos.Enqueue (nuevoProceso);	
 		Thread hiloProceso = new Thread (new ThreadStart (nuevoProceso.ejecutar));
 		hiloProceso.Start ();
@@ -84,7 +108,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 	}
 
 	public void ejecutarSiguienteProceso(){
-		Debug.Log ("ejecutando sig proceso");
+		//Debug.Log ("ejecutando sig proceso");
 		ProcesoSRTF procesoAejecutar = listos.Dequeue ();
 		//verificar que los recursos esten libres
 		//si los recursos estan libres ejecutar y bloquear los recursos que usa
@@ -103,7 +127,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 	}
 
 	void terminarProceso(){
-		procesoEnEjecucion.enEjecucion = false;
+		procesoEnEjecucion.enEjecucion = false;   
 		controladorPersonaje.terminarProcesoActual (procesoEnEjecucion.representacion);
 		procesoEnEjecucion.recurso.libre = true;
 		procesoEnEjecucion = null;
@@ -166,7 +190,9 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		if(procesoEnEjecucion != null) {
 			procesoEnEjecucion.TTL -= Time.deltaTime;
 			procesoEnEjecucion.textoTTL.text = System.Convert.ToString(procesoEnEjecucion.TTL);
-			if (procesoEnEjecucion.TTL <= 0) {
+            procesoEnEjecucion.textoTTL.tag = "texto";
+
+            if (procesoEnEjecucion.TTL <= 0) {
 				terminarProceso ();
 			}
 			//hay un proceso on menor tiempo
@@ -212,10 +238,10 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 		//crear procesos
 
-		tiempoTranscurrido += Time.deltaTime;
+		//tiempoTranscurrido += Time.deltaTime;
 		if (tiempoTranscurrido >= tiempoSpawn) { 
 			int totalprs = bloqueados.Count () + suspendidos.Count () + bloqueados.Count ();
-			Debug.Log ("prs: "+totalprs);
+			//Debug.Log ("prs: "+totalprs);
 			if (totalprs <= 3) {
 				int tipoPerro = 1;
 				if (CPU == 1)
