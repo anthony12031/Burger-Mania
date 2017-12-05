@@ -105,9 +105,11 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 	public void ejecutarSiguienteProceso(){
 		//Debug.Log ("ejecutando sig proceso");
 		ProcesoSRTF procesoAejecutar = listos.Dequeue ();
+		Debug.Log ("ejecutar proceso");
 		//verificar que los recursos esten libres
 		//si los recursos estan libres ejecutar y bloquear los recursos que usa
 		if (procesoAejecutar.recurso.libre) {
+			
 			//procesoAejecutar.eventoDeEjecucion.Set ();
 			procesoEnEjecucion = procesoAejecutar;
 			controladorPersonaje.listoToProcesador (CPU, procesoEnEjecucion.representacion);
@@ -175,12 +177,13 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 	public void planificar(){
 		//Debug.Log (procesoEnEjecucion);
-		/*if (procesoEnEjecucion == null) {
+		if (procesoEnEjecucion == null) {
 			//si hay procesos ejecutarl el siguiente
 			if (listos.Count()  > 0) {
 				ejecutarSiguienteProceso ();
 			}
-		} */
+		} 
+
 		//hay un proceso en ejecucion comparar su TTL con el siguiente proceso
 		if(procesoEnEjecucion != null) {
 			procesoEnEjecucion.TTL -= Time.deltaTime;

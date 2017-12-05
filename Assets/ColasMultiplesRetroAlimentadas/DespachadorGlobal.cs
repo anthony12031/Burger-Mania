@@ -8,6 +8,10 @@ public class DespachadorGlobal : MonoBehaviour {
 	SeleccionCPU seleccionCPU;
 	SeleccionPrioridad seleccionPrioridad;
 
+	public ColaMDespachador despachadorCPU1;
+	public ColaMDespachador despachadorCPU2;
+	public ColaMDespachador despachadorCPU3;
+
 	public float tiempoProceso = 0;
 
 	// Use this for initialization
@@ -33,19 +37,20 @@ public class DespachadorGlobal : MonoBehaviour {
 
 
 	public void crearOrden(){
-		Debug.Log ("crear orden");
+		Debug.Log ("crear Proceso");
 		int tipoPerro = seleccionPerro.getTipoPerro ()+1;
 		int cpu = seleccionCPU.getCPU () + 1;
 		int prioridad = seleccionPrioridad.getPrioridad ()+1;
-
-
 		if (cpu == 1) {
+			despachadorCPU1.crearProceso (tipoPerro, tiempoProceso, prioridad);
 			//planificadorCPU1.GetComponent<PlanificadorSRTF>().crearProceso (tipoPerro,tiempoProceso);
 		}
 		if (cpu == 2) {
+			despachadorCPU2.crearProceso (tipoPerro, tiempoProceso, prioridad);
 			//planificadorCPU2.GetComponent<PlanificadorSRTF>().crearProceso (tipoPerro,tiempoProceso);
 		}
 		if (cpu == 3) {
+			despachadorCPU3.crearProceso (tipoPerro, tiempoProceso, prioridad);
 			//planificadorCPU3.GetComponent<PlanificadorSRTF>().crearProceso (tipoPerro,tiempoProceso);
 		}
 
