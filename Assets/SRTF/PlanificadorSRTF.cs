@@ -37,7 +37,6 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		listos = new Cola<ProcesoSRTF> ();
 		suspendidos = new Cola<ProcesoSRTF> ();
 		bloqueados = new Cola<ProcesoSRTF> ();
-		//controladorPersonaje.ColaClientes = listos;
 	}
 
 	public Cola<ProcesoSRTF> ordenarCola(Cola<ProcesoSRTF> cola){
@@ -90,7 +89,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
         diagrama.inicio = true;
 		listos.Enqueue (nuevoProceso);	
 		Thread hiloProceso = new Thread (new ThreadStart (nuevoProceso.ejecutar));
-		hiloProceso.Start ();
+		//hiloProceso.Start ();
 		nuevoProceso.hiloDeEjecucion = hiloProceso;
 
 		//necesita tomate
@@ -101,10 +100,6 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		if (tipoPerro == 2) {
 			nuevoProceso.recurso = Recursos.lista ["mostaza"];
 		}
-	}
-
-	void organizarListos(){
-		
 	}
 
 	public void ejecutarSiguienteProceso(){
@@ -261,7 +256,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		//organizar cola de listos
 		listos = ordenarCola(listos);
 		controladorPersonaje.updateVistaColas (CPU);
-		planificar ();
+		//planificar ();
 	}
 		
 	public void listoToSuspendido(){
