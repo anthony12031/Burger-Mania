@@ -27,6 +27,7 @@ public class DespachadorGlobal : MonoBehaviour {
 	}
 
 	public void setTiempoProceso(string tiempo){
+		Debug.Log (tiempo);
 		try{
 			tiempoProceso = System.Convert.ToSingle (tiempo);
 			Debug.Log(tiempoProceso);
