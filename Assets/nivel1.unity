@@ -1243,14 +1243,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e69fe50ac80002849a7f7d23dc73b3bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoSpawn: 0
+  tiempoSpawn: 3
   tiempoTranscurrido: 0
   totalCPU: {fileID: 0}
   totalCPUFloat: 0
   personajeContador1: 0
   personajeContador2: 0
   personajeContador3: 0
-  diagrama: {fileID: 0}
+  diagrama: {fileID: 710238290}
   controladorPersonaje: {fileID: 0}
   CPU: 0
 --- !u!224 &235404550 stripped
@@ -8235,6 +8235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planificadorSRTF: {fileID: 0}
   planificadorRR: {fileID: 0}
+  planificadorFIFO: {fileID: 0}
   CPU: 1
 --- !u!4 &1886703103
 Transform:

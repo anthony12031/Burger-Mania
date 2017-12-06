@@ -6,6 +6,7 @@ public class ColaMDespachador : MonoBehaviour {
 
 	public PlanificadorSRTF planificadorSRTF;
 	public planificador planificadorRR;
+	public PlanificadorFIFO planificadorFIFO;
 	public int CPU;
 
 	// Use this for initialization
@@ -16,6 +17,9 @@ public class ColaMDespachador : MonoBehaviour {
 		//planificador RR
 		planificadorRR = transform.GetChild (1).gameObject.GetComponent<planificador>();
 		planificadorRR.CPU = CPU;
+		//planificador FIFO
+		planificadorFIFO = transform.GetChild (2).gameObject.GetComponent<PlanificadorFIFO>();
+		planificadorFIFO.CPU = CPU;
 	}
 
 	public void crearProceso(int tipoPerro,float tiempo,int prioridad){
@@ -26,12 +30,13 @@ public class ColaMDespachador : MonoBehaviour {
 			planificadorSRTF.crearProceso (tipoPerro, tiempo);
 		}
 		if (prioridad == 3) {
-			planificadorSRTF.crearProceso (tipoPerro, tiempo);
+			planificadorFIFO.crearProceso (tipoPerro, tiempo);
 		}
 	}
 
 	// Update is called once per frame
 	void Update () {
+		planificadorFIFO.planificar ();
 		//procesos prioridad 1
 		/*int nProcesosP1 = planificadorRR.listos.Count() + planificadorRR.bloqueados.Count() + planificadorRR.suspendidos.Count();
 		if (planificadorRR.procesoEnEjecucion != null)

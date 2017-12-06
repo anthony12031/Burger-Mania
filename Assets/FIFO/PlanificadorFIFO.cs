@@ -184,7 +184,6 @@ public class PlanificadorFIFO : MonoBehaviour,IPlanificador {
 			}
 		} 
 
-		//hay un proceso en ejecucion comparar su TTL con el siguiente proceso
 		if(procesoEnEjecucion != null) {
 			procesoEnEjecucion.TTL -= Time.deltaTime;
 			procesoEnEjecucion.textoTTL.text = System.Convert.ToString(procesoEnEjecucion.TTL);
@@ -193,45 +192,12 @@ public class PlanificadorFIFO : MonoBehaviour,IPlanificador {
 			if (procesoEnEjecucion.TTL <= 0) {
 				terminarProceso ();
 			}
-			//hay un proceso on menor tiempo
-			//pasar a suspendido el actual y a ejecucion el proceso con menos tiempo
-			if (listos.Count()>0 && procesoEnEjecucion != null) {
-				if (procesoEnEjecucion.TTL > listos.Peek ().TTL) {
-					suspendidos.Enqueue (procesoEnEjecucion);
-					controladorPersonaje.procesadorToSuspendido (CPU,procesoEnEjecucion.representacion);
-					procesoEnEjecucion.recurso.libre = true;
-					procesoEnEjecucion = null;
-				}
-			}
 		}
-
-		//actualizar total entregas
-		totalCPU.text = System.Convert.ToString(totalCPUFloat);
-
-		//crear procesos
-
-		//tiempoTranscurrido += Time.deltaTime;
-		if (tiempoTranscurrido >= tiempoSpawn) { 
-			int totalprs = bloqueados.Count () + suspendidos.Count () + bloqueados.Count ();
-			//Debug.Log ("prs: "+totalprs);
-			if (totalprs <= 3) {
-				int tipoPerro = 1;
-				if (CPU == 1)
-					tipoPerro = 1;
-				else {
-					tipoPerro = 2;
-				}
-				crearProceso (tipoPerro, Random.Range (3, 8));
-				tiempoTranscurrido = 0;
-			}
-		}
-
 	}
 
 	// Update is called once per frame
 	void Update () {
-		//organizar cola de listos
-		listos = ordenarCola(listos);
+		
 		controladorPersonaje.updateVistaColas (CPU);
 
 		//actualizar tiempo suspendido
