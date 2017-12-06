@@ -355,6 +355,7 @@ public class planificador : MonoBehaviour {
 		}
 		bloqueados = bloTemp;
 
+		//si no hay procesos en listo no esperar en suspendido
 		if (listos.Count() == 0) {
 			if (suspendidos.Count() > 0) 
 				suspendidos.Peek ().tiempoEnSuspendido = 0;

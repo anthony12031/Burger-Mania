@@ -234,6 +234,12 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		listos = ordenarCola(listos);
 		controladorPersonaje.updateVistaColas (CPU);
 
+		//si no hay procesos en listo no esperar en suspendido
+		if (listos.Count() == 0) {
+			if (suspendidos.Count() > 0) 
+				suspendidos.Peek ().tiempoEnSuspendido = 0;
+		}
+
 		//actualizar tiempo suspendido
 		Cola<ProcesoSRTF> susTemp = new Cola<ProcesoSRTF>();
 		while(suspendidos.Count()>0){

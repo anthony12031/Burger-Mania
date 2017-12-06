@@ -36,17 +36,22 @@ public class ColaMDespachador : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		planificadorFIFO.planificar ();
 		//procesos prioridad 1
-		/*int nProcesosP1 = planificadorRR.listos.Count() + planificadorRR.bloqueados.Count() + planificadorRR.suspendidos.Count();
+		int nProcesosP1 = planificadorRR.listos.Count() + planificadorRR.bloqueados.Count() + planificadorRR.suspendidos.Count();
 		if (planificadorRR.procesoEnEjecucion != null)
 			nProcesosP1 += 1;
 		//procesos prioridad 2
 		int nProcesosP2 = planificadorSRTF.listos.Count() + planificadorSRTF.bloqueados.Count() + planificadorSRTF.suspendidos.Count();
 		if (planificadorSRTF.procesoEnEjecucion != null)
 			nProcesosP2 += 1;
+		//procesos prioridad 3
+		int nProcesosP3 = planificadorFIFO.listos.Count() + planificadorFIFO.bloqueados.Count() + planificadorFIFO.suspendidos.Count();
+		if (planificadorFIFO.procesoEnEjecucion != null)
+			nProcesosP3 += 1;
 		Debug.Log ("procesos p1: " + nProcesosP1);
 		Debug.Log ("procesos p2: " + nProcesosP2);
+		Debug.Log ("procesos p3: " + nProcesosP3);
+
 		if (nProcesosP1 > 0) {
 			//si hay un proceso de SRTF o de FIFO ejecutandose expulsarlo
 			if(planificadorSRTF.procesoEnEjecucion != null){
@@ -55,12 +60,27 @@ public class ColaMDespachador : MonoBehaviour {
 				planificadorSRTF.procesoEnEjecucion.recurso.libre = true;
 				planificadorSRTF.procesoEnEjecucion = null;
 			}
+			if(planificadorFIFO.procesoEnEjecucion != null){
+				planificadorFIFO.suspendidos.Enqueue (planificadorFIFO.procesoEnEjecucion);
+				planificadorFIFO.controladorPersonaje.procesadorToSuspendido (CPU,planificadorFIFO.procesoEnEjecucion.representacion);
+				planificadorFIFO.procesoEnEjecucion.recurso.libre = true;
+				planificadorFIFO.procesoEnEjecucion = null;
+			}
 			planificadorRR.planificar ();
 		} else {
 			if (nProcesosP2 > 0) {
+				//si hay un proceso de FIFO ejecutandose expulsarlo
+				if(planificadorFIFO.procesoEnEjecucion != null){
+					planificadorFIFO.suspendidos.Enqueue (planificadorFIFO.procesoEnEjecucion);
+					planificadorFIFO.controladorPersonaje.procesadorToSuspendido (CPU,planificadorFIFO.procesoEnEjecucion.representacion);
+					planificadorFIFO.procesoEnEjecucion.recurso.libre = true;
+					planificadorFIFO.procesoEnEjecucion = null;
+				}
 				planificadorSRTF.planificar ();
+			} else {
+				planificadorFIFO.planificar ();
 			}
-		}*/
+		}
 
 	}
 
