@@ -29,16 +29,16 @@ public class Personaje : MonoBehaviour {
         
 
         if (contador>5&&contador<=10) {
-            animP1.SetInteger("estado", 1);
+            //animP1.SetInteger("estado", 1);
         }
         if (contador > 10 && contador < 15){           
-            animP1.SetInteger("estado", 2);
+            //animP1.SetInteger("estado", 2);
         }
         if (contador > 15 && contador < 20){
-            animP1.SetInteger("estado", 3);
+            //animP1.SetInteger("estado", 3);
         }
         if (contador > 20 && contador < 25){
-            animP1.SetInteger("estado", 4);
+           // animP1.SetInteger("estado", 4);
         }
 
 		 if (posicion != -1) { 

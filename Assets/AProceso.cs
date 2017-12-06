@@ -15,6 +15,8 @@ public abstract class AProceso  {
 	public AutoResetEvent eventoDeSuspendido;
 	public AutoResetEvent eventoDeBloqueado;
 
+	public float envejecimiento;
+
 
 	public AProceso(IPlanificador plan,int CPU,float t){
 		this.CPU = CPU;

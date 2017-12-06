@@ -489,6 +489,4 @@ public class RRPersonajeController : MonoBehaviour {
 	}
 
 
-
-
 }

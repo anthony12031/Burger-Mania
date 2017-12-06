@@ -61,7 +61,7 @@ public class planificador : MonoBehaviour {
 		public int CPU;
 		public TextMesh textoTTL;
 		public TextMesh textoQuantum;
-
+		public float envejecimiento = 0;
 		public float tiempoEnSuspendido ;//segundos
 
 		public bool haFinalizado = false;

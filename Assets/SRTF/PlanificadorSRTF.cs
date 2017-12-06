@@ -109,7 +109,6 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		//verificar que los recursos esten libres
 		//si los recursos estan libres ejecutar y bloquear los recursos que usa
 		if (procesoAejecutar.recurso.libre) {
-			
 			//procesoAejecutar.eventoDeEjecucion.Set ();
 			procesoEnEjecucion = procesoAejecutar;
 			controladorPersonaje.listoToProcesador (CPU, procesoEnEjecucion.representacion);

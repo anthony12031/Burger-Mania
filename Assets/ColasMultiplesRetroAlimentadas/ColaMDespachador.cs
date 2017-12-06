@@ -48,9 +48,9 @@ public class ColaMDespachador : MonoBehaviour {
 		int nProcesosP3 = planificadorFIFO.listos.Count() + planificadorFIFO.bloqueados.Count() + planificadorFIFO.suspendidos.Count();
 		if (planificadorFIFO.procesoEnEjecucion != null)
 			nProcesosP3 += 1;
-		Debug.Log ("procesos p1: " + nProcesosP1);
-		Debug.Log ("procesos p2: " + nProcesosP2);
-		Debug.Log ("procesos p3: " + nProcesosP3);
+		//Debug.Log ("procesos p1: " + nProcesosP1);
+		//Debug.Log ("procesos p2: " + nProcesosP2);
+		//Debug.Log ("procesos p3: " + nProcesosP3);
 
 		if (nProcesosP1 > 0) {
 			//si hay un proceso de SRTF o de FIFO ejecutandose expulsarlo
@@ -82,8 +82,75 @@ public class ColaMDespachador : MonoBehaviour {
 			}
 		}
 
-	}
+		float tiempoEnvejecimiento = 30;
 
+		//envejecer los procesos de FIFO para pasar a SRTF
+		//actualizar tiempo suspendido
+		Cola<ProcesoFIFO> listosFIFO = new Cola<ProcesoFIFO>();
+		while(planificadorFIFO.listos.Count()>0){
+			ProcesoFIFO pr = planificadorFIFO.listos.Dequeue ();
+			pr.envejecimiento += Time.deltaTime;
+			if (pr.envejecimiento>5&&pr.envejecimiento<=10) {
+				pr.representacion.GetComponent<Personaje>().animP1.SetInteger("estado", 1);
+			}
+			if (pr.envejecimiento > 10 && pr.envejecimiento < 15){           
+				pr.representacion.GetComponent<Personaje>().animP1.SetInteger("estado", 2);
+			}
+			if (pr.envejecimiento > 15 && pr.envejecimiento < 20){
+				pr.representacion.GetComponent<Personaje>().animP1.SetInteger("estado", 3);
+			}
+			if (pr.envejecimiento > 20 && pr.envejecimiento < 25){
+				pr.representacion.GetComponent<Personaje>().animP1.SetInteger("estado", 4);
+			}
+			if (pr.envejecimiento >= tiempoEnvejecimiento) {
+				//pasar a la cola de SRTF
+				pr.envejecimiento = 0;
+				ProcesoSRTF prSRTF = new ProcesoSRTF (planificadorSRTF, CPU, Instantiate (pr.representacion), pr.TTL);
+				prSRTF.recurso = pr.recurso;
+				planificadorSRTF.listos.Enqueue (prSRTF);
+				Destroy (pr.representacion);
+				Debug.Log ("paso de FIFO  a SRTF");
+			} else {
+				listosFIFO.Enqueue (pr);
+			}
+
+		}
+		planificadorFIFO.listos = listosFIFO;
+
+		//envejecer los procesos de SRTF para pasar a RR
+		//actualizar tiempo suspendido
+		Cola<ProcesoSRTF> listosSRTF = new Cola<ProcesoSRTF>();
+		while(planificadorSRTF.listos.Count()>0){
+			ProcesoSRTF pr = planificadorSRTF.listos.Dequeue ();
+			pr.envejecimiento += Time.deltaTime;
+			if (pr.envejecimiento>5&&pr.envejecimiento<=10) {
+				pr.representacion.GetComponent<Personaje>().animP1.SetInteger("estado", 1);
+			}
+			if (pr.envejecimiento > 10 && pr.envejecimiento < 15){           
+				pr.representacion.GetComponent<Personaje>().animP1.SetInteger("estado", 2);
+			}
+			if (pr.envejecimiento > 15 && pr.envejecimiento < 20){
+				pr.representacion.GetComponent<Personaje>().animP1.SetInteger("estado", 3);
+			}
+			if (pr.envejecimiento > 20 && pr.envejecimiento < 25){
+				pr.representacion.GetComponent<Personaje>().animP1.SetInteger("estado", 4);
+			}
+			if (pr.envejecimiento >= tiempoEnvejecimiento) {
+				//pasar a la cola de SRTF
+				pr.envejecimiento = 0;
+				planificador.Proceso prRR = new planificador.Proceso (Instantiate (pr.representacion), planificadorRR, 1, CPU, pr.TTL);
+				prRR.recurso= pr.recurso;
+				planificadorRR.listos.Enqueue (prRR);
+				Destroy (pr.representacion);
+				Debug.Log ("paso de SRTF  a RR");
+			} else {
+				listosSRTF.Enqueue (pr);
+			}
+
+		}
+		planificadorSRTF.listos = listosSRTF;
+
+	}
 
 
 }
