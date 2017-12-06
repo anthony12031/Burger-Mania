@@ -60,6 +60,7 @@ public class planificador : MonoBehaviour {
 		public float TTL = 30;
 		public int CPU;
 		public TextMesh textoTTL;
+		public TextMesh textoQuantum;
 
 		public float tiempoEnSuspendido ;//segundos
 
@@ -71,6 +72,12 @@ public class planificador : MonoBehaviour {
 		public Proceso(GameObject cliente,planificador plan,int perro,int CPU,float tiempo){
 			textoTTL = cliente.transform.GetChild (0).GetChild(0).GetComponent<TextMesh> ();
 			textoTTL.text = System.Convert.ToString(tiempo);
+			textoQuantum = Instantiate(textoTTL);
+			textoQuantum.transform.parent = textoTTL.transform.parent; 
+			textoQuantum.transform.localPosition = new Vector2(textoTTL.transform.localPosition.x,-0.1f);
+			textoQuantum.transform.localScale = textoTTL.transform.localScale ;
+			textoQuantum.text = "Q: ";
+			Debug.Log(textoQuantum);
 			this.representacion = cliente;
 			this.clienteOriginal = cliente;
 			this.CPU = CPU;
@@ -222,27 +229,36 @@ public class planificador : MonoBehaviour {
 
 	}
 
-	public float calcularQuantum(){
+	public void calcularQuantum(Proceso proceso){
 		float media = 0;
-		float Q = 10;
-		/*foreach (Proceso pr in listos) {
+		//calcular la media
+		Cola<Proceso> lisTemp = new Cola<Proceso>();
+		while(listos.Count()>0){
+			Proceso pr = listos.Dequeue ();
 			media += pr.TTL;
-		} 
+			lisTemp.Enqueue (pr);
+		}
+		listos = lisTemp;
+
 		media /= listos.Count();
 		Debug.Log ("media: "+media);
 		float varianza = 0;
-		foreach (Proceso pr in listos) {	
-			Debug.Log (pr.TTL - media);
+		lisTemp = new Cola<Proceso>();
+		while(listos.Count()>0){
+			Proceso pr = listos.Dequeue ();
 			varianza += (pr.TTL - media)*(pr.TTL - media);
+			lisTemp.Enqueue (pr);
 		}
+		listos = lisTemp;
 		varianza /= listos.Count();
+		Debug.Log ("varianza: "+varianza);
 		float desviacion = +Mathf.Sqrt (varianza);
 		Debug.Log ("desviacion: "+Mathf.Sqrt(varianza));
-		if (desviacion > 0) {
-			Q = desviacion;
-			Debug.Log ("Q de proceso: "+procesoAEjecutar.Quantum);
-		}*/
-		return Q;
+		if (desviacion < proceso.TTL && desviacion >0) {
+			proceso.Quantum = desviacion;
+		}
+		else
+			proceso.Quantum = proceso.TTL;
 	}
 
 
@@ -257,7 +273,7 @@ public class planificador : MonoBehaviour {
 			procesoEnEjecucion = procesoAejecutar;
 			controladorPersonaje.listoToProcesador (CPU, procesoEnEjecucion.representacion);
 			procesoAejecutar.recurso.libre = false;
-			procesoAejecutar.Quantum = calcularQuantum ();
+			calcularQuantum (procesoAejecutar);
 		} 
 		//sino pasarlo a bloqueado hasta que se libere el recurso
 		else {
@@ -282,8 +298,9 @@ public class planificador : MonoBehaviour {
 			procesoEnEjecucion.TTL -= Time.deltaTime;
 			procesoEnEjecucion.Quantum -= Time.deltaTime;
 			procesoEnEjecucion.textoTTL.text = System.Convert.ToString(procesoEnEjecucion.TTL);
+			procesoEnEjecucion.textoQuantum.text = "Q: "+System.Convert.ToString(procesoEnEjecucion.Quantum);
 			procesoEnEjecucion.textoTTL.tag = "texto";
-
+			procesoEnEjecucion.textoQuantum.tag = "texto";
 
 			if (procesoEnEjecucion.TTL <= 0) {
 				Debug.Log ("termino proceso");
