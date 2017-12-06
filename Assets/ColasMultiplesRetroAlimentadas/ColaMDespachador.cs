@@ -30,7 +30,7 @@ public class ColaMDespachador : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		planificadorSRTF.planificar ();
-		int nProcesosP1 = planificadorRR.listos.Count + planificadorRR.bloqueados.Count + planificadorRR.suspendidos.Count;
+		int nProcesosP1 = planificadorRR.listos.Count() + planificadorRR.bloqueados.Count() + planificadorRR.suspendidos.Count();
 		if (planificadorRR.procesoEnEjecucion != null)
 			nProcesosP1 += 1;
 		//Debug.Log ("procesos p1: " + nProcesosP1);

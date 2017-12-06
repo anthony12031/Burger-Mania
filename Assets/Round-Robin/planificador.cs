@@ -19,14 +19,16 @@ public class planificador : MonoBehaviour {
 	//orden analogo a proceso
 	public GameObject Orden;
 	//colas de los procesos
-	public Queue<Proceso>  listos;
-	public Queue<Proceso> suspendidos;
-	public Queue<Proceso> bloqueados;
+	public Cola<Proceso>  listos;
+	public Cola<Proceso> suspendidos;
+	public Cola<Proceso> bloqueados;
 	//el proceso que se esta ejecutando actualmente
 	public Proceso  procesoEnEjecucion;
+	public gantt diagrama;
+
 
 	//seleccionTipoPerro seleccionPerro;
-	public nuevoPersonajeController controladorPersonaje;
+	public RRPersonajeController controladorPersonaje;
 
 	//public PersonajeController controladorPersonajesCPU1;
 	//public PersonajeController controladorPersonajesCPU2;
@@ -50,22 +52,26 @@ public class planificador : MonoBehaviour {
 
 	public class Proceso
 	{
-		public GameObject cliente;
+		public GameObject representacion;
 		public GameObject clienteOriginal;
 		public GameObject perroCaliente;
 		public float Quantum ; //segundos;
 		public int tipoPerro;
 		public float TTL = 30;
 		public int CPU;
+		public TextMesh textoTTL;
 
 		public float tiempoEnSuspendido ;//segundos
 
 		public bool haFinalizado = false;
 		planificador planificador;
 		bool enEjecucion = false;
+		public Recursos.Recurso recurso;
 
 		public Proceso(GameObject cliente,planificador plan,int perro,int CPU,float tiempo){
-			this.cliente = cliente;
+			textoTTL = cliente.transform.GetChild (0).GetChild(0).GetComponent<TextMesh> ();
+			textoTTL.text = System.Convert.ToString(tiempo);
+			this.representacion = cliente;
 			this.clienteOriginal = cliente;
 			this.CPU = CPU;
 			Quantum = plan.tiempoQuantum;
@@ -134,8 +140,20 @@ public class planificador : MonoBehaviour {
 		GameObject representacion = controladorPersonaje.agregarPersonaje (tipoPerro, CPU, personajeContador);
 		Debug.Log (representacion);
 		//GameObject cliente =  controladorPersonajes.agregarPersonaje(tipoPerro,1,1);
-		//Proceso nuevoProceso = new Proceso (cliente,this,tipoPerro,CPU,tiempo);
-		//listos.Enqueue (nuevoProceso);
+		Proceso nuevoProceso = new Proceso (representacion,this,tipoPerro,CPU,tiempo);
+		listos.Enqueue (nuevoProceso);
+		diagrama.agregarPersonaje (CPU, lista, nuevoProceso.representacion.GetComponent<Personaje> ().id);
+		diagrama.inicio = true;
+
+		//necesita tomate
+		if (tipoPerro == 1) {
+			nuevoProceso.recurso = Recursos.lista ["salsaTomate"];
+		}
+		//necesita mostaza
+		if (tipoPerro == 2) {
+			nuevoProceso.recurso = Recursos.lista ["mostaza"];
+		}
+
 	}
 
 
@@ -143,10 +161,10 @@ public class planificador : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//seleccionPerro = GetComponent<seleccionTipoPerro> ();
-		listos = new Queue<Proceso> ();
-		suspendidos = new Queue<Proceso> ();
-		bloqueados = new Queue<Proceso> ();
-		controladorPersonaje = Instantiate (controladorPersonaje);
+		listos = new Cola<Proceso> ();
+		suspendidos = new Cola<Proceso> ();
+		bloqueados = new Cola<Proceso> ();
+		controladorPersonaje = GetComponent<RRPersonajeController>();
 	}
 
 	public  void notificacionProcesoTerminado(){
@@ -154,18 +172,13 @@ public class planificador : MonoBehaviour {
 		procesoEnEjecucion = null;
 	}
 
-	public void terminarProceso(){
-		//sumar puntos 
-		//eliminar proceso en ejecucion actual
-		Recursos.Recurso recurso;
-		if (CPU == 1) {
-			Debug.Log (PanControlador.posParrilla1.libre);
-			if (!PanControlador.posParrilla1.libre)
-				PanControlador.posParrilla1.libre = true;
-		}
-		liberarRecursos ();
-		//controladorPersonajes.terminarProcesoActual();
+	public void terminarProceso(){  
+		controladorPersonaje.terminarProcesoActual (procesoEnEjecucion.representacion);
+		procesoEnEjecucion.recurso.libre = true;
 		procesoEnEjecucion = null;
+		/*if (CPU == 2 || CPU == 3) {
+			totalCPUFloat += 1;
+		}*/
 	}
 
 	public  void notificacionQuantumTerminado(){
@@ -209,100 +222,123 @@ public class planificador : MonoBehaviour {
 
 	}
 
+	public float calcularQuantum(){
+		float media = 0;
+		float Q = 10;
+		/*foreach (Proceso pr in listos) {
+			media += pr.TTL;
+		} 
+		media /= listos.Count();
+		Debug.Log ("media: "+media);
+		float varianza = 0;
+		foreach (Proceso pr in listos) {	
+			Debug.Log (pr.TTL - media);
+			varianza += (pr.TTL - media)*(pr.TTL - media);
+		}
+		varianza /= listos.Count();
+		float desviacion = +Mathf.Sqrt (varianza);
+		Debug.Log ("desviacion: "+Mathf.Sqrt(varianza));
+		if (desviacion > 0) {
+			Q = desviacion;
+			Debug.Log ("Q de proceso: "+procesoAEjecutar.Quantum);
+		}*/
+		return Q;
+	}
+
 
 	void ejecutarProceso(){
-		Proceso procesoAEjecutar = listos.Dequeue ();
-		bool recursoOcupado = false; 
-			//identificar que recursos necesita el proceso 
-			//si estan disponibles ejecutarlo
-			//si no pasarlo a la cola de bloqueados
-		GameObject pedido = procesoAEjecutar.cliente.transform.GetChild (0).gameObject;
-		string nombreRecursoOcupado = "";
-		if (pedido.name.Contains ("pedido_perroTomate")) {
-			if (!Recursos.lista ["salsaTomate"].libre) {
-				recursoOcupado = true;
-				nombreRecursoOcupado = "salsaTomate";
-			} else {
-				Recursos.recursosEnUso.Add (procesoAEjecutar, Recursos.lista ["salsaTomate"]);
-				Debug.Log ("usando recurso: " + Recursos.lista ["salsaTomate"].nombre);
-				Recursos.lista ["salsaTomate"].libre = false;
-			}
 
-		}
-		if (pedido.name.Contains ("pedido_perroMostaza")) {
-			if (!Recursos.lista ["mostaza"].libre) {
-				recursoOcupado = true;
-				nombreRecursoOcupado = "mostaza";
-			} else {
-				Recursos.recursosEnUso.Add (procesoAEjecutar, Recursos.lista ["mostaza"]);
-				Debug.Log ("usando recurso: " + Recursos.lista ["mostaza"].nombre);
-				Recursos.lista ["mostaza"].libre = false;
-			}
+		Proceso procesoAejecutar = listos.Dequeue ();
+		Debug.Log ("ejecutar proceso RR");
+		//verificar que los recursos esten libres
+		//si los recursos estan libres ejecutar y bloquear los recursos que usa
+		if (procesoAejecutar.recurso.libre) {
+			//procesoAejecutar.eventoDeEjecucion.Set ();
+			procesoEnEjecucion = procesoAejecutar;
+			controladorPersonaje.listoToProcesador (CPU, procesoEnEjecucion.representacion);
+			procesoAejecutar.recurso.libre = false;
+			procesoAejecutar.Quantum = calcularQuantum ();
+		} 
+		//sino pasarlo a bloqueado hasta que se libere el recurso
+		else {
+			Debug.Log("recurso en uso");
+			bloqueados.Enqueue (procesoAejecutar);
+			controladorPersonaje.listoToBloqueado (CPU, procesoAejecutar.representacion);
 		}
 
-		if (recursoOcupado) {
-			Recursos.bloqueados[nombreRecursoOcupado].Enqueue (procesoAEjecutar);
-			//controladorPersonajes.listoToBloqueado (CPU);
-		} else {
-			procesoEnEjecucion = procesoAEjecutar;
-			//calcular quantum
-			if (esAutomatico && listos.Count>0) {
-				float media = 0;
-				foreach (Proceso pr in listos) {
-					media += pr.TTL;
-				} 
-				media /= listos.Count;
-				Debug.Log ("media: "+media);
-				float varianza = 0;
-				foreach (Proceso pr in listos) {	
-					Debug.Log (pr.TTL - media);
-					varianza += (pr.TTL - media)*(pr.TTL - media);
-				}
-				varianza /= listos.Count;
-				float desviacion = +Mathf.Sqrt (varianza);
-				Debug.Log ("desviacion: "+Mathf.Sqrt(varianza));
-				if (desviacion > 0) {
-					procesoAEjecutar.Quantum = desviacion;
-					Debug.Log ("Q de proceso: "+procesoAEjecutar.Quantum);
-				}
-			}			
-			//controladorPersonajes.listoToProcesador (CPU);
-		}
 	}
 		
 	public void planificar(){
+		
 		timed = Time.deltaTime;
 		if (procesoEnEjecucion == null) {
-			if (listos.Count > 0 ) {
+			if (listos.Count() > 0 ) {
 				ejecutarProceso ();
 			}
 		} 
 		//ejecutar el proceso actual
 		else {
+			
+			procesoEnEjecucion.TTL -= Time.deltaTime;
+			procesoEnEjecucion.Quantum -= Time.deltaTime;
+			procesoEnEjecucion.textoTTL.text = System.Convert.ToString(procesoEnEjecucion.TTL);
+			procesoEnEjecucion.textoTTL.tag = "texto";
+
+
 			if (procesoEnEjecucion.TTL <= 0) {
 				Debug.Log ("termino proceso");
 				terminarProceso ();
 			}
 
 			if (procesoEnEjecucion != null) {
+				//Debug.Log ("Q: " + procesoEnEjecucion.Quantum);
 				if (procesoEnEjecucion.Quantum <= 0) {
-					procesoEnEjecucion.Quantum = 0;
-					notificacionQuantumTerminado ();
+					suspendidos.Enqueue (procesoEnEjecucion);
+					procesoEnEjecucion.recurso.libre = true;
+					controladorPersonaje.procesadorToSuspendido (CPU,procesoEnEjecucion.representacion);
+					procesoEnEjecucion = null;
 				}
 			}
+
 		}
 
-		foreach (Proceso pr in suspendidos) {
+		/*foreach (Proceso pr in suspendidos) {
 			pr.tiempoEnSuspendidoTick (Time.deltaTime);
-		}
+		}*/
+		//actualizar tiempo suspendido
+		Cola<Proceso> susTemp = new Cola<Proceso>();
+		while(suspendidos.Count()>0){
+			Proceso pr = suspendidos.Dequeue ();
+			pr.tiempoEnSuspendidoTick(Time.deltaTime);
+			if (pr.tiempoEnSuspendido <= 0) {
+				listos.Enqueue (pr);
+				controladorPersonaje.suspendidoTOlisto (CPU,pr.representacion);
+			} else {
+				susTemp.Enqueue (pr);
+			}
 
-		if (listos.Count == 0) {
-			if (suspendidos.Count > 0) 
+		}
+		suspendidos = susTemp;
+
+		//actualizar bloqueados
+		Cola<Proceso> bloTemp = new Cola<Proceso>();
+		while(bloqueados.Count()>0){
+			Proceso pr = bloqueados.Dequeue ();
+			if (pr.recurso.libre) {
+				listos.Enqueue (pr);
+			} else {
+				bloTemp.Enqueue (pr);
+			}
+		}
+		bloqueados = bloTemp;
+
+		if (listos.Count() == 0) {
+			if (suspendidos.Count() > 0) 
 				suspendidos.Peek ().tiempoEnSuspendido = 0;
 		}
 
 		//pasar a la cola de listos los procesos que ya acabaron su tiempo en suspendido
-		if (suspendidos.Count > 0) {
+		if (suspendidos.Count() > 0) {
 			if (suspendidos.Peek ().getTiempoEnSuspendidoRestante () <= 0) {
 				Proceso pr = suspendidos.Dequeue ();
 				//pasar  a la cola de listos este proceso
@@ -317,6 +353,7 @@ public class planificador : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		controladorPersonaje.updateVistaColas (CPU);
 		planificar ();
 	}
 }

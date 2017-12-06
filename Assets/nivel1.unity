@@ -923,7 +923,7 @@ MonoBehaviour:
   transPosSuspendidoCPU1: {fileID: 1687130727}
   transPosSuspendidoCPU2: {fileID: 103775053}
   transPosSuspendidoCPU3: {fileID: 1024200904}
-  factorDivision: 0.1
+  factorDivision: 10
   inicial: 0.4
   salto: 5
   estado: 0
@@ -948,6 +948,7 @@ MonoBehaviour:
   tiempoEnBloqueado: 2
   x: 0
   Orden: {fileID: 0}
+  diagrama: {fileID: 710238290}
   controladorPersonaje: {fileID: 0}
   planificadorCPU1: {fileID: 0}
   planificadorCPU2: {fileID: 0}
@@ -955,7 +956,7 @@ MonoBehaviour:
   quantumTX: {fileID: 0}
   panControlador: {fileID: 0}
   posAtendido: {x: 0, y: 0, z: 0}
-  CPU: 0
+  CPU: 2
   TTLText: {fileID: 0}
 --- !u!1001 &211766474
 Prefab:
@@ -8252,6 +8253,11 @@ Prefab:
     - target: {fileID: 1143301478744192, guid: e0acb3069c409a245b92d5866f448872, type: 2}
       propertyPath: m_Name
       value: planificadorSRTF
+      objectReference: {fileID: 0}
+    - target: {fileID: 114467950967036592, guid: e0acb3069c409a245b92d5866f448872,
+        type: 2}
+      propertyPath: factorDivision
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114821439993168440, guid: e0acb3069c409a245b92d5866f448872, type: 2}

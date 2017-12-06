@@ -69,7 +69,7 @@ public class nuevoPersonajeController : MonoBehaviour {
 	public Transform transPosSuspendidoCPU2;
 	public Transform transPosSuspendidoCPU3;
 
-	public float factorDivision = 0.1f;
+	public float factorDivision;
 
 	public float inicial = 0.4f;
 	public float salto = 5f;

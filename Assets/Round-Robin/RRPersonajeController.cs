@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class RRPersonajeController : MonoBehaviour {
 
-	public Cola<ProcesoSRTF> listos;
-	public Cola<ProcesoSRTF> suspendidos;
-	public Cola<ProcesoSRTF> bloqueados;
+	public Cola<planificador.Proceso> listos;
+	public Cola<planificador.Proceso> suspendidos;
+	public Cola<planificador.Proceso> bloqueados;
 
 	public GameObject TTL;
 	public GameObject personajeBase;
@@ -69,7 +69,7 @@ public class RRPersonajeController : MonoBehaviour {
 	public Transform transPosSuspendidoCPU2;
 	public Transform transPosSuspendidoCPU3;
 
-	public float factorDivision = 0.1f;
+	public float factorDivision;
 
 	public float inicial = 0.4f;
 	public float salto = 5f;
@@ -82,9 +82,9 @@ public class RRPersonajeController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		listos = GetComponent<PlanificadorSRTF> ().listos;
-		suspendidos = GetComponent<PlanificadorSRTF> ().suspendidos;
-		bloqueados = GetComponent<PlanificadorSRTF> ().bloqueados;
+		listos = GetComponent<planificador> ().listos;
+		suspendidos = GetComponent<planificador> ().suspendidos;
+		bloqueados = GetComponent<planificador> ().bloqueados;
 
 		escalaEnFilaPJ = new Vector3(0.5F, 0.5F, 0.5F);
 		posListoCPU1 =  transPosListoCPU1.position;
@@ -200,7 +200,7 @@ public class RRPersonajeController : MonoBehaviour {
 		if (cpu == 3) {
 			pos = posBloqueadoCPU3;
 		}
-		sizeBLO = GetComponent<PlanificadorSRTF>().bloqueados.Count();
+		sizeBLO = GetComponent<planificador>().bloqueados.Count();
 		//GameObject cliente = ColaClientes.Dequeue ();
 		if (cliente.transform.parent != null) {
 			pos [0] = pos [0] - 0.6f;
@@ -305,10 +305,10 @@ public class RRPersonajeController : MonoBehaviour {
 	{
 		cliente.GetComponent<Personaje> ().estado = 0;
 		cliente.transform.localScale = escalaEnFilaPJ;
-		suspendidos = GetComponent<PlanificadorSRTF>().suspendidos; 
+		suspendidos = GetComponent<planificador>().suspendidos; 
 		int sizeSUSPJ = suspendidos.Count ();
 		for(int i=0;i<sizeSUSPJ;i++){
-			ProcesoSRTF pr = suspendidos.Dequeue ();
+			planificador.Proceso pr = suspendidos.Dequeue ();
 			GameObject sacar = pr.representacion;
 			sacar.GetComponent<Personaje>().posicion = sacar.GetComponent<Personaje>().posicion - 1;
 			suspendidos.Enqueue (pr);
@@ -448,18 +448,20 @@ public class RRPersonajeController : MonoBehaviour {
 	}
 
 	public void updateVistaColas(int cpu){
-		listos = GetComponent<PlanificadorSRTF>().listos;
-		//Debug.Log (listos.Count ());
+		listos = GetComponent<planificador>().listos;
+
 		/* colas de procesos listos */
 		for (int i = 0; i < listos.Count(); i++) {
-			ProcesoSRTF pr = listos.Dequeue ();
+			planificador.Proceso pr = listos.Dequeue ();
 			GameObject cliente = pr.representacion;
 			cliente.transform.localScale = escalaEnFilaPJ;
+
 			float posX=0;
 			float posY=0;
 			if (cpu == 1) {
 				posX = posListoCPU1.x;
 				posY = posListoCPU1.y + ((float)(i+1))/factorDivision;
+				float suma = ((float)(i+1))/factorDivision;
 			}
 			if (cpu == 2) {
 				posX = posListoCPU2.x;
@@ -470,6 +472,7 @@ public class RRPersonajeController : MonoBehaviour {
 				posX = posListoCPU3.x;
 				posY = posListoCPU3.y + ((float)(i+1))/factorDivision;
 			}
+		
 
 			if(cliente.transform.parent == null)
 				cliente.transform.position = new Vector2 (posX, posY);
