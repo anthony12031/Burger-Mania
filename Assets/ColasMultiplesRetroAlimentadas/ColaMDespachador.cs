@@ -25,12 +25,15 @@ public class ColaMDespachador : MonoBehaviour {
 		if (prioridad == 2) {
 			planificadorSRTF.crearProceso (tipoPerro, tiempo);
 		}
+		if (prioridad == 3) {
+			planificadorSRTF.crearProceso (tipoPerro, tiempo);
+		}
 	}
 
 	// Update is called once per frame
 	void Update () {
 		//procesos prioridad 1
-		int nProcesosP1 = planificadorRR.listos.Count() + planificadorRR.bloqueados.Count() + planificadorRR.suspendidos.Count();
+		/*int nProcesosP1 = planificadorRR.listos.Count() + planificadorRR.bloqueados.Count() + planificadorRR.suspendidos.Count();
 		if (planificadorRR.procesoEnEjecucion != null)
 			nProcesosP1 += 1;
 		//procesos prioridad 2
@@ -52,9 +55,7 @@ public class ColaMDespachador : MonoBehaviour {
 			if (nProcesosP2 > 0) {
 				planificadorSRTF.planificar ();
 			}
-		}
-
-
+		}*/
 
 	}
 
