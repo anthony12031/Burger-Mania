@@ -29,14 +29,33 @@ public class ColaMDespachador : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		planificadorSRTF.planificar ();
+		//procesos prioridad 1
 		int nProcesosP1 = planificadorRR.listos.Count() + planificadorRR.bloqueados.Count() + planificadorRR.suspendidos.Count();
 		if (planificadorRR.procesoEnEjecucion != null)
 			nProcesosP1 += 1;
-		//Debug.Log ("procesos p1: " + nProcesosP1);
+		//procesos prioridad 2
+		int nProcesosP2 = planificadorSRTF.listos.Count() + planificadorSRTF.bloqueados.Count() + planificadorSRTF.suspendidos.Count();
+		if (planificadorSRTF.procesoEnEjecucion != null)
+			nProcesosP2 += 1;
+		Debug.Log ("procesos p1: " + nProcesosP1);
+		Debug.Log ("procesos p2: " + nProcesosP2);
 		if (nProcesosP1 > 0) {
-			//planificadorRR.planificar ();
+			//si hay un proceso de SRTF o de FIFO ejecutandose expulsarlo
+			if(planificadorSRTF.procesoEnEjecucion != null){
+				planificadorSRTF.suspendidos.Enqueue (planificadorSRTF.procesoEnEjecucion);
+				planificadorSRTF.controladorPersonaje.procesadorToSuspendido (CPU,planificadorSRTF.procesoEnEjecucion.representacion);
+				planificadorSRTF.procesoEnEjecucion.recurso.libre = true;
+				planificadorSRTF.procesoEnEjecucion = null;
+			}
+			planificadorRR.planificar ();
+		} else {
+			if (nProcesosP2 > 0) {
+				planificadorSRTF.planificar ();
+			}
 		}
+
+
+
 	}
 
 

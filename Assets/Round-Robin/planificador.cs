@@ -226,7 +226,6 @@ public class planificador : MonoBehaviour {
 				}
 			}
 		}
-
 	}
 
 	public void calcularQuantum(Proceso proceso){
@@ -322,6 +321,13 @@ public class planificador : MonoBehaviour {
 		/*foreach (Proceso pr in suspendidos) {
 			pr.tiempoEnSuspendidoTick (Time.deltaTime);
 		}*/
+
+	}
+
+	// Update is called once per frame
+	void Update () {
+		controladorPersonaje.updateVistaColas (CPU);
+
 		//actualizar tiempo suspendido
 		Cola<Proceso> susTemp = new Cola<Proceso>();
 		while(suspendidos.Count()>0){
@@ -366,11 +372,6 @@ public class planificador : MonoBehaviour {
 			}
 		}
 
-	}
-
-	// Update is called once per frame
-	void Update () {
-		controladorPersonaje.updateVistaColas (CPU);
-		planificar ();
+		//planificar ();
 	}
 }

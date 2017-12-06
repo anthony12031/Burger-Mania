@@ -24,7 +24,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 	public gantt diagrama;
 
 
-	nuevoPersonajeController controladorPersonaje;
+	public nuevoPersonajeController controladorPersonaje;
 	public int CPU;
 
 	public void eventoDeHilo(string evento){
@@ -204,32 +204,6 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 				}
 			}
 		}
-		//actualizar tiempo suspendido
-		Cola<ProcesoSRTF> susTemp = new Cola<ProcesoSRTF>();
-		while(suspendidos.Count()>0){
-			ProcesoSRTF pr = suspendidos.Dequeue ();
-			pr.tiempoEnSuspendido -= Time.deltaTime;
-			if (pr.tiempoEnSuspendido <= 0) {
-				listos.Enqueue (pr);
-				controladorPersonaje.suspendidoTOlisto (CPU,pr.representacion);
-			} else {
-				susTemp.Enqueue (pr);
-			}
-
-		}
-		suspendidos = susTemp;
-
-		//actualizar bloqueados
-		Cola<ProcesoSRTF> bloTemp = new Cola<ProcesoSRTF>();
-		while(bloqueados.Count()>0){
-			ProcesoSRTF pr = bloqueados.Dequeue ();
-			if (pr.recurso.libre) {
-				listos.Enqueue (pr);
-			} else {
-				bloTemp.Enqueue (pr);
-			}
-		}
-		bloqueados = bloTemp;
 
 		//actualizar total entregas
 		totalCPU.text = System.Convert.ToString(totalCPUFloat);
@@ -259,6 +233,33 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		//organizar cola de listos
 		listos = ordenarCola(listos);
 		controladorPersonaje.updateVistaColas (CPU);
+
+		//actualizar tiempo suspendido
+		Cola<ProcesoSRTF> susTemp = new Cola<ProcesoSRTF>();
+		while(suspendidos.Count()>0){
+			ProcesoSRTF pr = suspendidos.Dequeue ();
+			pr.tiempoEnSuspendido -= Time.deltaTime;
+			if (pr.tiempoEnSuspendido <= 0) {
+				listos.Enqueue (pr);
+				controladorPersonaje.suspendidoTOlisto (CPU,pr.representacion);
+			} else {
+				susTemp.Enqueue (pr);
+			}
+
+		}
+		suspendidos = susTemp;
+
+		//actualizar bloqueados
+		Cola<ProcesoSRTF> bloTemp = new Cola<ProcesoSRTF>();
+		while(bloqueados.Count()>0){
+			ProcesoSRTF pr = bloqueados.Dequeue ();
+			if (pr.recurso.libre) {
+				listos.Enqueue (pr);
+			} else {
+				bloTemp.Enqueue (pr);
+			}
+		}
+		bloqueados = bloTemp;
 		//planificar ();
 	}
 		
