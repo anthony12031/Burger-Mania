@@ -6,7 +6,7 @@ using System.Threading;
 public abstract class AProceso  {
 	public float TTL = 30;
 	public int CPU;
-	public float tiempoEnSuspendido = 5 ;//segundos
+	public float tiempoEnSuspendido = 10 ;//segundos
 	public bool haFinalizado = false;
 	IPlanificador planificador;
 	public volatile bool enEjecucion = false;
