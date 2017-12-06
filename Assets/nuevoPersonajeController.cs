@@ -287,7 +287,7 @@ public class nuevoPersonajeController : MonoBehaviour {
 	public void bloqueadoToListo()
 	{
 		GameObject sacado = ColaBloqueadoPJ.Dequeue ();
-		sacado.transform.localScale = new Vector3 (0.6f,0.6f,0.6f);
+		sacado.transform.localScale = escalaEnFilaPJ;
 		sacado.GetComponent<Personaje> ().estado = 0;
 		ColaClientes.Enqueue(sacado);
 
