@@ -114,9 +114,6 @@ public class gantt : MonoBehaviour {
 		nuevoPersonaje.transform.parent = content [0].transform;
 		switch (cpu) {
 		case 1:
-			//nuevoPersonaje.transform.position = new Vector3 (nuevoPersonaje.transform.position.x, nuevoPersonaje.transform.position.y - (objetosCreados1.Count * distancia), nuevoPersonaje.transform.position.z);
-
-
 			objetosCreados1.Add(nuevoPersonaje);
 			break;
 		case 2:
@@ -203,8 +200,10 @@ public class gantt : MonoBehaviour {
                                 break;
 
                         }
-
+                        
+                        punto.tag = "punto";
                         punto.transform.parent = cpuG1.transform;
+                       
                         contador1++;
                         //Debug.Log(contador1);
                     }
@@ -228,7 +227,7 @@ public class gantt : MonoBehaviour {
 
                         }
 
-
+                        punto.tag = "punto";
                         punto.transform.parent = cpuG2.transform;
                         contador2++;
 
@@ -254,7 +253,7 @@ public class gantt : MonoBehaviour {
 
                         }
 
-
+                        punto.tag = "punto";
                         punto.transform.parent = cpuG3.transform;
                         contador3++;
 

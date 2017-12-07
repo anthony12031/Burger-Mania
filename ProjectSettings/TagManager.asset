@@ -15,6 +15,7 @@ TagManager:
   - contentGantt
   - texto
   - botonCamara
+  - punto
   layers:
   - Default
   - TransparentFX

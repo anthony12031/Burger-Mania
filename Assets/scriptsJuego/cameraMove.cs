@@ -5,12 +5,14 @@ using UnityEngine;
 public class cameraMove : MonoBehaviour {
 	GameObject camara;
     GameObject[] botones;
+    GameObject[] puntos;
     // Use this for initialization
     float cambio = 1f;
+    float pcambio = 1f;
 	void Start () {
 		camara= GameObject.FindGameObjectWithTag ("MainCamera");
         botones = GameObject.FindGameObjectsWithTag("botonCamara");
-
+        
 
     }
     public void moverArriba() {
