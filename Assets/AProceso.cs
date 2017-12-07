@@ -10,6 +10,8 @@ public abstract class AProceso  {
 	public bool haFinalizado = false;
 	IPlanificador planificador;
 	public volatile bool enEjecucion = false;
+	public GameObject representacion;
+	public Recursos.Recurso recurso;
 
 	public AutoResetEvent eventoDeEjecucion;
 	public AutoResetEvent eventoDeSuspendido;

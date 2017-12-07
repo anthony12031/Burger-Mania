@@ -4,15 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading;
 
-public class planificador : MonoBehaviour {
+public class planificador : MonoBehaviour,IPlanificador {
 
+	public ColaMDespachador despachador;
 	int personajeContador = 0;
-	public int personajeContador1 = 0;
-	public int personajeContador2 = 0;
-	public int personajeContador3 = 0;
+
 	public bool esAutomatico = false;
 	public float tiempoQuantum = 2;
-	public float tiempoSuspendido = 2;
+	public float tiempoSuspendido;
 	public float tiempoEnBloqueado = 2;
 	public int x=0;
 	float timed = 0;
@@ -50,65 +49,43 @@ public class planificador : MonoBehaviour {
 
 
 
-	public class Proceso
+	public class Proceso:AProceso
 	{
-		public GameObject representacion;
+		
 		public GameObject clienteOriginal;
 		public GameObject perroCaliente;
 		public float Quantum ; //segundos;
 		public int tipoPerro;
-		public float TTL = 30;
 		public int CPU;
 		public TextMesh textoTTL;
 		public TextMesh textoQuantum;
 		public float envejecimiento = 0;
-		public float tiempoEnSuspendido ;//segundos
+		public float tiempoEnSuspendido = 5 ;//segundos
 
 		public bool haFinalizado = false;
-		planificador planificador;
+		IPlanificador planificador;
 		bool enEjecucion = false;
-		public Recursos.Recurso recurso;
 
-		public Proceso(GameObject cliente,planificador plan,int perro,int CPU,float tiempo){
-			textoTTL = cliente.transform.GetChild (0).GetChild(0).GetComponent<TextMesh> ();
-			textoTTL.text = System.Convert.ToString(tiempo);
+
+		public Proceso(IPlanificador plan,int CPU,GameObject rep,float t):base(plan,CPU,t){
+			//recursos = new List<Recursos.Recurso> ();
+			textoTTL = rep.transform.GetChild (0).GetChild(0).GetComponent<TextMesh> ();
+			textoTTL.text = System.Convert.ToString(t);
+			enEjecucion = true;
+			representacion = rep;
 			textoQuantum = Instantiate(textoTTL);
 			textoQuantum.transform.parent = textoTTL.transform.parent; 
 			textoQuantum.transform.localPosition = new Vector2(textoTTL.transform.localPosition.x,-0.1f);
 			textoQuantum.transform.localScale = textoTTL.transform.localScale ;
 			textoQuantum.text = "Q: ";
 			Debug.Log(textoQuantum);
-			this.representacion = cliente;
-			this.clienteOriginal = cliente;
 			this.CPU = CPU;
-			Quantum = plan.tiempoQuantum;
-			tiempoEnSuspendido = plan.tiempoSuspendido;
 			planificador = plan;
-			tipoPerro = perro;
-			this.TTL = tiempo;
 		}
 
-		public void ejecutar(float tiempo){
-				
-			if (planificador.esAutomatico) {
-				if (Quantum > TTL) {
-					Quantum = TTL;			
-				}
-				if (TTL <= 0) {
-					Debug.Log ("termino proceso");
-					//planificador.terminarProceso ();
-					return;
-				}
-			}
-			if (Quantum > 0) {
-				Quantum -= tiempo;
-				TTL -= tiempo;
-			}
-					
-				else {
-					Quantum = 0;
-					//planificador.notificacionQuantumTerminado ();
-				}
+
+		public override void ejecutar (){
+			
 		}
 
 		public void tiempoEnSuspendidoTick(float tiempo){
@@ -129,25 +106,13 @@ public class planificador : MonoBehaviour {
 	//crear proceso
 	public void crearProceso(int tipoPerro,float tiempo){
 		Debug.Log ("crear proceso RR");
-		switch (CPU) {
-		case 1:
-			personajeContador1++;
-			personajeContador = personajeContador1;
-			break;
-		case 2:
-			personajeContador2++;
-			personajeContador = personajeContador2;
-			break;
-		case 3:
-			personajeContador3++;
-			personajeContador = personajeContador3;
-			break;
-		}
-		int lista = controladorPersonaje.PJlista;
+		ContadorPersonajes.personajeContador1++;
+		personajeContador = ContadorPersonajes.personajeContador1;
+		int lista = ContadorPersonajes.PJlista;
 		GameObject representacion = controladorPersonaje.agregarPersonaje (tipoPerro, CPU, personajeContador);
 		Debug.Log (representacion);
 		//GameObject cliente =  controladorPersonajes.agregarPersonaje(tipoPerro,1,1);
-		Proceso nuevoProceso = new Proceso (representacion,this,tipoPerro,CPU,tiempo);
+		Proceso nuevoProceso = new Proceso(this,CPU,representacion,tiempo);
 		listos.Enqueue (nuevoProceso);
 		diagrama.agregarPersonaje (CPU, lista, nuevoProceso.representacion.GetComponent<Personaje> ().id);
 		diagrama.inicio = true;
@@ -183,6 +148,7 @@ public class planificador : MonoBehaviour {
 		controladorPersonaje.terminarProcesoActual (procesoEnEjecucion.representacion);
 		procesoEnEjecucion.recurso.libre = true;
 		procesoEnEjecucion = null;
+		despachador.notificacionProcesoTerminado ();
 		/*if (CPU == 2 || CPU == 3) {
 			totalCPUFloat += 1;
 		}*/
@@ -349,6 +315,7 @@ public class planificador : MonoBehaviour {
 			Proceso pr = bloqueados.Dequeue ();
 			if (pr.recurso.libre) {
 				listos.Enqueue (pr);
+				controladorPersonaje.bloqueadoToListo (pr.representacion);
 			} else {
 				bloTemp.Enqueue (pr);
 			}

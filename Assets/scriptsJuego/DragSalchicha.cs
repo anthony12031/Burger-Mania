@@ -69,9 +69,8 @@ public class DragSalchicha : MonoBehaviour {
 			GetComponent<SpriteRenderer> ().sortingLayerName = "sobreMeson";
 			GetComponent<SpriteRenderer> ().sortingOrder = 1;
 			panPerroColision.transform.parent = gameObject.transform;
-			panPerroColision.transform.localPosition = new Vector2 (0.0f, 0.0f);
-
-			Destroy (GetComponent<DragSalchicha> ());
+			//panPerroColision.transform.localPosition = new Vector2 (0.0f, 0.0f);
+			//Destroy (GetComponent<DragSalchicha> ());
 			Destroy (GetComponent<Collider2D> ());
 			//posicionEnParrilla.libre = true;
 		} else {

@@ -112,12 +112,12 @@ public class RRPersonajeController : MonoBehaviour {
 
 	public GameObject agregarPersonaje(int orden,int cpu, int id){
 
-		if (PJlista > 8)
+		if (ContadorPersonajes.PJlista > 8)
 		{
-			PJlista = 1;
+			ContadorPersonajes.PJlista = 1;
 		}
 
-		switch (PJlista)
+		switch (ContadorPersonajes.PJlista)
 		{
 		case 1:
 			personajeBase = personajeA;
@@ -144,7 +144,7 @@ public class RRPersonajeController : MonoBehaviour {
 			personajeBase = personaje1;
 			break;
 		}
-		PJlista++;
+		ContadorPersonajes.PJlista++;
 		switch (orden)
 		{
 		case 1:
@@ -284,19 +284,17 @@ public class RRPersonajeController : MonoBehaviour {
 	}
 
 
-	public void bloqueadoToListo()
+	public void bloqueadoToListo(GameObject cliente)
 	{
-		GameObject sacado = ColaBloqueadoPJ.Dequeue ();
-		sacado.transform.localScale = escalaEnFilaPJ;
-		sacado.GetComponent<Personaje> ().estado = 0;
-		ColaClientes.Enqueue(sacado);
-
-		int sizeBLOJ = ColaBloqueadoPJ.Count; 
-		for(int i=0;i<sizeBLOJ;i++){
-			GameObject sacar = ColaBloqueadoPJ.Dequeue();
+		cliente.GetComponent<Personaje> ().estado = 0;
+		cliente.transform.localScale = escalaEnFilaPJ;
+		bloqueados = GetComponent<planificador>().bloqueados; 
+		int sizeSUSPJ = bloqueados.Count ();
+		for(int i=0;i<sizeSUSPJ;i++){
+			planificador.Proceso pr = bloqueados.Dequeue ();
+			GameObject sacar = pr.representacion;
 			sacar.GetComponent<Personaje>().posicion = sacar.GetComponent<Personaje>().posicion - 1;
-
-			ColaBloqueadoPJ.Enqueue (sacar);
+			bloqueados.Enqueue (pr);
 		}
 
 	}
@@ -332,7 +330,7 @@ public class RRPersonajeController : MonoBehaviour {
 		cliente.GetComponent<Personaje>().estado = -1;
 		cliente.GetComponent<SpriteRenderer>().enabled = false;
 		quitarVista(cliente);
-
+	
 
 	}
 
@@ -454,8 +452,6 @@ public class RRPersonajeController : MonoBehaviour {
 		for (int i = 0; i < listos.Count(); i++) {
 			planificador.Proceso pr = listos.Dequeue ();
 			GameObject cliente = pr.representacion;
-			cliente.transform.localScale = escalaEnFilaPJ;
-
 			float posX=0;
 			float posY=0;
 			if (cpu == 1) {

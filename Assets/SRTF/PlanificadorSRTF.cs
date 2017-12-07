@@ -8,6 +8,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 	public delegate void eventoDeHiloDelegate(string tipoEvento);
 
+	public ColaMDespachador despachador;
 	public ProcesoSRTF procesoEnEjecucion;
 	public float tiempoSpawn;
 	public float tiempoTranscurrido;
@@ -15,12 +16,9 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 	public Cola<ProcesoSRTF> suspendidos;
 	public Cola<ProcesoSRTF> bloqueados;
 
-	public Text totalCPU;
 	public float totalCPUFloat = 0;
 	int personajeContador = 0;
-	public int personajeContador1 = 0;
-	public int personajeContador2 = 0;
-	public int personajeContador3 = 0;
+
 	public gantt diagrama;
 
 
@@ -67,21 +65,10 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 	public void crearProceso(int tipoPerro,float tiempoProceso){
 		
-		switch (CPU) {
-		case 1:
-			personajeContador1++;
-			personajeContador = personajeContador1;
-			break;
-		case 2:
-			personajeContador2++;
-			personajeContador = personajeContador2;
-			break;
-		case 3:
-			personajeContador3++;
-			personajeContador = personajeContador3;
-			break;
-		}
-		int lista = controladorPersonaje.PJlista;
+		ContadorPersonajes.personajeContador1++;
+		personajeContador = ContadorPersonajes.personajeContador1;
+
+		int lista = ContadorPersonajes.PJlista;
 		GameObject representacion = controladorPersonaje.agregarPersonaje (tipoPerro, CPU, personajeContador);
 
 		ProcesoSRTF nuevoProceso = new ProcesoSRTF (this, CPU,representacion,tiempoProceso);
@@ -122,14 +109,12 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		}
 	}
 
-	void terminarProceso(){
+	public void terminarProceso(){
 		procesoEnEjecucion.enEjecucion = false;   
 		controladorPersonaje.terminarProcesoActual (procesoEnEjecucion.representacion);
 		procesoEnEjecucion.recurso.libre = true;
 		procesoEnEjecucion = null;
-		if (CPU == 2 || CPU == 3) {
-			totalCPUFloat += 1;
-		}
+		despachador.notificacionProcesoTerminado ();
 		//liberar recursos
 	}
 
@@ -156,7 +141,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 					bool tieneTomate = tieneSalsa("salsaTomate","salsaTomate",parent);
 					bool tieneMostaza = tieneSalsa ("mostaza", "salsaMostaza", parent);
 					if (tieneTomate && !tieneMostaza) {
-						totalCPUFloat += 1;
+						//totalCPUFloat += 1;
 					} 
 				}
 				if (procesoEnEjecucion.recurso.nombre == "mostaza") {
@@ -164,7 +149,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 					bool tieneTomate = tieneSalsa("salsaTomate","salsaTomate",parent);
 					bool tieneMostaza = tieneSalsa ("mostaza", "salsaMostaza", parent);
 					if (tieneMostaza && !tieneTomate) {
-						totalCPUFloat += 1;
+						//totalCPUFloat += 1;
 					}
 				}
 			}
@@ -205,7 +190,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		}
 
 		//actualizar total entregas
-		totalCPU.text = System.Convert.ToString(totalCPUFloat);
+		//totalCPU.text = System.Convert.ToString(totalCPUFloat);
 
 		//crear procesos
 
@@ -260,6 +245,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 			ProcesoSRTF pr = bloqueados.Dequeue ();
 			if (pr.recurso.libre) {
 				listos.Enqueue (pr);
+				controladorPersonaje.bloqueadoToListo (pr.representacion);
 			} else {
 				bloTemp.Enqueue (pr);
 			}
