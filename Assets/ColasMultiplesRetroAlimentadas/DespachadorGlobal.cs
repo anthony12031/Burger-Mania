@@ -10,6 +10,8 @@ public class DespachadorGlobal : MonoBehaviour {
 	SeleccionCPU seleccionCPU;
 	SeleccionPrioridad seleccionPrioridad;
 
+	public AudioSource correct_sound;
+	public AudioSource wrong_sound;
 	public ColaMDespachador despachadorCPU1;
 	public ColaMDespachador despachadorCPU2;
 	public ColaMDespachador despachadorCPU3;
@@ -141,7 +143,10 @@ public class DespachadorGlobal : MonoBehaviour {
 					Debug.Log ("mostaza ?: " + tieneMostaza);
 					if (tieneTomate && !tieneMostaza) {
 						ItotalCPU1 += 1;
-					} 
+						correct_sound.Play ();
+					} else {
+						wrong_sound.Play ();
+					}
 				}
 				if (despachadorCPU1.procesoEnEjecucion.recurso.nombre == "mostaza") {
 					//verificar si tiene tomate
@@ -149,6 +154,9 @@ public class DespachadorGlobal : MonoBehaviour {
 					Debug.Log ("mostaza ?: " + tieneMostaza);
 					if (tieneMostaza && !tieneTomate) {
 						ItotalCPU1 += 1;
+						correct_sound.Play ();
+					} else {
+						wrong_sound.Play ();
 					}
 				}
 			}
