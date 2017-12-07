@@ -8,6 +8,7 @@ public class PlanificadorFIFO : MonoBehaviour,IPlanificador {
 
 	public delegate void eventoDeHiloDelegate(string tipoEvento);
 
+	public ColaMDespachador despachador;
 	public ProcesoFIFO procesoEnEjecucion;
 	public float tiempoSpawn;
 	public float tiempoTranscurrido;
@@ -123,15 +124,12 @@ public class PlanificadorFIFO : MonoBehaviour,IPlanificador {
 		}
 	}
 
-	void terminarProceso(){
+	public void terminarProceso(){
 		procesoEnEjecucion.enEjecucion = false;   
 		controladorPersonaje.terminarProcesoActual (procesoEnEjecucion.representacion);
 		procesoEnEjecucion.recurso.libre = true;
 		procesoEnEjecucion = null;
-		if (CPU == 2 || CPU == 3) {
-			totalCPUFloat += 1;
-		}
-		//liberar recursos
+		despachador.notificacionProcesoTerminado ();
 	}
 
 	public bool tieneSalsa(string tipoSalsa,string tagSalsa,Transform parent){

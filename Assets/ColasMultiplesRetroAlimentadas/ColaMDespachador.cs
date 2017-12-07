@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ColaMDespachador : MonoBehaviour {
 
+	public DespachadorGlobal despachadorGlobal;
 	public PlanificadorSRTF planificadorSRTF;
 	public planificador planificadorRR;
 	public PlanificadorFIFO planificadorFIFO;
-
-
+	public AProceso procesoEnEjecucion;
+	public string planificadorProcesoActual;
 	public int CPU;
 
 	// Use this for initialization
@@ -16,12 +17,15 @@ public class ColaMDespachador : MonoBehaviour {
 		//planificador SRTF
 		planificadorSRTF = transform.GetChild (0).gameObject.GetComponent<PlanificadorSRTF>();
 		planificadorSRTF.CPU = CPU;
+		planificadorSRTF.despachador = this;
 		//planificador RR
 		planificadorRR = transform.GetChild (1).gameObject.GetComponent<planificador>();
 		planificadorRR.CPU = CPU;
+		planificadorRR.despachador = this;
 		//planificador FIFO
 		planificadorFIFO = transform.GetChild (2).gameObject.GetComponent<PlanificadorFIFO>();
 		planificadorFIFO.CPU = CPU;
+		planificadorFIFO.despachador = this;
 	}
 
 	public void crearProceso(int tipoPerro,float tiempo,int prioridad){
@@ -34,6 +38,10 @@ public class ColaMDespachador : MonoBehaviour {
 		if (prioridad == 3) {
 			planificadorFIFO.crearProceso (tipoPerro, tiempo);
 		}
+	}
+
+	public void notificacionProcesoTerminado(){
+		despachadorGlobal.notificacionProcesoTerminado (CPU);
 	}
 		
 	// Update is called once per frame
@@ -81,6 +89,25 @@ public class ColaMDespachador : MonoBehaviour {
 				planificadorSRTF.planificar ();
 			} else {
 				planificadorFIFO.planificar ();
+			}
+		}
+
+		if (planificadorRR.procesoEnEjecucion != null) {
+			procesoEnEjecucion = planificadorRR.procesoEnEjecucion;
+			planificadorProcesoActual = "RR";
+		} else {
+			if (planificadorSRTF.procesoEnEjecucion != null) {
+				procesoEnEjecucion = planificadorSRTF.procesoEnEjecucion;
+				planificadorProcesoActual = "SRTF";
+			} else {
+				if (planificadorFIFO.procesoEnEjecucion != null) {
+					procesoEnEjecucion = planificadorFIFO.procesoEnEjecucion;
+					planificadorProcesoActual = "FIFO";
+				} else {
+					procesoEnEjecucion = null;
+					planificadorProcesoActual = null;
+				}
+					
 			}
 		}
 

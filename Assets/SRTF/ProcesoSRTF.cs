@@ -5,10 +5,9 @@ using System.Threading;
 
 public class ProcesoSRTF : AProceso {
 
-	public Recursos.Recurso recurso;
+
 	public TextMesh textoTTL;
 	public Thread hiloDeEjecucion;
-	public GameObject representacion;
 
 	public ProcesoSRTF(IPlanificador plan,int CPU,GameObject rep,float t):base(plan,CPU,t){
 		//recursos = new List<Recursos.Recurso> ();

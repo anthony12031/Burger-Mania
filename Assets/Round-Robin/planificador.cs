@@ -6,6 +6,7 @@ using System.Threading;
 
 public class planificador : MonoBehaviour,IPlanificador {
 
+	public ColaMDespachador despachador;
 	int personajeContador = 0;
 	public int personajeContador1 = 0;
 	public int personajeContador2 = 0;
@@ -52,7 +53,7 @@ public class planificador : MonoBehaviour,IPlanificador {
 
 	public class Proceso:AProceso
 	{
-		public GameObject representacion;
+		
 		public GameObject clienteOriginal;
 		public GameObject perroCaliente;
 		public float Quantum ; //segundos;
@@ -66,7 +67,7 @@ public class planificador : MonoBehaviour,IPlanificador {
 		public bool haFinalizado = false;
 		IPlanificador planificador;
 		bool enEjecucion = false;
-		public Recursos.Recurso recurso;
+
 
 		public Proceso(IPlanificador plan,int CPU,GameObject rep,float t):base(plan,CPU,t){
 			//recursos = new List<Recursos.Recurso> ();
@@ -161,6 +162,7 @@ public class planificador : MonoBehaviour,IPlanificador {
 		controladorPersonaje.terminarProcesoActual (procesoEnEjecucion.representacion);
 		procesoEnEjecucion.recurso.libre = true;
 		procesoEnEjecucion = null;
+		despachador.notificacionProcesoTerminado ();
 		/*if (CPU == 2 || CPU == 3) {
 			totalCPUFloat += 1;
 		}*/

@@ -8,6 +8,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 
 	public delegate void eventoDeHiloDelegate(string tipoEvento);
 
+	public ColaMDespachador despachador;
 	public ProcesoSRTF procesoEnEjecucion;
 	public float tiempoSpawn;
 	public float tiempoTranscurrido;
@@ -122,14 +123,12 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		}
 	}
 
-	void terminarProceso(){
+	public void terminarProceso(){
 		procesoEnEjecucion.enEjecucion = false;   
 		controladorPersonaje.terminarProcesoActual (procesoEnEjecucion.representacion);
 		procesoEnEjecucion.recurso.libre = true;
 		procesoEnEjecucion = null;
-		if (CPU == 2 || CPU == 3) {
-			totalCPUFloat += 1;
-		}
+		despachador.notificacionProcesoTerminado ();
 		//liberar recursos
 	}
 
