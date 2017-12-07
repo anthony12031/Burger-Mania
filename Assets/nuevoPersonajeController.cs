@@ -284,19 +284,17 @@ public class nuevoPersonajeController : MonoBehaviour {
 	}
 
 
-	public void bloqueadoToListo()
+	public void bloqueadoToListo(GameObject cliente)
 	{
-		GameObject sacado = ColaBloqueadoPJ.Dequeue ();
-		sacado.transform.localScale = escalaEnFilaPJ;
-		sacado.GetComponent<Personaje> ().estado = 0;
-		ColaClientes.Enqueue(sacado);
-
-		int sizeBLOJ = ColaBloqueadoPJ.Count; 
-		for(int i=0;i<sizeBLOJ;i++){
-			GameObject sacar = ColaBloqueadoPJ.Dequeue();
+		cliente.GetComponent<Personaje> ().estado = 0;
+		cliente.transform.localScale = escalaEnFilaPJ;
+		bloqueados = GetComponent<PlanificadorSRTF>().bloqueados; 
+		int sizeSUSPJ = bloqueados.Count ();
+		for(int i=0;i<sizeSUSPJ;i++){
+			ProcesoSRTF pr = bloqueados.Dequeue ();
+			GameObject sacar = pr.representacion;
 			sacar.GetComponent<Personaje>().posicion = sacar.GetComponent<Personaje>().posicion - 1;
-
-			ColaBloqueadoPJ.Enqueue (sacar);
+			bloqueados.Enqueue (pr);
 		}
 
 	}

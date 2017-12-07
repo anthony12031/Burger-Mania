@@ -7,6 +7,8 @@ public class ColaMDespachador : MonoBehaviour {
 	public PlanificadorSRTF planificadorSRTF;
 	public planificador planificadorRR;
 	public PlanificadorFIFO planificadorFIFO;
+
+
 	public int CPU;
 
 	// Use this for initialization
@@ -33,7 +35,7 @@ public class ColaMDespachador : MonoBehaviour {
 			planificadorFIFO.crearProceso (tipoPerro, tiempo);
 		}
 	}
-
+		
 	// Update is called once per frame
 	void Update () {
 		//procesos prioridad 1
@@ -138,7 +140,7 @@ public class ColaMDespachador : MonoBehaviour {
 			if (pr.envejecimiento >= tiempoEnvejecimiento) {
 				//pasar a la cola de SRTF
 				pr.envejecimiento = 0;
-				planificador.Proceso prRR = new planificador.Proceso (Instantiate (pr.representacion), planificadorRR, 1, CPU, pr.TTL);
+				planificador.Proceso prRR = new planificador.Proceso (planificadorRR, CPU, Instantiate (pr.representacion), pr.TTL);
 				prRR.recurso= pr.recurso;
 				planificadorRR.listos.Enqueue (prRR);
 				Destroy (pr.representacion);

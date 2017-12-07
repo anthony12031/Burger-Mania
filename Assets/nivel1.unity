@@ -6076,12 +6076,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1115807296 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114075780786750372, guid: 4ce5ca4a046c3c747804d38be866dd54,
-    type: 2}
-  m_PrefabInternal: {fileID: 671506061}
-  m_Script: {fileID: 11500000, guid: 4174fbfe371c9ae46967663e804f1fc5, type: 3}
 --- !u!1 &1174490365
 GameObject:
   m_ObjectHideFlags: 0
@@ -10044,8 +10038,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1115807296}
-        m_MethodName: terminarProcesoManual
+      - m_Target: {fileID: 1048098476}
+        m_MethodName: entregarPerro
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -227,6 +227,7 @@ public class PlanificadorFIFO : MonoBehaviour,IPlanificador {
 			ProcesoFIFO pr = bloqueados.Dequeue ();
 			if (pr.recurso.libre) {
 				listos.Enqueue (pr);
+				controladorPersonaje.bloqueadoToListo (pr.representacion);
 			} else {
 				bloTemp.Enqueue (pr);
 			}

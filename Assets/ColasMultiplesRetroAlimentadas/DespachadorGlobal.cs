@@ -36,7 +36,12 @@ public class DespachadorGlobal : MonoBehaviour {
 		}
 	}
 
-
+	public void entregarPerro(){
+		Debug.Log ("Entregar perro");
+		Debug.Log ("Proceso en ejecucion CPU1");
+		//Debug.Log(despachadorCPU1)
+	}
+		
 	public void crearOrden(){
 		Debug.Log ("crear Proceso");
 		int tipoPerro = seleccionPerro.getTipoPerro ()+1;
