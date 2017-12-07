@@ -17,12 +17,12 @@ public class DespachadorGlobal : MonoBehaviour {
 	public Text totalCPU1;
 	public Text totalCPU2;
 	public Text totalCPU3;
-	public int ItotalCPU1=0;
-	public int ItotalCPU2=0;
-	public int ItotalCPU3=0;
+	public int ItotalCPU1;
+	public int ItotalCPU2;
+	public int ItotalCPU3;
 
 	//crear procesos cada cierto tiempo
-	public bool modoJuego = false;
+	public bool modoJuego;
 
 	// Use this for initialization
 	void Start () {
@@ -76,6 +76,9 @@ public class DespachadorGlobal : MonoBehaviour {
 	int frames = 0;
 	// Update is called once per frame
 	void Update () {
+		totalCPU1.text = "" + ItotalCPU1;
+		totalCPU2.text = "" + ItotalCPU2;
+		totalCPU3.text = "" + ItotalCPU3;
 		if (modoJuego) {
 			frames += 1;
 			tiempoTranscurrido += Time.deltaTime;
@@ -104,6 +107,11 @@ public class DespachadorGlobal : MonoBehaviour {
 		}catch(System.FormatException){
 			Debug.Log("format exception");
 		}
+	}
+
+	public void setModoJuego(bool juego){
+		modoJuego = !modoJuego;
+		Debug.Log ("modo juego? : " + modoJuego);
 	}
 
 	public bool tieneSalsa(string tipoSalsa,string tagSalsa,Transform parent){
@@ -167,7 +175,6 @@ public class DespachadorGlobal : MonoBehaviour {
 				Destroy (pan.gameObject);
 			}
 		}
-		totalCPU1.text = "" + ItotalCPU1;
 	}
 
 	public void notificacionProcesoTerminado(int CPU){
@@ -177,11 +184,9 @@ public class DespachadorGlobal : MonoBehaviour {
 		}
 		if (CPU == 2) {
 			ItotalCPU2 += 1;
-			totalCPU2.text = "" + ItotalCPU2;
 		}
 		if (CPU == 3) {
 			ItotalCPU3 += 1;
-			totalCPU3.text = "" + ItotalCPU3;
 		}
 	}
 		

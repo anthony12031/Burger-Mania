@@ -16,7 +16,6 @@ public class PlanificadorFIFO : MonoBehaviour,IPlanificador {
 	public Cola<ProcesoFIFO> suspendidos;
 	public Cola<ProcesoFIFO> bloqueados;
 
-	public Text totalCPU;
 	public float totalCPUFloat = 0;
 	int personajeContador = 0;
 	public int personajeContador1 = 0;
@@ -155,7 +154,7 @@ public class PlanificadorFIFO : MonoBehaviour,IPlanificador {
 					bool tieneTomate = tieneSalsa("salsaTomate","salsaTomate",parent);
 					bool tieneMostaza = tieneSalsa ("mostaza", "salsaMostaza", parent);
 					if (tieneTomate && !tieneMostaza) {
-						totalCPUFloat += 1;
+						//totalCPUFloat += 1;
 					} 
 				}
 				if (procesoEnEjecucion.recurso.nombre == "mostaza") {
@@ -163,7 +162,7 @@ public class PlanificadorFIFO : MonoBehaviour,IPlanificador {
 					bool tieneTomate = tieneSalsa("salsaTomate","salsaTomate",parent);
 					bool tieneMostaza = tieneSalsa ("mostaza", "salsaMostaza", parent);
 					if (tieneMostaza && !tieneTomate) {
-						totalCPUFloat += 1;
+						//totalCPUFloat += 1;
 					}
 				}
 			}

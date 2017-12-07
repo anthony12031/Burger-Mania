@@ -16,7 +16,6 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 	public Cola<ProcesoSRTF> suspendidos;
 	public Cola<ProcesoSRTF> bloqueados;
 
-	public Text totalCPU;
 	public float totalCPUFloat = 0;
 	int personajeContador = 0;
 	public int personajeContador1 = 0;
@@ -155,7 +154,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 					bool tieneTomate = tieneSalsa("salsaTomate","salsaTomate",parent);
 					bool tieneMostaza = tieneSalsa ("mostaza", "salsaMostaza", parent);
 					if (tieneTomate && !tieneMostaza) {
-						totalCPUFloat += 1;
+						//totalCPUFloat += 1;
 					} 
 				}
 				if (procesoEnEjecucion.recurso.nombre == "mostaza") {
@@ -163,7 +162,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 					bool tieneTomate = tieneSalsa("salsaTomate","salsaTomate",parent);
 					bool tieneMostaza = tieneSalsa ("mostaza", "salsaMostaza", parent);
 					if (tieneMostaza && !tieneTomate) {
-						totalCPUFloat += 1;
+						//totalCPUFloat += 1;
 					}
 				}
 			}
@@ -204,7 +203,7 @@ public class PlanificadorSRTF : MonoBehaviour,IPlanificador {
 		}
 
 		//actualizar total entregas
-		totalCPU.text = System.Convert.ToString(totalCPUFloat);
+		//totalCPU.text = System.Convert.ToString(totalCPUFloat);
 
 		//crear procesos
 

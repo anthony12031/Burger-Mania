@@ -13,7 +13,7 @@ public class planificador : MonoBehaviour,IPlanificador {
 	public int personajeContador3 = 0;
 	public bool esAutomatico = false;
 	public float tiempoQuantum = 2;
-	public float tiempoSuspendido = 2;
+	public float tiempoSuspendido;
 	public float tiempoEnBloqueado = 2;
 	public int x=0;
 	float timed = 0;
