@@ -18,9 +18,6 @@ public class PlanificadorFIFO : MonoBehaviour,IPlanificador {
 
 	public float totalCPUFloat = 0;
 	int personajeContador = 0;
-	public int personajeContador1 = 0;
-	public int personajeContador2 = 0;
-	public int personajeContador3 = 0;
 	public gantt diagrama;
 
 
@@ -67,21 +64,9 @@ public class PlanificadorFIFO : MonoBehaviour,IPlanificador {
 
 	public void crearProceso(int tipoPerro,float tiempoProceso){
 
-		switch (CPU) {
-		case 1:
-			personajeContador1++;
-			personajeContador = personajeContador1;
-			break;
-		case 2:
-			personajeContador2++;
-			personajeContador = personajeContador2;
-			break;
-		case 3:
-			personajeContador3++;
-			personajeContador = personajeContador3;
-			break;
-		}
-		int lista = controladorPersonaje.PJlista;
+		ContadorPersonajes.personajeContador1++;
+		personajeContador = ContadorPersonajes.personajeContador1;
+		int lista = ContadorPersonajes.PJlista;
 		GameObject representacion = controladorPersonaje.agregarPersonaje (tipoPerro, CPU, personajeContador);
 
 		ProcesoFIFO nuevoProceso = new ProcesoFIFO (this, CPU,representacion,tiempoProceso);

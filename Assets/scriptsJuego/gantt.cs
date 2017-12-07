@@ -33,9 +33,9 @@ public class gantt : MonoBehaviour {
 
 	public GameObject punto;
 
-	public List<GameObject> objetosCreados1;
-	public List<GameObject> objetosCreados2;
-	public List<GameObject> objetosCreados3;
+	public static List<GameObject> objetosCreados1;
+	public static List<GameObject> objetosCreados2;
+	public  static List<GameObject> objetosCreados3;
 	public int contadorObj = 0;
 	public float distancia = 0.6f;
 	public float inicioSubGantt = 0.5f;
@@ -78,6 +78,9 @@ public class gantt : MonoBehaviour {
 	
 	// Update is called once per frame
 	public void agregarPersonaje(int cpu, int pj, int id){
+		Debug.Log ("CPU: "+cpu);
+		Debug.Log ("pj: "+pj);
+		Debug.Log ("id: "+id);
 		switch (pj)
 		{
 		case 1:
@@ -115,8 +118,6 @@ public class gantt : MonoBehaviour {
 		switch (cpu) {
 		case 1:
 			//nuevoPersonaje.transform.position = new Vector3 (nuevoPersonaje.transform.position.x, nuevoPersonaje.transform.position.y - (objetosCreados1.Count * distancia), nuevoPersonaje.transform.position.z);
-
-
 			objetosCreados1.Add(nuevoPersonaje);
 			break;
 		case 2:
@@ -187,7 +188,7 @@ public class gantt : MonoBehaviour {
                     //Debug.Log("CPU cliente" + cliente.GetComponent<Personaje>().cpu + " = CPU gantt " + cpuG1.GetComponent<Personaje>().cpu);
                     //Debug.Log("ID cliente" + cliente.GetComponent<Personaje>().id + " = ID gantt " + cpuG1.GetComponent<Personaje>().id);
 
-                    if (cliente.GetComponent<Personaje>().cpu == cpuG1.GetComponent<Personaje>().cpu && cliente.GetComponent<Personaje>().id == cpuG1.GetComponent<Personaje>().id) {
+                    if ( cliente.GetComponent<Personaje>().id == cpuG1.GetComponent<Personaje>().id) {
                         switch (cliente.GetComponent<Personaje>().estado) {
                             case 0:
                                 punto = Instantiate(listo, new Vector2(cpuG1.transform.position.x + deltaFrames + inicioChartx, cpu1.transform.position[1] - (distancia * contador1) - inicioCharty), Quaternion.identity, cpuG1.transform) as GameObject;
@@ -211,7 +212,7 @@ public class gantt : MonoBehaviour {
                 }
 
                 foreach (GameObject cpuG2 in objetosCreados2) {
-                    if (cliente.GetComponent<Personaje>().cpu == cpuG2.GetComponent<Personaje>().cpu && cliente.GetComponent<Personaje>().id == cpuG2.GetComponent<Personaje>().id) {
+                    if ( cliente.GetComponent<Personaje>().id == cpuG2.GetComponent<Personaje>().id) {
                         switch (cliente.GetComponent<Personaje>().estado) {
                             case 0:
                                 punto = Instantiate(listo, new Vector2(cpuG2.transform.position.x + deltaFrames + inicioChartx, cpu2.transform.position[1] - (distancia * contador2) - inicioCharty), Quaternion.identity, cpuG2.transform) as GameObject;
@@ -237,7 +238,7 @@ public class gantt : MonoBehaviour {
 
 
                 foreach (GameObject cpuG3 in objetosCreados3) {
-                    if (cliente.GetComponent<Personaje>().cpu == cpuG3.GetComponent<Personaje>().cpu && cliente.GetComponent<Personaje>().id == cpuG3.GetComponent<Personaje>().id) {
+                    if ( cliente.GetComponent<Personaje>().id == cpuG3.GetComponent<Personaje>().id) {
                         switch (cliente.GetComponent<Personaje>().estado) {
                             case 0:
                                 punto = Instantiate(listo, new Vector2(cpuG3.transform.position.x + deltaFrames + inicioChartx, cpu3.transform.position[1] - (distancia * contador3) - inicioCharty), Quaternion.identity, cpuG3.transform) as GameObject;

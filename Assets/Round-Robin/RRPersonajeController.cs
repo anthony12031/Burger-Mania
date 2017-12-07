@@ -112,12 +112,12 @@ public class RRPersonajeController : MonoBehaviour {
 
 	public GameObject agregarPersonaje(int orden,int cpu, int id){
 
-		if (PJlista > 8)
+		if (ContadorPersonajes.PJlista > 8)
 		{
-			PJlista = 1;
+			ContadorPersonajes.PJlista = 1;
 		}
 
-		switch (PJlista)
+		switch (ContadorPersonajes.PJlista)
 		{
 		case 1:
 			personajeBase = personajeA;
@@ -144,7 +144,7 @@ public class RRPersonajeController : MonoBehaviour {
 			personajeBase = personaje1;
 			break;
 		}
-		PJlista++;
+		ContadorPersonajes.PJlista++;
 		switch (orden)
 		{
 		case 1:
