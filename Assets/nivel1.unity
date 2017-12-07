@@ -5880,6 +5880,8 @@ MonoBehaviour:
   ItotalCPU1: 0
   ItotalCPU2: 0
   ItotalCPU3: 0
+  modoJuego: 1
+  tiempoSpawn: 4
 --- !u!114 &1048098477
 MonoBehaviour:
   m_ObjectHideFlags: 0

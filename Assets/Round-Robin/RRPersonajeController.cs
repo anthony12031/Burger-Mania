@@ -330,7 +330,7 @@ public class RRPersonajeController : MonoBehaviour {
 		cliente.GetComponent<Personaje>().estado = -1;
 		cliente.GetComponent<SpriteRenderer>().enabled = false;
 		quitarVista(cliente);
-
+	
 
 	}
 

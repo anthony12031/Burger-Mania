@@ -62,7 +62,7 @@ public class planificador : MonoBehaviour,IPlanificador {
 		public TextMesh textoTTL;
 		public TextMesh textoQuantum;
 		public float envejecimiento = 0;
-		public float tiempoEnSuspendido ;//segundos
+		public float tiempoEnSuspendido = 5 ;//segundos
 
 		public bool haFinalizado = false;
 		IPlanificador planificador;
